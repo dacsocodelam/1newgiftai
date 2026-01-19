@@ -203,7 +203,60 @@
   },
   "blog": {
     "title": "Bí quyết tặng quà từ chuyên gia",
-    "subtitle": "Khám phá các bài viết hữu ích về nghệ thuật tặng quà, tâm lý học và xu hướng mới nhất"
+    "subtitle": "Khám phá các bài viết hữu ích về nghệ thuật tặng quà, tâm lý học và xu hướng mới nhất",
+    "featured": "Nổi bật",
+    "readMore": "Đọc tiếp →",
+    "viewAll": "📖 Xem tất cả bài viết",
+    "posts": [
+      {
+        "title": "Top 10 quà sinh nhật khiến cô ấy mê mẩn",
+        "excerpt": "Khám phá những ý tưởng quà tặng độc đáo và ý nghĩa để sinh nhật cô ấy trở nên đặc biệt...",
+        "category": "Sinh nhật",
+        "readTime": "5 phút đọc",
+        "date": "15 tháng 7, 2025"
+      },
+      {
+        "title": "Quà Valentine cho người yêu: Từ cổ điển đến hiện đại",
+        "excerpt": "Cách chọn món quà Valentine hoàn hảo dựa trên tính cách và sở thích của đối phương...",
+        "category": "Valentine",
+        "readTime": "7 phút đọc",
+        "date": "10 tháng 7, 2025"
+      },
+      {
+        "title": "Quà tặng cho mẹ: Ý nghĩa nhất năm 2025",
+        "excerpt": "Danh sách quà tặng thiết thực và đầy yêu thương cho người phụ nữ quan trọng nhất...",
+        "category": "Gia đình",
+        "readTime": "6 phút đọc",
+        "date": "5 tháng 7, 2025"
+      },
+      {
+        "title": "Tâm lý học chọn quà: Bí quyết từ chuyên gia",
+        "excerpt": "Hiểu tâm lý người nhận để chọn món quà chạm đến trái tim...",
+        "category": "Tâm lý học",
+        "readTime": "8 phút đọc",
+        "date": "1 tháng 7, 2025"
+      },
+      {
+        "title": "Quà tặng đồng nghiệp: Cân bằng chuyên nghiệp và thân thiện",
+        "excerpt": "Ý tưởng thông minh khi tặng quà đồng nghiệp trong các dịp đặc biệt...",
+        "category": "Công việc",
+        "readTime": "4 phút đọc",
+        "date": "28 tháng 6, 2025"
+      },
+      {
+        "title": "Xu hướng quà tặng 2025: Từ công nghệ đến trải nghiệm",
+        "excerpt": "Cập nhật xu hướng quà tặng mới nhất 2025 từ gadget công nghệ đến trải nghiệm độc đáo...",
+        "category": "Xu hướng",
+        "readTime": "6 phút đọc",
+        "date": "25 tháng 6, 2025"
+      }
+    ],
+    "newsletter": {
+      "title": "🔔 Nhận mẹo tặng quà mới nhất",
+      "description": "Mỗi tuần, chúng tôi gửi bạn những mẹo hữu ích về nghệ thuật tặng quà và xu hướng quà tặng mới nhất",
+      "placeholder": "Nhập địa chỉ email của bạn...",
+      "subscribe": "Đăng ký"
+    }
   },
   "about": {
     "title": "Về chúng tôi",

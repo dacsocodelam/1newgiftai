@@ -5,63 +5,58 @@ export default function BlogSection() {
   const { t } = useTranslation();
   const blogPosts = [
     {
-      title: "彼女を夢中にさせる誕生日ギフトトップ10",
-      excerpt:
-        "彼女の誕生日を特別にするユニークで意味のあるギフトアイデアを発見してください...",
+      title: t("blog.posts.0.title"),
+      excerpt: t("blog.posts.0.excerpt"),
       image:
         "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "誕生日",
-      readTime: "5分で読める",
-      date: "2025年7月15日",
+      category: t("blog.posts.0.category"),
+      readTime: t("blog.posts.0.readTime"),
+      date: t("blog.posts.0.date"),
     },
     {
-      title: "恋人へのバレンタインギフト：クラシックからモダンまで",
-      excerpt:
-        "パートナーの性格と好みに基づいて完璧なバレンタインギフトを選ぶ方法...",
+      title: t("blog.posts.1.title"),
+      excerpt: t("blog.posts.1.excerpt"),
       image:
         "https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "バレンタイン",
-      readTime: "7分で読める",
-      date: "2025年7月10日",
+      category: t("blog.posts.1.category"),
+      readTime: t("blog.posts.1.readTime"),
+      date: t("blog.posts.1.date"),
     },
     {
-      title: "母親へのギフト：2025年最も意味のあるギフト",
-      excerpt: "最も大切な女性のための実用的で愛情溢れるギフトリスト...",
+      title: t("blog.posts.2.title"),
+      excerpt: t("blog.posts.2.excerpt"),
       image:
         "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "家族",
-      readTime: "6分で読める",
-      date: "2025年7月5日",
+      category: t("blog.posts.2.category"),
+      readTime: t("blog.posts.2.readTime"),
+      date: t("blog.posts.2.date"),
     },
     {
-      title: "ギフト選びの心理学：専門家からの秘訣",
-      excerpt:
-        "受取人の心理を理解することで、美しいだけでなく心に響くギフトを選べます...",
+      title: t("blog.posts.3.title"),
+      excerpt: t("blog.posts.3.excerpt"),
       image:
         "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "心理学",
-      readTime: "8分で読める",
-      date: "2025年7月1日",
+      category: t("blog.posts.3.category"),
+      readTime: t("blog.posts.3.readTime"),
+      date: t("blog.posts.3.date"),
     },
     {
-      title: "同僚へのギフト：プロフェッショナルとフレンドリーのバランス",
-      excerpt:
-        "特別な機会に同僚にギフトを贈る際、プロフェッショナリズムを保ちながらの賢いアイデア...",
+      title: t("blog.posts.4.title"),
+      excerpt: t("blog.posts.4.excerpt"),
       image:
         "https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "職場",
-      readTime: "4分で読める",
-      date: "2025年6月28日",
+      category: t("blog.posts.4.category"),
+      readTime: t("blog.posts.4.readTime"),
+      date: t("blog.posts.4.date"),
     },
     {
-      title: "2025年ギフトトレンド：テクノロジーから体験まで",
-      excerpt:
-        "テックガジェットからユニークな体験まで、2025年最新のギフトトレンドをアップデート...",
+      title: t("blog.posts.5.title"),
+      excerpt: t("blog.posts.5.excerpt"),
       image:
         "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "トレンド",
-      readTime: "6分で読める",
-      date: "2025年6月25日",
+      category: t("blog.posts.5.category"),
+      readTime: t("blog.posts.5.readTime"),
+      date: t("blog.posts.5.date"),
     },
   ];
 
@@ -95,7 +90,7 @@ export default function BlogSection() {
               <div className="md:w-1/2 p-8">
                 <div className="flex items-center gap-4 mb-4">
                   <span className="bg-[#FFD700] text-[#001f3f] px-3 py-1 rounded-full text-sm font-bold">
-                    ⭐ 注目
+                    ⭐ {t('blog.featured')}
                   </span>
                   <span className="text-gray-500 text-sm">
                     {blogPosts[0].category}
@@ -116,7 +111,7 @@ export default function BlogSection() {
                     {blogPosts[0].date}
                   </span>
                   <button className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] px-6 py-2 rounded-full font-bold hover:from-[#001f3f] hover:to-[#003366] hover:text-white transition-all duration-300">
-                    続きを読む →
+                    {t('blog.readMore')}
                   </button>
                 </div>
               </div>
@@ -158,7 +153,7 @@ export default function BlogSection() {
                 </p>
 
                 <button className="text-[#FFD700] hover:text-[#001f3f] font-medium text-sm transition-colors">
-                  続きを読む →
+                  {t('blog.readMore')}
                 </button>
               </div>
             </article>
@@ -168,26 +163,26 @@ export default function BlogSection() {
         {/* CTA */}
         <div className="text-center mt-12">
           <button className="bg-gradient-to-r from-[#001f3f] to-[#003366] text-white px-8 py-3 rounded-full font-bold hover:from-[#FFD700] hover:to-[#FFA500] hover:text-[#001f3f] transition-all duration-300 transform hover:scale-105">
-            📖 すべての記事を見る
+            {t('blog.viewAll')}
           </button>
         </div>
 
         {/* Newsletter Signup */}
         <div className="mt-16 bg-gradient-to-r from-[#001f3f] to-[#003366] rounded-3xl p-8 text-center text-white">
           <h3 className="text-2xl font-bold mb-4">
-            🔔 最新のギフト選び秘訣を受け取る
+            {t('blog.newsletter.title')}
           </h3>
           <p className="text-gray-200 mb-6 max-w-2xl mx-auto">
-            毎週、ギフトアートの有用なコツと最新のギフトトレンドをお送りします
+            {t('blog.newsletter.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
-              placeholder="メールアドレスを入力してください..."
+              placeholder={t('blog.newsletter.placeholder')}
               className="flex-1 px-4 py-3 bg-[#ffffff] rounded-full text-[#001f3f] focus:outline-none focus:ring-2 focus:ring-[#FFD700]"
             />
             <button className="bg-[#FFD700] text-[#001f3f] px-6 py-3 rounded-full font-bold hover:bg-white transition-colors">
-              登録
+              {t('blog.newsletter.subscribe')}
             </button>
           </div>
         </div>

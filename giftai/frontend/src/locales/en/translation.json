@@ -203,7 +203,60 @@
   },
   "blog": {
     "title": "Gift-Giving Secrets from Experts",
-    "subtitle": "Discover useful articles on gift art, psychology, and latest trends"
+    "subtitle": "Discover useful articles on gift art, psychology, and latest trends",
+    "featured": "Featured",
+    "readMore": "Read More →",
+    "viewAll": "📖 View All Articles",
+    "posts": [
+      {
+        "title": "Top 10 Birthday Gifts to Impress Her",
+        "excerpt": "Discover unique and meaningful gift ideas to make her birthday special...",
+        "category": "Birthday",
+        "readTime": "5 min read",
+        "date": "July 15, 2025"
+      },
+      {
+        "title": "Valentine's Gifts for Lovers: Classic to Modern",
+        "excerpt": "How to choose the perfect Valentine's gift based on your partner's personality and preferences...",
+        "category": "Valentine's",
+        "readTime": "7 min read",
+        "date": "July 10, 2025"
+      },
+      {
+        "title": "Gifts for Mom: Most Meaningful in 2025",
+        "excerpt": "Practical and loving gift list for the most important woman...",
+        "category": "Family",
+        "readTime": "6 min read",
+        "date": "July 5, 2025"
+      },
+      {
+        "title": "Psychology of Gift Selection: Secrets from Experts",
+        "excerpt": "Understanding recipient psychology to choose gifts that touch hearts...",
+        "category": "Psychology",
+        "readTime": "8 min read",
+        "date": "July 1, 2025"
+      },
+      {
+        "title": "Gifts for Colleagues: Balancing Professional and Friendly",
+        "excerpt": "Smart ideas while maintaining professionalism when giving gifts to colleagues...",
+        "category": "Workplace",
+        "readTime": "4 min read",
+        "date": "June 28, 2025"
+      },
+      {
+        "title": "2025 Gift Trends: From Technology to Experiences",
+        "excerpt": "Latest gift trends in 2025 from tech gadgets to unique experiences...",
+        "category": "Trends",
+        "readTime": "6 min read",
+        "date": "June 25, 2025"
+      }
+    ],
+    "newsletter": {
+      "title": "🔔 Get Latest Gift-Giving Tips",
+      "description": "Weekly useful tips on gift art and latest gift trends delivered to you",
+      "placeholder": "Enter your email address...",
+      "subscribe": "Subscribe"
+    }
   },
   "about": {
     "title": "About Us",
