@@ -30,13 +30,14 @@ function Particles() {
   useFrame((state) => {
     if (particlesRef.current) {
       particlesRef.current.rotation.y = state.clock.getElapsedTime() * 0.05;
-      const positions = particlesRef.current.geometry.attributes.position.array as Float32Array;
-      
+      const positions = particlesRef.current.geometry.attributes.position
+        .array as Float32Array;
+
       for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3;
         positions[i3 + 1] += Math.sin(state.clock.getElapsedTime() + i) * 0.001;
       }
-      
+
       particlesRef.current.geometry.attributes.position.needsUpdate = true;
     }
   });
@@ -71,7 +72,11 @@ function Particles() {
   );
 }
 
-function CrystalSphere({ mousePosition }: { mousePosition: { x: number; y: number } }) {
+function CrystalSphere({
+  mousePosition,
+}: {
+  mousePosition: { x: number; y: number };
+}) {
   const sphereRef = useRef<THREE.Mesh>(null);
   const innerLightRef = useRef<THREE.PointLight>(null);
 
@@ -84,23 +89,22 @@ function CrystalSphere({ mousePosition }: { mousePosition: { x: number; y: numbe
       // Mouse tracking - smooth follow
       const targetRotationY = mousePosition.x * 0.3;
       const targetRotationX = -mousePosition.y * 0.3;
-      
-      sphereRef.current.rotation.y += (targetRotationY - sphereRef.current.rotation.y) * 0.05;
-      sphereRef.current.rotation.x += (targetRotationX - sphereRef.current.rotation.x) * 0.05;
+
+      sphereRef.current.rotation.y +=
+        (targetRotationY - sphereRef.current.rotation.y) * 0.05;
+      sphereRef.current.rotation.x +=
+        (targetRotationX - sphereRef.current.rotation.x) * 0.05;
     }
 
     // Inner light pulse effect
     if (innerLightRef.current) {
-      innerLightRef.current.intensity = 2 + Math.sin(state.clock.getElapsedTime() * 2) * 0.5;
+      innerLightRef.current.intensity =
+        2 + Math.sin(state.clock.getElapsedTime() * 2) * 0.5;
     }
   });
 
   return (
-    <Float
-      speed={1.5}
-      rotationIntensity={0.2}
-      floatIntensity={0.5}
-    >
+    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
       <mesh ref={sphereRef} scale={1.5}>
         <icosahedronGeometry args={[1, 1]} />
         <MeshDistortMaterial
@@ -113,15 +117,20 @@ function CrystalSphere({ mousePosition }: { mousePosition: { x: number; y: numbe
           speed={2}
           envMapIntensity={1}
         />
-        
+
         {/* Inner glowing core */}
         <mesh scale={0.5}>
           <sphereGeometry args={[1, 32, 32]} />
           <meshBasicMaterial color="#ffd700" transparent opacity={0.8} />
         </mesh>
-        
+
         {/* Inner point light */}
-        <pointLight ref={innerLightRef} color="#ffd700" intensity={2} distance={3} />
+        <pointLight
+          ref={innerLightRef}
+          color="#ffd700"
+          intensity={2}
+          distance={3}
+        />
       </mesh>
     </Float>
   );
@@ -133,7 +142,7 @@ export default function AIMascot() {
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const { clientX, clientY, currentTarget } = event;
     const { width, height } = currentTarget.getBoundingClientRect();
-    
+
     mousePosition.current = {
       x: (clientX / width) * 2 - 1,
       y: (clientY / height) * 2 - 1,
@@ -141,20 +150,20 @@ export default function AIMascot() {
   };
 
   return (
-    <div 
+    <div
       className="absolute inset-0 w-full h-full"
       onMouseMove={handleMouseMove}
-      style={{ pointerEvents: 'auto' }}
+      style={{ pointerEvents: "none", zIndex: 0 }}
     >
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
-        gl={{ alpha: true, antialias: true }}
-        style={{ background: 'transparent' }}
+        gl={{ alpha: true, antialias: true, preserveDrawingBuffer: true }}
+        style={{ width: "100%", height: "100%", background: "transparent", position: "absolute", top: 0, left: 0 }}
       >
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <Environment preset="sunset" />
-        
+
         <CrystalSphere mousePosition={mousePosition.current} />
         <Particles />
       </Canvas>

@@ -17,7 +17,7 @@ export default function HeroSection() {
       className="relative min-h-screen bg-gradient-to-br from-[#001f3f] via-[#003366] to-[#001f3f] overflow-hidden"
     >
       {/* 3D AI Mascot Background */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none">
+      <div className="absolute inset-0 w-full h-full z-0">
         <AIMascot />
       </div>
 
