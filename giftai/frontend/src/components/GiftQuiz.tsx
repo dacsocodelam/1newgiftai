@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface GiftQuizProps {
   onComplete: (data: QuizData) => void;
@@ -150,54 +151,101 @@ const GiftQuiz: React.FC<GiftQuizProps> = ({
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
-      {/* Progress Bar */}
-      <div className="mb-8">
+    <div className="max-w-2xl mx-auto relative z-10">
+      {/* Progress Bar - Glassmorphism */}
+      <motion.div 
+        className="mb-8"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-[#001f3f]">
+          <span className="text-sm font-medium text-gray-300">
             {t("quiz.progress.step")} {currentStep + 1} / {steps.length}
           </span>
-          <span className="text-sm font-medium text-[#FFD700]">
+          <span className="text-sm font-medium text-[#FFD700] gold-text-glow">
             {Math.round(progress)}% {t("quiz.progress.complete")}
           </span>
         </div>
-        <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-gradient-to-r from-[#FFD700] to-[#FFA500] transition-all duration-500 ease-out animate-glow"
-            style={{ width: `${progress}%` }}
+        <div className="h-3 glass-card rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-gradient-to-r from-[#FFD700] to-[#FFA500] gold-glow"
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           />
         </div>
-      </div>
+      </motion.div>
 
-      {/* Quiz Card */}
-      <div
-        className={`bg-gradient-to-br ${currentStepData.bgGradient} rounded-3xl shadow-2xl p-8 min-h-[400px] flex flex-col justify-between animate-flip-3d border-2 border-[#FFD700]/20`}
-      >
-        {/* Question Section */}
-        <div>
-          <div className="flex items-center justify-center mb-6">
-            <div className="text-6xl animate-float-up-down">
-              {currentStepData.icon}
-            </div>
+      {/* Quiz Card - Cosmic Glassmorphism with Border Beam */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentStep}
+          className="glass-card-strong border-beam rounded-3xl p-8 min-h-[400px] flex flex-col justify-between relative overflow-hidden"
+          initial={{ opacity: 0, scale: 0.95, rotateY: -10 }}
+          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+          exit={{ opacity: 0, scale: 0.95, rotateY: 10 }}
+          transition={{ duration: 0.4 }}
+        >
+          {/* Cosmic particles inside card */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(10)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 bg-[#FFD700] rounded-full animate-float-cosmic opacity-30"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                }}
+              />
+            ))}
           </div>
 
-          <h2 className="text-2xl md:text-3xl font-bold text-[#001f3f] text-center mb-3 animate-text-reveal">
-            {currentStepData.question}
-          </h2>
-          <p className="text-center text-gray-600 mb-8 animate-fade-in">
-            {currentStepData.subtitle}
-          </p>
+          {/* Question Section */}
+          <div className="relative z-10">
+            <motion.div 
+              className="flex items-center justify-center mb-6"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1, rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="text-6xl gold-glow">
+                {currentStepData.icon}
+              </div>
+            </motion.div>
 
-          {/* Input Section */}
-          <div className="mb-6">
-            {currentStepData.type === "text" && (
-              <input
-                type="text"
-                value={quizData[currentStepData.id as keyof QuizData] as string}
-                onChange={(e) => handleInputChange(e.target.value)}
-                placeholder={currentStepData.placeholder}
-                disabled={isLoading}
-                className="w-full p-4 border-2 border-[#FFD700]/30 rounded-2xl focus:outline-none focus:border-[#FFD700] focus:ring-4 focus:ring-[#FFD700]/20 transition-all text-lg bg-white/80 backdrop-blur-sm"
+            <motion.h2 
+              className="text-2xl md:text-3xl font-bold text-white text-center mb-3 gold-text-glow"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+            >
+              {currentStepData.question}
+            </motion.h2>
+            <motion.p 
+              className="text-center text-gray-300 mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+            >
+              {currentStepData.subtitle}
+            </motion.p>
+
+            {/* Input Section */}
+            <div className="mb-6">
+              {currentStepData.type === "text" && (
+                <motion.input
+                  type="text"
+                  value={quizData[currentStepData.id as keyof QuizData] as string}
+                  onChange={(e) => handleInputChange(e.target.value)}
+                  placeholder={currentStepData.placeholder}
+                  disabled={isLoading}
+                  className="w-full p-4 glass-card rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#FFD700]/50 transition-all text-lg text-white placeholder-gray-400"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                />
                 autoFocus
               />
             )}

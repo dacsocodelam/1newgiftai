@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import GiftQuiz, { QuizData } from "./GiftQuiz";
 import axios from "axios";
 
@@ -129,71 +130,105 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
   };
 
   return (
-    <div className="py-16">
-      {/* Mode Toggle */}
-      <div className="max-w-2xl mx-auto mb-8 flex justify-center">
-        <div className="bg-white rounded-full p-1 shadow-lg inline-flex gap-2">
+    <div className="relative py-16">
+      {/* Cosmic Glow Background */}
+      <div className="absolute inset-0 cosmic-glow pointer-events-none" />
+      
+      {/* Floating Cosmic Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-[#FFD700] rounded-full animate-float-cosmic opacity-40"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 8}s`,
+              animationDuration: `${8 + Math.random() * 8}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Mode Toggle - Glassmorphism */}
+      <motion.div 
+        className="max-w-2xl mx-auto mb-8 flex justify-center relative z-10"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="glass-card rounded-full p-1.5 inline-flex gap-2 shimmer">
           <button
             onClick={() => setUseQuizMode(true)}
             className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
               useQuizMode
-                ? "bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] shadow-md"
-                : "text-gray-600 hover:text-[#001f3f]"
+                ? "bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] shadow-md gold-glow"
+                : "text-gray-300 hover:text-white"
             }`}
           >
-            🎯 {t('giftFinder.quizMode')}
+            🎯 {t("giftFinder.quizMode")}
           </button>
           <button
             onClick={() => setUseQuizMode(false)}
             className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
               !useQuizMode
-                ? "bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] shadow-md"
-                : "text-gray-600 hover:text-[#001f3f]"
+                ? "bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] shadow-md gold-glow"
+                : "text-gray-300 hover:text-white"
             }`}
           >
-            📝 {t('giftFinder.formMode')}
+            📝 {t("giftFinder.formMode")}
           </button>
         </div>
-      </div>
+      </motion.div>
 
       {useQuizMode ? (
         <GiftQuiz onComplete={handleQuizComplete} isLoading={isLoading} />
       ) : (
-        <div className="max-w-2xl mx-auto">
+        <motion.div 
+          className="max-w-2xl mx-auto"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="text-center mb-8">
-            <p className="text-gray-600">
-              {t('giftFinder.formModeComingSoon')}
+            <p className="text-gray-300 text-lg">
+              {t("giftFinder.formModeComingSoon")}
             </p>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {styleAnalysis && !isLoading && (
-        <div className="max-w-2xl mx-auto mt-8 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl border-2 border-purple-200 animate-slide-up-fade">
-          <h3 className="text-lg font-bold text-[#001f3f] mb-3 flex items-center gap-2">
-            <span className="text-2xl">🎨</span>
-            {t('giftFinder.styleAnalysis')}
+        <motion.div 
+          className="max-w-2xl mx-auto mt-8 p-6 glass-card-strong rounded-2xl border-beam relative z-10"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2 gold-text-glow">
+            <span className="text-2xl gold-glow">🎨</span>
+            {t("giftFinder.styleAnalysis")}
           </h3>
           <div className="space-y-2 text-sm">
-            <p className="text-gray-700">{styleAnalysis.analysis}</p>
+            <p className="text-gray-300">{styleAnalysis.analysis}</p>
             {styleAnalysis.style_data && (
               <div className="mt-4 grid grid-cols-2 gap-3">
                 {styleAnalysis.style_data.style && (
-                  <div className="bg-white/60 px-3 py-2 rounded-lg">
-                    <span className="font-medium">スタイル:</span>{" "}
-                    {styleAnalysis.style_data.style}
+                  <div className="glass-card px-3 py-2 rounded-lg">
+                    <span className="font-medium text-[#FFD700]">スタイル:</span>{" "}
+                    <span className="text-gray-200">{styleAnalysis.style_data.style}</span>
                   </div>
                 )}
                 {styleAnalysis.style_data.age_range && (
-                  <div className="bg-white/60 px-3 py-2 rounded-lg">
-                    <span className="font-medium">年齢層:</span>{" "}
-                    {styleAnalysis.style_data.age_range}
+                  <div className="glass-card px-3 py-2 rounded-lg">
+                    <span className="font-medium text-[#FFD700]">年齢層:</span>{" "}
+                    <span className="text-gray-200">{styleAnalysis.style_data.age_range}</span>
                   </div>
                 )}
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );
