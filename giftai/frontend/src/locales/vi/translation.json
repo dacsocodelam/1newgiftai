@@ -134,6 +134,26 @@
   "howItWorks": {
     "title": "GiftAI hoạt động như thế nào?",
     "subtitle": "Từ thông tin đơn giản đến món quà hoàn hảo - chỉ với 4 bước dễ dàng",
+    "benefits": {
+      "title": "Tại sao chọn GiftAI?",
+      "subtitle": "Ưu điểm vượt trội khi sử dụng dịch vụ của chúng tôi",
+      "speed": {
+        "title": "Siêu nhanh",
+        "description": "Nhận gợi ý quà tặng hoàn hảo chỉ trong 60 giây"
+      },
+      "intelligent": {
+        "title": "Thông minh",
+        "description": "AI phân tích tâm lý và xu hướng để đưa ra gợi ý chính xác"
+      },
+      "personalized": {
+        "title": "Cá nhân hóa",
+        "description": "Mỗi gợi ý được tùy chỉnh riêng cho từng người"
+      }
+    },
+    "cta": {
+      "title": "Bạn đã sẵn sàng tìm món quà hoàn hảo chưa?",
+      "button": "🎯 Bắt đầu ngay"
+    },
     "steps": {
       "step1": {
         "title": "Nhập thông tin",

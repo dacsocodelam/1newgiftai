@@ -121,6 +121,26 @@
   "howItWorks": {
     "title": "GiftAIはどのように動作しますか？",
     "subtitle": "簡単な情報から完璧なギフトまで - たった4つの簡単なステップで",
+    "benefits": {
+      "title": "なぜGiftAIを選ぶのか？",
+      "subtitle": "私たちのサービスを利用する優れたメリット",
+      "speed": {
+        "title": "超高速",
+        "description": "わずか60秒で完璧なギフト提案を獲得"
+      },
+      "intelligent": {
+        "title": "インテリジェント",
+        "description": "AIが心理学とトレンドを分析して正確な提案を行います"
+      },
+      "personalized": {
+        "title": "パーソナライズ",
+        "description": "各提案は個人別にカスタマイズされます"
+      }
+    },
+    "cta": {
+      "title": "完璧なギフトを見つける準備はできましたか？",
+      "button": "🎯 今すぐ始める"
+    },
     "steps": {
       "step1": {
         "title": "情報入力",

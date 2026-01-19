@@ -134,6 +134,26 @@
   "howItWorks": {
     "title": "How Does GiftAI Work?",
     "subtitle": "From simple information to the perfect gift - in just 4 easy steps",
+    "benefits": {
+      "title": "Why Choose GiftAI?",
+      "subtitle": "Outstanding advantages of using our service",
+      "speed": {
+        "title": "Super Fast",
+        "description": "Get perfect gift suggestions in just 60 seconds"
+      },
+      "intelligent": {
+        "title": "Intelligent",
+        "description": "AI analyzes psychology and trends to make accurate suggestions"
+      },
+      "personalized": {
+        "title": "Personalized",
+        "description": "Each suggestion is customized individually"
+      }
+    },
+    "cta": {
+      "title": "Are you ready to find the perfect gift?",
+      "button": "🎯 Start Now"
+    },
     "steps": {
       "step1": {
         "title": "Enter Information",
