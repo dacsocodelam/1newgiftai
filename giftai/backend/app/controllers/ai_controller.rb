@@ -64,4 +64,106 @@ class AiController < ApplicationController
       }, status: 200
     end
   end
+
+  def generate_message
+    require 'net/http'
+    require 'json'
+    require 'uri'
+
+    api_key = ENV['GEMINI_API_KEY']
+    tone = params[:tone] || 'emotional'
+    relationship = params[:relationship] || '友人'
+    occasion = params[:occasion] || '誕生日'
+
+    # フォールバックメッセージ（トーン別）
+    fallback_messages = {
+      'emotional' => [
+        "いつもありがとう、心から感謝💖",
+        "あなたに出会えて幸せです✨",
+        "特別なあなたへ、愛を込めて🌸"
+      ],
+      'funny' => [
+        "また一つ歳とったね😂🎂",
+        "いつも笑わせてくれてサンキュー🤣",
+        "プレゼントより私が最高のギフト！😎"
+      ],
+      'formal' => [
+        "心よりお祝い申し上げます🎊",
+        "ご健勝をお祈りいたします🙏",
+        "日頃の感謝を込めて贈ります✨"
+      ]
+    }
+
+    if api_key.nil? || api_key.empty?
+      render json: { messages: fallback_messages[tone] || fallback_messages['emotional'] }
+      return
+    end
+
+    # トーン別のプロンプト指示
+    tone_instructions = {
+      'emotional' => '感動的で心温まる、愛情あふれるトーン',
+      'funny' => 'ユーモラスで面白く、笑顔になれるトーン',
+      'formal' => 'フォーマルで丁寧、礼儀正しいトーン'
+    }
+
+    prompt_text = <<~PROMPT
+      あなたはギフトカードのメッセージ作成専門家です。
+      以下の条件で、3つの異なるショートメッセージを日本語で作成してください。
+
+      条件:
+      - トーン: #{tone_instructions[tone] || tone_instructions['emotional']}
+      - 相手との関係: #{relationship}
+      - 機会/イベント: #{occasion}
+      - 各メッセージは50文字以内
+      - 絵文字を1-2個含める
+      - 3つとも異なる表現で
+
+      出力形式（JSONのみ、説明不要）:
+      {"messages": ["メッセージ1", "メッセージ2", "メッセージ3"]}
+    PROMPT
+
+    begin
+      uri = URI("https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=#{api_key}")
+      
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+      request = Net::HTTP::Post.new(uri)
+      request['Content-Type'] = 'application/json'
+      
+      request.body = {
+        contents: [{
+          parts: [{ text: prompt_text }]
+        }],
+        generationConfig: {
+          temperature: 0.9,
+          maxOutputTokens: 200
+        }
+      }.to_json
+      
+      response = http.request(request)
+      
+      if response.code == '200'
+        data = JSON.parse(response.body)
+        text = data.dig('candidates', 0, 'content', 'parts', 0, 'text') || ''
+        
+        # JSONを抽出（マークダウンコードブロック内の場合も対応）
+        json_match = text.match(/\{[\s\S]*"messages"[\s\S]*\}/)
+        
+        if json_match
+          parsed = JSON.parse(json_match[0])
+          render json: { messages: parsed['messages'] }
+        else
+          # パース失敗時はフォールバック
+          render json: { messages: fallback_messages[tone] || fallback_messages['emotional'] }
+        end
+      else
+        raise "API Error: #{response.code}"
+      end
+    rescue => e
+      Rails.logger.error "Gemini Message API Error: #{e.message}"
+      render json: { messages: fallback_messages[tone] || fallback_messages['emotional'] }
+    end
+  end
 end

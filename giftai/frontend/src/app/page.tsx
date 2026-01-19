@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import HowItWorks from "../components/HowItWorks";
 import BlogSection from "../components/BlogSection";
 import AboutUs from "../components/AboutUs";
+import CardCreator from "../components/CardCreator";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -25,6 +26,7 @@ export default function Home() {
   const [showThanks, setShowThanks] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [isRegenerating, setIsRegenerating] = useState(false);
+  const [showCardCreator, setShowCardCreator] = useState(false);
 
   // Premium Services states
   const [selectedServices, setSelectedServices] = useState({
@@ -902,6 +904,12 @@ export default function Home() {
                                   ? "🔄 作成中..."
                                   : "🔄 他の提案"}
                               </button>
+                              <button
+                                onClick={() => setShowCardCreator(true)}
+                                className="ai-button px-6 py-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                              >
+                                🎴 カード作成
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -915,6 +923,30 @@ export default function Home() {
             {/* Products Display */}
             {results.length > 0 && (
               <div className="max-w-6xl mx-auto mt-12">
+                {/* Create Card CTA Banner */}
+                <div className="mb-8 bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-pink-500/10 rounded-2xl p-6 border border-pink-200">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <span className="text-4xl">🎴</span>
+                      <div>
+                        <h4 className="font-bold text-[#001f3f] text-lg">
+                          デジタルカードを作成
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          AIが素敵なメッセージを提案！QRコードで送れます
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setShowCardCreator(true)}
+                      className="px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center gap-2"
+                    >
+                      <span>✨</span>
+                      カードを作成する
+                    </button>
+                  </div>
+                </div>
+
                 <h3 className="text-2xl font-bold text-center mb-8 text-[#001f3f]">
                   🛍️ AIおすすめ商品
                 </h3>
@@ -1392,6 +1424,14 @@ export default function Home() {
       <BlogSection />
       <AboutUs />
       <Footer />
+
+      {/* Card Creator Modal */}
+      <CardCreator
+        isOpen={showCardCreator}
+        onClose={() => setShowCardCreator(false)}
+        relationship={formData.relationship}
+        occasion={formData.occasion}
+      />
     </>
   );
 }
