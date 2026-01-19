@@ -61,34 +61,40 @@ export default function Home() {
         // 余分な**を削除し、太字テキストをフォーマット
         .replace(
           /\*\*([^*]+)\*\*/g,
-          '<strong class="font-bold text-[#001f3f]">$1</strong>'
+          '<strong class="font-bold text-[#001f3f]">$1</strong>',
         )
         .replace(/\*([^*]+)\*/g, '<em class="italic">$1</em>')
 
         // Format headings
         .replace(
           /### (.+)/g,
-          '<h3 class="text-xl font-bold text-[#001f3f] mt-6 mb-3 flex items-center"><span class="text-[#FFD700] mr-2">🎯</span>$1</h3>'
+          '<h3 class="text-xl font-bold text-[#001f3f] mt-6 mb-3 flex items-center"><span class="text-[#FFD700] mr-2">🎯</span>$1</h3>',
         )
         .replace(
           /## (.+)/g,
-          '<h2 class="text-2xl font-bold text-[#001f3f] mt-8 mb-4 flex items-center"><span class="text-[#FFD700] mr-2">✨</span>$1</h2>'
+          '<h2 class="text-2xl font-bold text-[#001f3f] mt-8 mb-4 flex items-center"><span class="text-[#FFD700] mr-2">✨</span>$1</h2>',
+        )
+
+        // Convert URLs to clickable links (trước khi format list items)
+        .replace(
+          /(https?:\/\/[^\s<>\)\]]+)/g,
+          '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 underline decoration-blue-400 hover:decoration-blue-600 transition-colors font-medium break-all">$1</a>',
         )
 
         // 美しいスタイリングでブレットポイントをフォーマット
         .replace(
           /^- (.+)/gm,
-          '<li class="flex items-start mb-3"><span class="text-[#FFD700] mr-3 text-lg">•</span><span class="flex-1">$1</span></li>'
+          '<li class="flex items-start mb-3"><span class="text-[#FFD700] mr-3 text-lg">•</span><span class="flex-1">$1</span></li>',
         )
         .replace(
           /^• (.+)/gm,
-          '<li class="flex items-start mb-3"><span class="text-[#FFD700] mr-3 text-lg">•</span><span class="flex-1">$1</span></li>'
+          '<li class="flex items-start mb-3"><span class="text-[#FFD700] mr-3 text-lg">•</span><span class="flex-1">$1</span></li>',
         )
 
         // 番号付きリストをフォーマット
         .replace(
           /^(\d+)\.\s*(.+)/gm,
-          '<li class="flex items-start mb-3"><span class="bg-[#FFD700] text-[#001f3f] rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mr-3 flex-shrink-0">$1</span><span class="flex-1 pt-1">$2</span></li>'
+          '<li class="flex items-start mb-3"><span class="bg-[#FFD700] text-[#001f3f] rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mr-3 flex-shrink-0">$1</span><span class="flex-1 pt-1">$2</span></li>',
         )
 
         // Wrap lists
@@ -117,11 +123,11 @@ export default function Home() {
         // Enhance emojis
         .replace(
           /(🎁|💝|✨|🌟|⭐|💎|🎯|💖|💍|👑|🎀|🌹|💐|🎊|🎉)/g,
-          '<span class="text-2xl mr-1">$1</span>'
+          '<span class="text-2xl mr-1">$1</span>',
         )
         .replace(
           /(📱|💻|🎮|📚|👕|👗|💄|👜|⌚|🕶️)/g,
-          '<span class="text-xl mr-1">$1</span>'
+          '<span class="text-xl mr-1">$1</span>',
         )
     );
   };
@@ -193,7 +199,7 @@ export default function Home() {
     } catch (err) {
       setIsRegenerating(false);
       setError(
-        "新しい提案の作成中にエラーが発生しました。もう一度お試しください！"
+        "新しい提案の作成中にエラーが発生しました。もう一度お試しください！",
       );
     }
   };
@@ -206,7 +212,7 @@ export default function Home() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -265,53 +271,97 @@ export default function Home() {
       <main id="home">
         <div className="min-h-screen bg-gradient-to-br from-[#FFFDD0] to-[#F0F8FF] text-[#001f3f]">
           {/* Hero Section */}
-          <div className="relative overflow-hidden bg-gradient-to-r from-[#001f3f] to-[#003366] text-white">
+          <div className="relative overflow-hidden bg-gradient-to-r from-[#001f3f] to-[#003366] text-white animate-gradient-bg">
             <div className="absolute inset-0 bg-black opacity-20"></div>
+
+            {/* Floating particles background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute top-20 left-10 w-20 h-20 bg-[#FFD700]/10 rounded-full blur-xl animate-float-slow"></div>
+              <div
+                className="absolute top-40 right-20 w-32 h-32 bg-[#FFA500]/10 rounded-full blur-xl animate-float-fast"
+                style={{ animationDelay: "1s" }}
+              ></div>
+              <div
+                className="absolute bottom-40 left-1/4 w-24 h-24 bg-[#FFD700]/10 rounded-full blur-xl animate-float-slow"
+                style={{ animationDelay: "2s" }}
+              ></div>
+              <div
+                className="absolute top-60 right-1/3 w-16 h-16 bg-[#FFA500]/10 rounded-full blur-xl animate-float-fast"
+                style={{ animationDelay: "0.5s" }}
+              ></div>
+            </div>
+
             <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24">
               <div className="text-center">
-                <div className="flex justify-center items-center gap-3 mb-6">
-                  <div className="relative">
+                <div className="flex justify-center items-center gap-3 mb-6 animate-bounce-in">
+                  <div className="relative animate-wiggle">
                     <svg
                       width="48"
                       height="48"
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="text-[#FFD700]"
+                      className="text-[#FFD700] animate-spin-slow"
                     >
                       <path
                         d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
                         fill="currentColor"
                       />
                     </svg>
-                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#FFD700] rounded-full animate-pulse"></div>
+                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#FFD700] rounded-full animate-heartbeat"></div>
                   </div>
-                  <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">
+                  <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent animate-scale-up">
                     GiftAI
                   </h1>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-[#FFD700]">
+                <h2
+                  className="text-2xl md:text-3xl font-semibold mb-4 text-[#FFD700] animate-fade-in"
+                  style={{ animationDelay: "0.2s" }}
+                >
                   あなた専用のギフトエキスパート
                 </h2>
-                <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                <p
+                  className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed animate-fade-in"
+                  style={{ animationDelay: "0.4s" }}
+                >
                   🎁 <strong>大切な人の誕生日を悪夢にしないで！</strong>
                   <br />
                   AIで
-                  <span className="text-[#FFD700] font-bold">60秒</span>で
-                  完璧なギフトを見つけましょう
+                  <span className="text-[#FFD700] font-bold animate-pulse">
+                    60秒
+                  </span>
+                  で 完璧なギフトを見つけましょう
                 </p>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto mb-8">
-                  <div className="flex items-center justify-center gap-4 text-sm md:text-base">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <div
+                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto mb-8 animate-slide-in-left"
+                  style={{ animationDelay: "0.6s" }}
+                >
+                  <div className="flex items-center justify-center gap-4 text-sm md:text-base flex-wrap">
+                    <div
+                      className="flex items-center gap-2 animate-fade-in"
+                      style={{ animationDelay: "0.8s" }}
+                    >
+                      <div className="w-3 h-3 bg-green-400 rounded-full animate-heartbeat"></div>
                       <span>忙しい？大丈夫！</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div
+                      className="flex items-center gap-2 animate-fade-in"
+                      style={{ animationDelay: "1s" }}
+                    >
+                      <div
+                        className="w-3 h-3 bg-blue-400 rounded-full animate-heartbeat"
+                        style={{ animationDelay: "0.2s" }}
+                      ></div>
                       <span>AIが理解</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-[#FFD700] rounded-full animate-pulse"></div>
+                    <div
+                      className="flex items-center gap-2 animate-fade-in"
+                      style={{ animationDelay: "1.2s" }}
+                    >
+                      <div
+                        className="w-3 h-3 bg-[#FFD700] rounded-full animate-heartbeat"
+                        style={{ animationDelay: "0.4s" }}
+                      ></div>
                       <span>100%完璧</span>
                     </div>
                   </div>
@@ -326,10 +376,14 @@ export default function Home() {
             {/* CTA Section */}
             <section id="gift-finder" className="py-16">
               <div className="text-center mb-12">
-                <h3 className="text-3xl md:text-4xl font-bold mb-6 text-[#001f3f]">
-                  🚀 ギフト探しを始めましょう！
+                <h3 className="text-3xl md:text-4xl font-bold mb-6 text-[#001f3f] animate-zoom-in">
+                  <span className="inline-block animate-bounce-in">🚀</span>{" "}
+                  ギフト探しを始めましょう！
                 </h3>
-                <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                <p
+                  className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto animate-fade-in"
+                  style={{ animationDelay: "0.2s" }}
+                >
                   5つの簡単な情報だけで、AIがあなたの大切な人を
                   <strong>必ず</strong>幸せにするギフトを提案します
                 </p>
@@ -338,11 +392,15 @@ export default function Home() {
               {/* AI Form - Redesigned for better UX */}
               <form
                 onSubmit={handleSubmit}
-                className="max-w-2xl mx-auto space-y-6 bg-white p-8 rounded-3xl shadow-2xl border border-[#FFD700]/20"
+                className="max-w-2xl mx-auto space-y-6 bg-white p-8 rounded-3xl shadow-2xl border border-[#FFD700]/20 animate-slide-in-right hover:shadow-[0_20px_50px_rgba(255,215,0,0.3)] transition-all duration-500"
               >
-                <div className="text-center mb-6">
+                <div
+                  className="text-center mb-6 animate-fade-in"
+                  style={{ animationDelay: "0.4s" }}
+                >
                   <h4 className="text-xl font-semibold text-[#001f3f] mb-2">
-                    💝 ギフト受取人の情報
+                    <span className="inline-block animate-heartbeat">💝</span>{" "}
+                    ギフト受取人の情報
                   </h4>
                   <p className="text-sm text-gray-500">
                     詳しく入力するほど、より適切なギフトを提案できます
@@ -473,38 +531,57 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className={`w-full font-bold p-4 rounded-xl text-lg transition-all duration-300 transform shadow-lg ${
+                  className={`w-full font-bold p-4 rounded-xl text-lg transition-all duration-300 transform shadow-lg relative overflow-hidden group ${
                     isLoading
                       ? "bg-gray-400 text-gray-700 cursor-not-allowed"
-                      : "bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] hover:from-[#001f3f] hover:to-[#003366] hover:text-white hover:scale-105"
+                      : "bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] hover:from-[#001f3f] hover:to-[#003366] hover:text-white hover:scale-105 hover:shadow-2xl animate-glow"
                   }`}
                 >
+                  {/* Shine effect on hover */}
+                  {!isLoading && (
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+                  )}
+
                   {isLoading ? (
                     <div className="flex items-center justify-center gap-3">
                       <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#001f3f]"></div>
                       <span>処理中...</span>
                     </div>
                   ) : (
-                    "🎯 完璧なギフトを今すぐ見つける！"
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      <span className="animate-bounce-in">🎯</span>
+                      完璧なギフトを今すぐ見つける！
+                    </span>
                   )}
                 </button>
 
-                <p className="text-xs text-center text-gray-400 mt-4">
-                  ⏱️ わずか60秒 • 🔒 完全セキュア • 💯 完全無料
+                <p
+                  className="text-xs text-center text-gray-400 mt-4 animate-fade-in"
+                  style={{ animationDelay: "0.6s" }}
+                >
+                  <span className="inline-block animate-wiggle">⏱️</span>{" "}
+                  わずか60秒 •{" "}
+                  <span className="inline-block animate-pulse">🔒</span>{" "}
+                  完全セキュア •{" "}
+                  <span className="inline-block animate-heartbeat">💯</span>{" "}
+                  完全無料
                 </p>
               </form>
             </section>
 
             {/* 美しいアニメーション付きローディング表示 */}
             {isLoading && (
-              <div ref={aiSuggestionsRef} className="max-w-2xl mx-auto mt-12">
-                <div className="bg-gradient-to-br from-white to-[#FFD700]/10 p-8 rounded-3xl shadow-2xl border border-[#FFD700]/30 text-center">
+              <div
+                ref={aiSuggestionsRef}
+                className="max-w-2xl mx-auto mt-12 animate-zoom-in"
+              >
+                <div className="bg-gradient-to-br from-white to-[#FFD700]/10 p-8 rounded-3xl shadow-2xl border border-[#FFD700]/30 text-center animate-glow">
                   {/* アニメーションコンテナ */}
                   <div className="relative mb-8 h-32 flex items-center justify-center">
                     {/* 中央のギフトボックス - フローティングアニメーション */}
                     <div className="relative z-10">
                       <div
-                        className="text-8xl animate-bounce"
+                        className="text-8xl animate-float-slow"
                         style={{ animationDuration: "2s" }}
                       >
                         🎁
@@ -520,19 +597,19 @@ export default function Home() {
                         ✨
                       </div>
                       <div
-                        className="absolute top-8 right-12 text-xl animate-ping"
+                        className="absolute top-8 right-12 text-xl animate-ping animate-rotate-in"
                         style={{ animationDelay: "0.5s" }}
                       >
                         💫
                       </div>
                       <div
-                        className="absolute bottom-8 left-12 text-xl animate-ping"
+                        className="absolute bottom-8 left-12 text-xl animate-ping animate-spin-slow"
                         style={{ animationDelay: "1s" }}
                       >
                         ⭐
                       </div>
                       <div
-                        className="absolute bottom-4 right-8 text-2xl animate-ping"
+                        className="absolute bottom-4 right-8 text-2xl animate-ping animate-wiggle"
                         style={{ animationDelay: "1.5s" }}
                       >
                         🌟
@@ -577,15 +654,16 @@ export default function Home() {
                           loadingMessage.includes("分析") && step === 1
                             ? "bg-[#FFD700] animate-pulse scale-125"
                             : loadingMessage.includes("検索") && step === 2
-                            ? "bg-[#FFD700] animate-pulse scale-125"
-                            : loadingMessage.includes("比較") && step === 3
-                            ? "bg-[#FFD700] animate-pulse scale-125"
-                            : loadingMessage.includes("カスタマイズ") &&
-                              step === 4
-                            ? "bg-[#FFD700] animate-pulse scale-125"
-                            : loadingMessage.includes("完了") && step === 5
-                            ? "bg-[#FFD700] animate-pulse scale-125"
-                            : "bg-gray-300"
+                              ? "bg-[#FFD700] animate-pulse scale-125"
+                              : loadingMessage.includes("比較") && step === 3
+                                ? "bg-[#FFD700] animate-pulse scale-125"
+                                : loadingMessage.includes("カスタマイズ") &&
+                                    step === 4
+                                  ? "bg-[#FFD700] animate-pulse scale-125"
+                                  : loadingMessage.includes("完了") &&
+                                      step === 5
+                                    ? "bg-[#FFD700] animate-pulse scale-125"
+                                    : "bg-gray-300"
                         }`}
                       />
                     ))}
@@ -619,7 +697,7 @@ export default function Home() {
             {suggestions && (
               <div
                 ref={!isLoading ? aiSuggestionsRef : undefined}
-                className="max-w-5xl mx-auto mt-12 relative"
+                className="max-w-5xl mx-auto mt-12 relative animate-zoom-in"
               >
                 {/* 背景グロー効果 */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700]/20 via-[#FFA500]/10 to-[#FFD700]/20 rounded-3xl blur-xl animate-glow"></div>
@@ -631,7 +709,7 @@ export default function Home() {
                     <div className="absolute inset-0">
                       <div className="floating-particle absolute top-4 left-8 w-2 h-2 bg-[#FFD700] rounded-full animate-ping opacity-70"></div>
                       <div className="floating-particle absolute top-8 right-12 w-1 h-1 bg-white rounded-full animate-pulse"></div>
-                      <div className="floating-particle absolute bottom-6 left-1/4 w-1.5 h-1.5 bg-[#FFD700] rounded-full animate-bounce"></div>
+                      <div className="floating-particle absolute bottom-6 left-1/4 w-1.5 h-1.5 bg-[#FFD700] rounded-full animate-float-fast"></div>
                       <div className="floating-particle absolute bottom-4 right-1/3 w-1 h-1 bg-white rounded-full animate-ping"></div>
                       <div className="floating-particle absolute top-1/2 left-16 w-1 h-1 bg-[#FFD700] rounded-full animate-sparkle"></div>
                       <div className="floating-particle absolute top-3 right-20 w-1.5 h-1.5 bg-white rounded-full animate-sparkle"></div>
@@ -639,24 +717,32 @@ export default function Home() {
 
                     <div className="relative z-10 text-center">
                       <div className="flex items-center justify-center gap-3 mb-3">
-                        <div className="relative">
-                          <div className="text-3xl animate-bounce">🤖</div>
-                          <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#FFD700] rounded-full animate-pulse"></div>
+                        <div className="relative animate-rotate-in">
+                          <div className="text-3xl animate-float-slow">🤖</div>
+                          <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#FFD700] rounded-full animate-heartbeat"></div>
                         </div>
-                        <h2 className="gradient-text text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">
+                        <h2 className="gradient-text text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent animate-scale-up">
                           AIエキスパートからの提案
                         </h2>
                         <div
-                          className="text-3xl animate-bounce"
+                          className="text-3xl animate-wiggle"
                           style={{ animationDelay: "0.2s" }}
                         >
                           ✨
                         </div>
                       </div>
-                      <div className="flex items-center justify-center gap-2 text-sm text-[#FFD700]">
-                        <span className="animate-pulse">🧠</span>
+                      <div
+                        className="flex items-center justify-center gap-2 text-sm text-[#FFD700] animate-fade-in"
+                        style={{ animationDelay: "0.3s" }}
+                      >
+                        <span className="animate-heartbeat">🧠</span>
                         <span>心理学とデータサイエンスに基づく分析</span>
-                        <span className="animate-pulse">💡</span>
+                        <span
+                          className="animate-heartbeat"
+                          style={{ animationDelay: "0.2s" }}
+                        >
+                          💡
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -664,9 +750,9 @@ export default function Home() {
                   {/* グラデーションボーダー付きコンテンツエリア */}
                   <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-8 rounded-b-3xl">
                     {/* Status indicator */}
-                    <div className="flex items-center gap-3 mb-6 p-4 bg-gradient-to-r from-green-50 to-[#FFD700]/10 rounded-2xl border border-green-200">
+                    <div className="flex items-center gap-3 mb-6 p-4 bg-gradient-to-r from-green-50 to-[#FFD700]/10 rounded-2xl border border-green-200 animate-slide-in-left">
                       <div className="relative">
-                        <div className="w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
+                        <div className="w-4 h-4 bg-green-500 rounded-full animate-heartbeat"></div>
                         <div className="absolute inset-0 w-4 h-4 bg-green-500 rounded-full animate-ping opacity-30"></div>
                       </div>
                       <span className="text-green-700 font-medium text-sm">
@@ -677,9 +763,9 @@ export default function Home() {
                     {/* Chat-like design */}
                     <div className="space-y-4">
                       {/* AIアバターとコンテンツ */}
-                      <div className="flex gap-4">
+                      <div className="flex gap-4 animate-slide-in-right">
                         <div className="flex-shrink-0">
-                          <div className="w-12 h-12 bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-full flex items-center justify-center shadow-lg">
+                          <div className="w-12 h-12 bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-full flex items-center justify-center shadow-lg animate-float-slow">
                             <span className="text-xl">🤖</span>
                           </div>
                         </div>
@@ -749,8 +835,8 @@ export default function Home() {
 
                           {/* タイムスタンプとアクション */}
                           <div className="flex items-center justify-between mt-3 px-2">
-                            <div className="flex items-center gap-2 text-xs text-gray-500">
-                              <span>🕐</span>
+                            <div className="flex items-center gap-2 text-xs text-gray-500 animate-fade-in">
+                              <span className="animate-pulse">🕐</span>
                               <span>完了</span>
                               <span>•</span>
                               <span className="text-green-600 font-medium">
@@ -761,15 +847,17 @@ export default function Home() {
                             <div className="flex items-center gap-2">
                               <button
                                 onClick={handleLike}
-                                className={`p-2 hover:bg-gray-100 rounded-full transition-colors group ${
-                                  isLiked ? "bg-[#FFD700]/20" : ""
+                                className={`p-2 hover:bg-gray-100 rounded-full transition-all duration-300 group transform hover:scale-110 ${
+                                  isLiked
+                                    ? "bg-[#FFD700]/20 animate-bounce-in"
+                                    : ""
                                 }`}
                                 title="この提案をいいね"
                               >
                                 <span
-                                  className={`transition-colors ${
+                                  className={`transition-all duration-300 inline-block ${
                                     isLiked
-                                      ? "text-[#FFD700]"
+                                      ? "text-[#FFD700] animate-heartbeat"
                                       : "text-gray-400 group-hover:text-[#FFD700]"
                                   }`}
                                 >
@@ -778,15 +866,15 @@ export default function Home() {
                               </button>
                               <button
                                 onClick={handleRegenerate}
-                                className="p-2 hover:bg-gray-100 rounded-full transition-colors group"
+                                className="p-2 hover:bg-gray-100 rounded-full transition-all duration-300 group transform hover:scale-110"
                                 title="新しい提案を作成"
                                 disabled={isRegenerating}
                               >
                                 <span
-                                  className={`transition-colors ${
+                                  className={`transition-all duration-300 inline-block ${
                                     isRegenerating
                                       ? "animate-spin text-blue-500"
-                                      : "text-gray-400 group-hover:text-blue-500"
+                                      : "text-gray-400 group-hover:text-blue-500 group-hover:animate-wiggle"
                                   }`}
                                 >
                                   🔄
@@ -794,10 +882,10 @@ export default function Home() {
                               </button>
                               <button
                                 onClick={handleCopy}
-                                className="p-2 hover:bg-gray-100 rounded-full transition-colors group"
+                                className="p-2 hover:bg-gray-100 rounded-full transition-all duration-300 group transform hover:scale-110"
                                 title="提案をコピー"
                               >
-                                <span className="text-gray-400 group-hover:text-green-500 transition-colors">
+                                <span className="text-gray-400 group-hover:text-green-500 transition-all duration-300 inline-block group-hover:animate-bounce-in">
                                   📋
                                 </span>
                               </button>
@@ -808,27 +896,36 @@ export default function Home() {
                     </div>
 
                     {/* AI信頼度と統計 */}
-                    <div className="mt-8 p-6 bg-gradient-to-r from-[#FFD700]/10 via-[#FFA500]/5 to-[#FFD700]/10 rounded-2xl border border-[#FFD700]/20">
+                    <div className="mt-8 p-6 bg-gradient-to-r from-[#FFD700]/10 via-[#FFA500]/5 to-[#FFD700]/10 rounded-2xl border border-[#FFD700]/20 animate-slide-in-left">
                       <div className="grid md:grid-cols-3 gap-4 text-center">
-                        <div className="space-y-2">
-                          <div className="text-2xl font-bold text-[#001f3f]">
+                        <div
+                          className="space-y-2 animate-fade-in"
+                          style={{ animationDelay: "0.1s" }}
+                        >
+                          <div className="text-2xl font-bold text-[#001f3f] animate-scale-up">
                             95%
                           </div>
                           <div className="text-sm text-gray-600">AI精度</div>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] h-2 rounded-full w-[95%] animate-pulse"></div>
+                          <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                            <div className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] h-2 rounded-full w-[95%] animate-glow"></div>
                           </div>
                         </div>
-                        <div className="space-y-2">
-                          <div className="text-2xl font-bold text-[#001f3f]">
+                        <div
+                          className="space-y-2 animate-fade-in"
+                          style={{ animationDelay: "0.2s" }}
+                        >
+                          <div
+                            className="text-2xl font-bold text-[#001f3f] animate-scale-up"
+                            style={{ animationDelay: "0.1s" }}
+                          >
                             {typewriterText.length > 0
                               ? Math.min(
                                   100,
                                   Math.round(
                                     (typewriterText.length /
                                       suggestions.length) *
-                                      100
-                                  )
+                                      100,
+                                  ),
                                 )
                               : 0}
                             %
@@ -845,8 +942,8 @@ export default function Home() {
                                         Math.round(
                                           (typewriterText.length /
                                             suggestions.length) *
-                                            100
-                                        )
+                                            100,
+                                        ),
                                       )
                                     : 0
                                 }%`,
@@ -960,7 +1057,7 @@ export default function Home() {
                         description?: string;
                         url?: string;
                       },
-                      index: number
+                      index: number,
                     ) => (
                       <div
                         key={index}
@@ -999,7 +1096,7 @@ export default function Home() {
                           🛒 今すぐ購入
                         </a>
                       </div>
-                    )
+                    ),
                   )}
                 </div>
               </div>
@@ -1371,7 +1468,7 @@ export default function Home() {
                                       .join("\n") +
                                     "\n\n合計: " +
                                     calculateTotal().toLocaleString() +
-                                    "円"
+                                    "円",
                                 )
                               }
                               className="bg-[#FFD700] hover:bg-[#FFA500] text-[#001f3f] px-6 py-3 rounded-full font-bold transition-colors"
