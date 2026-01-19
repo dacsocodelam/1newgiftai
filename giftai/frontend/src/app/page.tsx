@@ -310,24 +310,25 @@ export default function Home() {
                     </svg>
                     <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#FFD700] rounded-full animate-heartbeat"></div>
                   </div>
-                  <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent animate-scale-up">
+                  <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent animate-neon-glow">
                     GiftAI
                   </h1>
                 </div>
                 <h2
-                  className="text-2xl md:text-3xl font-semibold mb-4 text-[#FFD700] animate-fade-in"
+                  className="text-2xl md:text-3xl font-semibold mb-4 text-[#FFD700] animate-blur-in"
                   style={{ animationDelay: "0.2s" }}
                 >
                   あなた専用のギフトエキスパート
                 </h2>
                 <p
-                  className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed animate-fade-in"
+                  className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed animate-text-reveal"
                   style={{ animationDelay: "0.4s" }}
                 >
-                  🎁 <strong>大切な人の誕生日を悪夢にしないで！</strong>
+                  <span className="inline-block animate-wave">🎁</span>{" "}
+                  <strong>大切な人の誕生日を悪夢にしないで！</strong>
                   <br />
                   AIで
-                  <span className="text-[#FFD700] font-bold animate-pulse">
+                  <span className="text-[#FFD700] font-bold animate-pulsate">
                     60秒
                   </span>
                   で 完璧なギフトを見つけましょう
@@ -376,12 +377,12 @@ export default function Home() {
             {/* CTA Section */}
             <section id="gift-finder" className="py-16">
               <div className="text-center mb-12">
-                <h3 className="text-3xl md:text-4xl font-bold mb-6 text-[#001f3f] animate-zoom-in">
-                  <span className="inline-block animate-bounce-in">🚀</span>{" "}
+                <h3 className="text-3xl md:text-4xl font-bold mb-6 text-[#001f3f] animate-flip-3d">
+                  <span className="inline-block animate-float-up-down">🚀</span>{" "}
                   ギフト探しを始めましょう！
                 </h3>
                 <p
-                  className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto animate-fade-in"
+                  className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto animate-text-reveal"
                   style={{ animationDelay: "0.2s" }}
                 >
                   5つの簡単な情報だけで、AIがあなたの大切な人を
@@ -392,14 +393,17 @@ export default function Home() {
               {/* AI Form - Redesigned for better UX */}
               <form
                 onSubmit={handleSubmit}
-                className="max-w-2xl mx-auto space-y-6 bg-white p-8 rounded-3xl shadow-2xl border border-[#FFD700]/20 animate-slide-in-right hover:shadow-[0_20px_50px_rgba(255,215,0,0.3)] transition-all duration-500"
+                className="max-w-2xl mx-auto space-y-6 bg-white p-8 rounded-3xl shadow-2xl border border-[#FFD700]/20 animate-slide-up-fade hover:shadow-[0_20px_50px_rgba(255,215,0,0.3)] transition-all duration-500 relative overflow-hidden"
               >
+                {/* Shimmer effect overlay */}
+                <div className="absolute inset-0 animate-shimmer pointer-events-none"></div>
+
                 <div
-                  className="text-center mb-6 animate-fade-in"
+                  className="text-center mb-6 animate-blur-in relative z-10"
                   style={{ animationDelay: "0.4s" }}
                 >
                   <h4 className="text-xl font-semibold text-[#001f3f] mb-2">
-                    <span className="inline-block animate-heartbeat">💝</span>{" "}
+                    <span className="inline-block animate-tilt">💝</span>{" "}
                     ギフト受取人の情報
                   </h4>
                   <p className="text-sm text-gray-500">
@@ -407,7 +411,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4 relative z-10">
                   <div className="space-y-2">
                     <label className="block text-sm font-medium text-[#001f3f]">
                       👤 年齢
@@ -573,15 +577,18 @@ export default function Home() {
             {isLoading && (
               <div
                 ref={aiSuggestionsRef}
-                className="max-w-2xl mx-auto mt-12 animate-zoom-in"
+                className="max-w-2xl mx-auto mt-12 animate-flip-3d"
               >
-                <div className="bg-gradient-to-br from-white to-[#FFD700]/10 p-8 rounded-3xl shadow-2xl border border-[#FFD700]/30 text-center animate-glow">
+                <div className="bg-gradient-to-br from-white to-[#FFD700]/10 p-8 rounded-3xl shadow-2xl border border-[#FFD700]/30 text-center animate-pulsate relative overflow-hidden">
+                  {/* Shimmer overlay */}
+                  <div className="absolute inset-0 animate-shimmer pointer-events-none opacity-50"></div>
+
                   {/* アニメーションコンテナ */}
-                  <div className="relative mb-8 h-32 flex items-center justify-center">
+                  <div className="relative mb-8 h-32 flex items-center justify-center z-10">
                     {/* 中央のギフトボックス - フローティングアニメーション */}
                     <div className="relative z-10">
                       <div
-                        className="text-8xl animate-float-slow"
+                        className="text-8xl animate-float-up-down"
                         style={{ animationDuration: "2s" }}
                       >
                         🎁
@@ -618,13 +625,13 @@ export default function Home() {
 
                     {/* フローティングハート */}
                     <div
-                      className="absolute top-2 left-1/4 text-lg animate-pulse"
+                      className="absolute top-2 left-1/4 text-lg animate-wave"
                       style={{ animationDelay: "0.2s" }}
                     >
                       💖
                     </div>
                     <div
-                      className="absolute top-4 right-1/4 text-lg animate-pulse"
+                      className="absolute top-4 right-1/4 text-lg animate-wave"
                       style={{ animationDelay: "0.8s" }}
                     >
                       💝
@@ -638,10 +645,10 @@ export default function Home() {
                   </div>
 
                   {/* 動的ローディングメッセージ */}
-                  <h3 className="text-2xl font-bold text-[#001f3f] mb-4">
+                  <h3 className="text-2xl font-bold text-[#001f3f] mb-4 animate-neon-glow relative z-10">
                     ✨ AIがあなたのために魔法をかけています！
                   </h3>
-                  <p className="text-lg text-gray-700 mb-6 min-h-[28px] transition-all duration-500">
+                  <p className="text-lg text-gray-700 mb-6 min-h-[28px] transition-all duration-500 animate-text-reveal relative z-10">
                     {loadingMessage}
                   </p>
 
