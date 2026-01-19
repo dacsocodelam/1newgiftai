@@ -24,7 +24,7 @@ export default function Home() {
     occasion: "",
   });
   const [suggestions, setSuggestions] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<any[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("");
@@ -202,7 +202,7 @@ export default function Home() {
       setIsRegenerating(false);
       setSuggestions(res.data.suggestions);
       setResults(res.data.products);
-    } catch (err) {
+    } catch {
       setIsRegenerating(false);
       setError(
         "新しい提案の作成中にエラーが発生しました。もう一度お試しください！",
@@ -215,60 +215,6 @@ export default function Home() {
     // 一時的な成功メッセージを表示
     setShowThanks(true);
     setTimeout(() => setShowThanks(false), 2000);
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setSuggestions("");
-    setResults([]);
-    setTypewriterText("");
-    setIsLoading(true);
-    setShowThanks(false);
-    setIsLiked(false);
-    setIsRegenerating(false);
-
-    // 500ms後にローディングセクションまで自動スクロール
-    setTimeout(() => {
-      if (aiSuggestionsRef.current) {
-        aiSuggestionsRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 500);
-
-    // ローディングメッセージのエフェクト
-    let messageIndex = 0;
-    setLoadingMessage(loadingMessages[0]);
-
-    const messageInterval = setInterval(() => {
-      messageIndex++;
-      if (messageIndex < loadingMessages.length) {
-        setLoadingMessage(loadingMessages[messageIndex]);
-      }
-    }, 1200); // Thay đổi message mỗi 1.2 giây
-
-    try {
-      const res = await axios.get("http://localhost:3001/api/suggest", {
-        params: formData,
-      });
-
-      clearInterval(messageInterval);
-      setIsLoading(false);
-      setSuggestions(res.data.suggestions);
-      setResults(res.data.products);
-    } catch (err) {
-      clearInterval(messageInterval);
-      setIsLoading(false);
-      setError("提案の検索中にエラーが発生しました。もう一度お試しください！");
-    }
   };
 
   return (
@@ -288,7 +234,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 py-12">
             {/* Gift Finder with Quiz Mode */}
             <GiftFinder
-              onResults={(suggestions, products, formData, styleAnalysis) => {
+              onResults={(suggestions, products, formData) => {
                 setSuggestions(suggestions);
                 setResults(products);
                 setFormData({
@@ -1196,8 +1142,8 @@ export default function Home() {
                                 alert(
                                   "決済機能は後日統合予定です！\n\n選択したサービス:\n" +
                                     Object.entries(selectedServices)
-                                      .filter(([_, selected]) => selected)
-                                      .map(([service, _]) => {
+                                      .filter(([, selected]) => selected)
+                                      .map(([service]) => {
                                         const serviceNames = {
                                           giftWrap:
                                             "🎁 高級ギフトラッピング (99円)",
