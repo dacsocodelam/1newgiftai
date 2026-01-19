@@ -1,13 +1,50 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function Header() {
   const { t, ready } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Wait for i18n to be ready to avoid hydration mismatch
-  if (!ready) return null;
+  // Chỉ render sau khi component mounted để tránh hydration mismatch
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Không render gì khi chưa mounted hoặc i18n chưa sẵn sàng
+  if (!isMounted || !ready) {
+    return (
+      <nav className="bg-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-[#FFD700]/20">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between items-center py-4">
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="text-[#FFD700]"
+                >
+                  <path
+                    d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                    fill="currentColor"
+                  />
+                </svg>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#FFD700] rounded-full animate-pulse"></div>
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">
+                GiftAI
+              </span>
+            </div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <nav className="bg-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-[#FFD700]/20">
@@ -41,32 +78,37 @@ export default function Header() {
             <a
               href="#home"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
+              suppressHydrationWarning
             >
               🏠 {t("header.home")}
             </a>
             <a
               href="#how-it-works"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
+              suppressHydrationWarning
             >
-              ⚙️ {t("header.howItWorks")}
+              ⚙️ <span suppressHydrationWarning>{t("header.howItWorks")}</span>
             </a>
             <a
               href="#blog"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
+              suppressHydrationWarning
             >
-              📝 {t("header.blog")}
+              📝 <span suppressHydrationWarning>{t("header.blog")}</span>
             </a>
             <a
               href="#about"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
+              suppressHydrationWarning
             >
-              👥 {t("header.about")}
+              👥 <span suppressHydrationWarning>{t("header.about")}</span>
             </a>
             <a
               href="#gift-finder"
               className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] px-6 py-2 rounded-full font-bold hover:from-[#001f3f] hover:to-[#003366] hover:text-white transition-all duration-300"
+              suppressHydrationWarning
             >
-              🎯 {t("header.findGift")}
+              🎯 <span suppressHydrationWarning>{t("header.findGift")}</span>
             </a>
           </div>
 
@@ -107,32 +149,38 @@ export default function Header() {
               <a
                 href="#home"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
+                suppressHydrationWarning
               >
-                🏠 {t("header.home")}
+                🏠 <span suppressHydrationWarning>{t("header.home")}</span>
               </a>
               <a
                 href="#how-it-works"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
+                suppressHydrationWarning
               >
-                ⚙️ {t("header.howItWorks")}
+                ⚙️{" "}
+                <span suppressHydrationWarning>{t("header.howItWorks")}</span>
               </a>
               <a
                 href="#blog"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
+                suppressHydrationWarning
               >
-                📝 {t("header.blog")}
+                📝 <span suppressHydrationWarning>{t("header.blog")}</span>
               </a>
               <a
                 href="#about"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
+                suppressHydrationWarning
               >
-                👥 {t("header.about")}
+                👥 <span suppressHydrationWarning>{t("header.about")}</span>
               </a>
               <a
                 href="#gift-finder"
                 className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] px-6 py-3 rounded-full font-bold hover:from-[#001f3f] hover:to-[#003366] hover:text-white transition-all duration-300 text-left"
+                suppressHydrationWarning
               >
-                🎯 {t("header.findGift")}
+                🎯 <span suppressHydrationWarning>{t("header.findGift")}</span>
               </a>
             </div>
           </div>

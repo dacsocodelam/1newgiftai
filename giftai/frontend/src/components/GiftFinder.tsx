@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import GiftQuiz, { QuizData } from "./GiftQuiz";
@@ -26,6 +26,30 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
   const { t } = useTranslation();
   const [useQuizMode, setUseQuizMode] = useState(true);
   const [styleAnalysis, setStyleAnalysis] = useState<any>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const [cosmicParticles, setCosmicParticles] = useState<
+    Array<{
+      id: number;
+      left: number;
+      top: number;
+      delay: number;
+      duration: number;
+    }>
+  >([]);
+
+  // Generate cosmic particles only on client-side
+  useEffect(() => {
+    setIsMounted(true);
+    setCosmicParticles(
+      Array.from({ length: 30 }, (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        delay: Math.random() * 8,
+        duration: 8 + Math.random() * 8,
+      })),
+    );
+  }, []);
 
   const loadingMessages = [
     "🔍 お客様の情報を分析中...",
@@ -132,26 +156,28 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
   return (
     <div className="relative py-16">
       {/* Cosmic Glow Background */}
-      <div className="absolute inset-0 cosmic-glow pointer-events-none" />
-      
+      <div className="absolute inset-0 cosmic-glow pointer-events-none z-0" />
+
       {/* Floating Cosmic Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-[#FFD700] rounded-full animate-float-cosmic opacity-40"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 8}s`,
-              animationDuration: `${8 + Math.random() * 8}s`,
-            }}
-          />
-        ))}
-      </div>
+      {isMounted && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          {cosmicParticles.map((particle) => (
+            <div
+              key={particle.id}
+              className="absolute w-1 h-1 bg-[#FFD700] rounded-full animate-float-cosmic opacity-40"
+              style={{
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
+                animationDelay: `${particle.delay}s`,
+                animationDuration: `${particle.duration}s`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Mode Toggle - Glassmorphism */}
-      <motion.div 
+      <motion.div
         className="max-w-2xl mx-auto mb-8 flex justify-center relative z-10"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -184,7 +210,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
       {useQuizMode ? (
         <GiftQuiz onComplete={handleQuizComplete} isLoading={isLoading} />
       ) : (
-        <motion.div 
+        <motion.div
           className="max-w-2xl mx-auto"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -199,7 +225,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
       )}
 
       {styleAnalysis && !isLoading && (
-        <motion.div 
+        <motion.div
           className="max-w-2xl mx-auto mt-8 p-6 glass-card-strong rounded-2xl border-beam relative z-10"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -215,14 +241,20 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
               <div className="mt-4 grid grid-cols-2 gap-3">
                 {styleAnalysis.style_data.style && (
                   <div className="glass-card px-3 py-2 rounded-lg">
-                    <span className="font-medium text-[#FFD700]">スタイル:</span>{" "}
-                    <span className="text-gray-200">{styleAnalysis.style_data.style}</span>
+                    <span className="font-medium text-[#FFD700]">
+                      スタイル:
+                    </span>{" "}
+                    <span className="text-gray-200">
+                      {styleAnalysis.style_data.style}
+                    </span>
                   </div>
                 )}
                 {styleAnalysis.style_data.age_range && (
                   <div className="glass-card px-3 py-2 rounded-lg">
                     <span className="font-medium text-[#FFD700]">年齢層:</span>{" "}
-                    <span className="text-gray-200">{styleAnalysis.style_data.age_range}</span>
+                    <span className="text-gray-200">
+                      {styleAnalysis.style_data.age_range}
+                    </span>
                   </div>
                 )}
               </div>

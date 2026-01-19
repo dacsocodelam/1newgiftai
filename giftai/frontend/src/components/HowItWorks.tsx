@@ -1,10 +1,16 @@
 "use client";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function HowItWorks() {
   const { t, ready } = useTranslation();
+  const [isMounted, setIsMounted] = useState(false);
 
-  if (!ready) return null;
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted || !ready) return null;
 
   const steps = [
     {
@@ -146,7 +152,9 @@ export default function HowItWorks() {
             <h3 className="text-2xl font-bold mb-4">
               🏆 {t("howItWorks.benefits.title")}
             </h3>
-            <p className="text-slate-300">{t("howItWorks.benefits.subtitle")}</p>
+            <p className="text-slate-300">
+              {t("howItWorks.benefits.subtitle")}
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">

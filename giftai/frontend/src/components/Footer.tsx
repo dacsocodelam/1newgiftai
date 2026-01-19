@@ -1,10 +1,16 @@
 "use client";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function Footer() {
   const { t, ready } = useTranslation();
+  const [isMounted, setIsMounted] = useState(false);
 
-  if (!ready) return null;
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted || !ready) return null;
 
   return (
     <footer className="bg-white/[0.02] backdrop-blur-md text-white border-t border-white/10 relative z-10">

@@ -1,10 +1,16 @@
 "use client";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function BlogSection() {
   const { t, ready } = useTranslation();
+  const [isMounted, setIsMounted] = useState(false);
 
-  if (!ready) return null;
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted || !ready) return null;
   const blogPosts = [
     {
       title: t("blog.posts.0.title"),
@@ -63,10 +69,7 @@ export default function BlogSection() {
   ];
 
   return (
-    <section
-      id="blog"
-      className="py-16 relative z-10"
-    >
+    <section id="blog" className="py-16 relative z-10">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">

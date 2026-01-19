@@ -1,8 +1,33 @@
 "use client";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function HeroSection() {
   const { t, ready } = useTranslation();
+  const [isMounted, setIsMounted] = useState(false);
+  const [particles, setParticles] = useState<
+    Array<{
+      id: number;
+      left: number;
+      top: number;
+      delay: number;
+      duration: number;
+    }>
+  >([]);
+
+  // Generate particles only on client-side after mount
+  useEffect(() => {
+    setIsMounted(true);
+    setParticles(
+      Array.from({ length: 20 }, (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        delay: Math.random() * 5,
+        duration: 5 + Math.random() * 10,
+      })),
+    );
+  }, []);
 
   // Wait for i18n to be ready
   if (!ready) {
@@ -10,31 +35,32 @@ export default function HeroSection() {
       <section
         id="home"
         className="relative overflow-hidden pt-20 pb-32"
-      >
-      </section>
+      ></section>
     );
   }
 
   return (
-    <section
-      id="home"
-      className="relative overflow-hidden pt-20 pb-32"
-    >
+    <section id="home" className="relative overflow-hidden pt-20 pb-32">
       {/* Floating Particles - Extended to connect with content below */}
-      <div className="absolute inset-0 overflow-visible pointer-events-none" style={{ height: '150vh' }}>
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-[#FFD700]/30 rounded-full animate-float-particles"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${5 + Math.random() * 10}s`,
-            }}
-          />
-        ))}
-      </div>
+      {isMounted && (
+        <div
+          className="absolute inset-0 overflow-visible pointer-events-none z-0"
+          style={{ height: "150vh" }}
+        >
+          {particles.map((particle) => (
+            <div
+              key={particle.id}
+              className="absolute w-2 h-2 bg-[#FFD700]/30 rounded-full animate-float-particles"
+              style={{
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
+                animationDelay: `${particle.delay}s`,
+                animationDuration: `${particle.duration}s`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="container mx-auto px-4 py-8 text-center relative z-10">
         <div className="max-w-4xl mx-auto">

@@ -1,12 +1,12 @@
 "use client";
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { MeshDistortMaterial, Float, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
 function Particles() {
   const particlesRef = useRef<THREE.Points>(null);
-  const particleCount = 200;
+  const particleCount = 100; // Reduced from 200 to prevent context loss
 
   const particles = useMemo(() => {
     const positions = new Float32Array(particleCount * 3);
@@ -25,6 +25,17 @@ function Particles() {
     }
 
     return { positions, colors };
+  }, []);
+
+  // Cleanup geometry on unmount
+  useEffect(() => {
+    const pointsRef = particlesRef.current;
+    return () => {
+      if (pointsRef) {
+        pointsRef.geometry?.dispose();
+        (pointsRef.material as THREE.Material)?.dispose();
+      }
+    };
   }, []);
 
   useFrame((state) => {
@@ -168,6 +179,53 @@ function CrystalSphere({
 
 export default function AIMascot() {
   const mousePosition = useRef({ x: 0, y: 0 });
+  const [isMounted, setIsMounted] = useState(false);
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+
+    // Context loss/restore handlers
+    const handleContextLost = (event: Event) => {
+      event.preventDefault();
+      console.warn("WebGL context lost, preventing default behavior");
+      setHasError(true);
+      // Try to restore after a delay
+      setTimeout(() => {
+        setHasError(false);
+        setIsMounted(false);
+        requestAnimationFrame(() => setIsMounted(true));
+      }, 100);
+    };
+
+    const handleContextRestored = () => {
+      console.log("WebGL context restored");
+      setHasError(false);
+    };
+
+    const canvas = canvasRef.current?.querySelector("canvas");
+    if (canvas) {
+      canvas.addEventListener("webglcontextlost", handleContextLost, false);
+      canvas.addEventListener(
+        "webglcontextrestored",
+        handleContextRestored,
+        false,
+      );
+    }
+
+    // Cleanup function để dispose THREE.js resources khi unmount
+    return () => {
+      if (canvas) {
+        canvas.removeEventListener("webglcontextlost", handleContextLost);
+        canvas.removeEventListener(
+          "webglcontextrestored",
+          handleContextRestored,
+        );
+      }
+      setIsMounted(false);
+    };
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -181,14 +239,36 @@ export default function AIMascot() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  // Không render gì khi chưa mounted (tránh hydration error)
+  if (!isMounted) {
+    return null;
+  }
+
+  // Fallback nếu có lỗi context
+  if (hasError) {
+    return null;
+  }
+
   return (
     <div
-      className="fixed inset-0 w-full h-full"
-      style={{ pointerEvents: "none", zIndex: 0 }}
+      ref={canvasRef}
+      className="fixed inset-0 w-full h-full z-0"
+      style={{ pointerEvents: "none" }}
     >
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
-        gl={{ alpha: true, antialias: true, preserveDrawingBuffer: true }}
+        gl={{
+          alpha: true,
+          antialias: false, // Disable antialiasing to reduce GPU load
+          preserveDrawingBuffer: false,
+          powerPreference: "high-performance",
+          failIfMajorPerformanceCaveat: false,
+        }}
+        dpr={[1, 1.5]} // Further limit device pixel ratio
+        onCreated={({ gl }) => {
+          // Track canvas creation
+          gl.debug.checkShaderErrors = false; // Disable for performance
+        }}
         style={{
           width: "100%",
           height: "100%",

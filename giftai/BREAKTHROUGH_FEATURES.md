@@ -7,6 +7,7 @@
 **File:** `frontend/src/components/GiftQuiz.tsx`
 
 **Features:**
+
 - ✨ 7 bước quiz tương tác với animation
 - 🎨 Mỗi bước có background gradient riêng
 - 📊 Progress bar động với phần trăm hoàn thành
@@ -17,6 +18,7 @@
 - 🔄 Navigation (Quay lại/Tiếp theo)
 
 **Các bước Quiz:**
+
 1. 🤝 Mối quan hệ
 2. 🎂 Tuổi
 3. ⚧ Giới tính (Selection cards)
@@ -30,15 +32,18 @@
 ### 2. 🖼️ Gemini Vision API - Phân tích ảnh
 
 **Backend:** `backend/app/controllers/ai_controller.rb`
+
 - Method mới: `analyze_style`
 - Endpoint: `POST /api/analyze_style`
 
 **Route:** `backend/config/routes.rb`
+
 ```ruby
 post '/api/analyze_style', to: 'ai#analyze_style'
 ```
 
 **Tính năng:**
+
 - 📸 Upload ảnh thời trang/phong cách
 - 🤖 Gemini 1.5 Flash phân tích:
   - Style (Casual, Formal, Modern...)
@@ -49,14 +54,16 @@ post '/api/analyze_style', to: 'ai#analyze_style'
 - 📝 Trả về JSON với summary và chi tiết
 
 **Request Format:**
+
 ```javascript
-POST /api/analyze_style
+POST / api / analyze_style;
 Body: {
-  image: "data:image/jpeg;base64,..."
+  image: "data:image/jpeg;base64,...";
 }
 ```
 
 **Response Format:**
+
 ```json
 {
   "analysis": "150文字以内の分析サマリー",
@@ -75,6 +82,7 @@ Body: {
 ### 3. 🌍 I18n - Đa ngôn ngữ hoàn chỉnh
 
 **Files created:**
+
 - `frontend/src/locales/en/translation.json` (English)
 - `frontend/src/locales/vi/translation.json` (Vietnamese)
 - Updated: `frontend/src/i18n.ts`
@@ -82,6 +90,7 @@ Body: {
 **Language Switcher:** `frontend/src/components/LanguageSwitcher.tsx`
 
 **Features:**
+
 - 🇯🇵 日本語 (Japanese)
 - 🇺🇸 English
 - 🇻🇳 Tiếng Việt
@@ -90,6 +99,7 @@ Body: {
 - 🎨 Dropdown UI đẹp với flags
 
 **Translations Coverage:**
+
 - Hero section
 - Quiz steps (tất cả 7 bước)
 - Loading messages
@@ -104,6 +114,7 @@ Body: {
 **File:** `frontend/src/components/GiftFinder.tsx`
 
 **Features:**
+
 - 🔄 Toggle giữa Quiz mode và Form mode
 - 📸 Tự động gọi analyze_style nếu có ảnh
 - 🎨 Hiển thị kết quả phân tích style
@@ -117,6 +128,7 @@ Body: {
 ### Option 1: Thay thế toàn bộ form section
 
 1. Import components mới:
+
 ```tsx
 import GiftFinder from "../components/GiftFinder";
 import LanguageSwitcher from "../components/LanguageSwitcher";
@@ -125,6 +137,7 @@ import "../i18n"; // Initialize i18n
 ```
 
 2. Thêm LanguageSwitcher vào Header:
+
 ```tsx
 <Header>
   <LanguageSwitcher />
@@ -132,16 +145,19 @@ import "../i18n"; // Initialize i18n
 ```
 
 3. Thay thế phần form hiện tại (khoảng line 377-530):
+
 ```tsx
-{/* CTA Section */}
+{
+  /* CTA Section */
+}
 <section id="gift-finder" className="py-16">
   <div className="text-center mb-12">
     <h3 className="text-3xl md:text-4xl font-bold mb-6 text-[#001f3f] animate-flip-3d">
       <span className="inline-block animate-float-up-down">🚀</span>
-      {t('quiz.title')}
+      {t("quiz.title")}
     </h3>
     <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto animate-text-reveal">
-      {t('quiz.subtitle')}
+      {t("quiz.subtitle")}
     </p>
   </div>
 
@@ -155,7 +171,7 @@ import "../i18n"; // Initialize i18n
     setIsLoading={setIsLoading}
     setLoadingMessage={setLoadingMessage}
   />
-</section>
+</section>;
 ```
 
 ### Option 2: Giữ cả 2, cho user chọn
@@ -167,25 +183,30 @@ Giữ nguyên form cũ và thêm toggle button để switch mode.
 ## 🚀 Testing
 
 ### 1. Test Quiz Mode:
+
 ```bash
 cd frontend
 npm run dev
 ```
+
 - Navigate to http://localhost:3002
 - Click through all 7 quiz steps
 - Upload an image at step 7
 - Check console for API calls
 
 ### 2. Test Image Analysis:
+
 ```bash
 cd backend
 rails s -p 3001
 ```
+
 - Ensure GEMINI_API_KEY is set in .env
 - Upload image in quiz
 - Check backend logs for Vision API call
 
 ### 3. Test Language Switching:
+
 - Click language switcher (top right)
 - Switch between 🇯🇵 🇺🇸 🇻🇳
 - Check if text changes
@@ -196,6 +217,7 @@ rails s -p 3001
 ## 📦 Dependencies
 
 ### Frontend (package.json):
+
 ```json
 {
   "dependencies": {
@@ -208,6 +230,7 @@ rails s -p 3001
 ```
 
 ### Backend (Gemfile):
+
 ```ruby
 # Already included in Rails
 gem 'net-http'
@@ -219,6 +242,7 @@ gem 'json'
 ## 🎨 UI/UX Improvements
 
 ### Animations Added:
+
 - `animate-flip-3d` - Quiz card entrance
 - `animate-float-up-down` - Icons floating
 - `animate-text-reveal` - Text fade + blur in
@@ -228,6 +252,7 @@ gem 'json'
 - `animate-shimmer` - Shine effect overlay
 
 ### Color Gradients per Step:
+
 1. Relationship: Pink to Rose
 2. Age: Blue to Cyan
 3. Gender: Purple to Indigo
@@ -281,6 +306,7 @@ Breaking changes: None (backward compatible)
 ## 💡 Tips for Integration
 
 1. **Backup first:**
+
    ```bash
    cp src/app/page.tsx src/app/page.tsx.backup
    ```
