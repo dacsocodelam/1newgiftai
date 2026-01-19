@@ -6,12 +6,21 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
 import HowItWorks from "../components/HowItWorks";
-import BlogSection from "../components/BlogSection";
 import AboutUs from "../components/AboutUs";
 import CardCreator from "../components/CardCreator";
 import GiftFinder from "../components/GiftFinder";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import dynamic from "next/dynamic";
+
+// Dynamically import 3D Blog Carousel to avoid SSR issues
+const BlogCarousel3D = dynamic(() => import("../components/BlogCarousel3D"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[600px] flex items-center justify-center bg-[#0a0a1a]">
+      <div className="w-16 h-16 border-4 border-yellow-500/30 border-t-yellow-500 rounded-full animate-spin" />
+    </div>
+  ),
+});
 import "../i18n";
 
 // Dynamically import AIMascot to avoid SSR issues
@@ -1282,7 +1291,7 @@ export default function Home() {
           </main>
 
           <HowItWorks />
-          <BlogSection />
+          <BlogCarousel3D />
           <AboutUs />
           <Footer />
 
