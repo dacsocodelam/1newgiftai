@@ -1,4 +1,8 @@
+"use client";
+import { useTranslation } from "react-i18next";
+
 export default function BlogSection() {
+  const { t } = useTranslation();
   const blogPosts = [
     {
       title: "彼女を夢中にさせる誕生日ギフトトップ10",
@@ -70,10 +74,10 @@ export default function BlogSection() {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#001f3f]">
-            📚 専門家からのギフト選びの秘訣
+            📚 {t('blog.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            ギフトアート、心理学、最新トレンドに関する有用な記事を発見してください
+            {t('blog.subtitle')}
           </p>
         </div>
 

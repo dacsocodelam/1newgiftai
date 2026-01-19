@@ -131,6 +131,40 @@
     "blog": "Gift Ideas",
     "followUs": "Follow Us"
   },
+  "howItWorks": {
+    "title": "How Does GiftAI Work?",
+    "subtitle": "From simple information to the perfect gift - in just 4 easy steps",
+    "steps": {
+      "step1": {
+        "title": "Enter Information",
+        "description": "Provide recipient details: age, gender, hobbies, relationship, budget",
+        "details": ["Age & Gender", "Hobbies & Personality", "Your Relationship", "Budget Range", "Special Occasion"]
+      },
+      "step2": {
+        "title": "AI Analysis",
+        "description": "Smart AI system analyzes thousands of products and trends to find the best suggestions",
+        "details": ["Psychology Analysis", "Trend Comparison", "Budget Matching", "Occasion Filtering", "Compatibility Score"]
+      },
+      "step3": {
+        "title": "Receive Suggestions",
+        "description": "Get AI-curated gift list with explanations of why each gift is perfect for your recipient",
+        "details": ["Personalized Suggestions", "Reason Explanations", "Multiple Options", "Purchase Links", "Match Rating"]
+      },
+      "step4": {
+        "title": "Premium Services",
+        "description": "Choose additional services like gift wrapping, handwritten cards, express delivery for the perfect surprise",
+        "details": ["Premium Gift Wrap", "Handwritten Card", "Express Delivery", "Scheduled Delivery", "Surprise Service"]
+      }
+    }
+  },
+  "blog": {
+    "title": "Gift-Giving Secrets from Experts",
+    "subtitle": "Discover useful articles on gift art, psychology, and latest trends"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Meet the passionate team behind GiftAI"
+  },
   "common": {
     "loading": "Loading...",
     "error": "An error occurred",

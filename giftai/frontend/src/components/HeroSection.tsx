@@ -46,27 +46,27 @@ export default function HeroSection() {
               <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#FFD700] rounded-full animate-heartbeat"></div>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent animate-neon-glow">
-              {t('hero.title')}
+              {t("hero.title")}
             </h1>
           </div>
           <h2
             className="text-2xl md:text-3xl font-semibold mb-4 text-[#FFD700] animate-blur-in"
             style={{ animationDelay: "0.2s" }}
           >
-            {t('hero.subtitle')}
+            {t("hero.subtitle")}
           </h2>
           <p
             className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed animate-text-reveal"
             style={{ animationDelay: "0.4s" }}
           >
             <span className="inline-block animate-wave">🎁</span>{" "}
-            <strong>{t('hero.description')}</strong>
+            <strong>{t("hero.description")}</strong>
             <br />
-            {t('hero.withAI')}
+            {t("hero.withAI")}
             <span className="text-[#FFD700] font-bold animate-pulsate mx-2">
-              {t('hero.seconds')}
+              {t("hero.seconds")}
             </span>
-            {t('hero.findPerfect')}
+            {t("hero.findPerfect")}
           </p>
           <div
             className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto mb-8 animate-slide-in-left"
@@ -78,21 +78,21 @@ export default function HeroSection() {
                 style={{ animationDelay: "0.8s" }}
               >
                 <div className="w-3 h-3 bg-green-400 rounded-full animate-heartbeat"></div>
-                <span>{t('hero.features.busy')}</span>
+                <span>{t("hero.features.busy")}</span>
               </div>
               <div
                 className="flex items-center gap-2 animate-fade-in"
                 style={{ animationDelay: "1s" }}
               >
                 <div className="w-3 h-3 bg-blue-400 rounded-full animate-heartbeat"></div>
-                <span>{t('hero.features.aiUnderstands')}</span>
+                <span>{t("hero.features.aiUnderstands")}</span>
               </div>
               <div
                 className="flex items-center gap-2 animate-fade-in"
                 style={{ animationDelay: "1.2s" }}
               >
                 <div className="w-3 h-3 bg-yellow-400 rounded-full animate-heartbeat"></div>
-                <span>{t('hero.features.perfect')}</span>
+                <span>{t("hero.features.perfect")}</span>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function HeroSection() {
             className="inline-block bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] px-8 py-4 rounded-full font-bold text-lg hover:from-[#FFA500] hover:to-[#FFD700] hover:scale-110 transition-all duration-300 animate-float-up-down shadow-2xl"
             style={{ animationDelay: "1.4s" }}
           >
-            🎯 {t('header.findGift')}
+            🎯 {t("header.findGift")}
           </a>
         </div>
       </div>

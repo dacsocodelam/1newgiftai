@@ -1,14 +1,19 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HowItWorks from "../components/HowItWorks";
 import BlogSection from "../components/BlogSection";
 import AboutUs from "../components/AboutUs";
 import CardCreator from "../components/CardCreator";
+import GiftFinder from "../components/GiftFinder";
+import LanguageSwitcher from "../components/LanguageSwitcher";
+import "../i18n";
 
 export default function Home() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     age: "",
     gender: "女性",
@@ -45,11 +50,11 @@ export default function Home() {
 
   // AI分析プロセス用のローディングメッセージ
   const loadingMessages = [
-    "🔍 お客様の情報を分析中...",
-    "🎯 AIが何千もの商品を検索中...",
-    "💡 適合性を比較・評価中...",
-    "✨個人の好みに合わせてカスタマイズ中...",
-    "🎁 完了！素晴らしい結果を準備中...",
+    t('loading.analyzing'),
+    t('loading.searching'),
+    t('loading.comparing'),
+    t('loading.customizing'),
+    t('loading.preparing'),
   ];
 
   // Geminiからのテキストをフォーマットする関数
@@ -268,6 +273,10 @@ export default function Home() {
   return (
     <>
       <Header />
+      {/* Language Switcher - Fixed position */}
+      <div className="fixed top-4 right-4 z-50">
+        <LanguageSwitcher />
+      </div>
       <main id="home">
         <div className="min-h-screen bg-gradient-to-br from-[#FFFDD0] to-[#F0F8FF] text-[#001f3f]">
           {/* Hero Section */}
@@ -374,204 +383,34 @@ export default function Home() {
 
           {/* Main Content */}
           <div className="max-w-6xl mx-auto px-4 py-12">
-            {/* CTA Section */}
-            <section id="gift-finder" className="py-16">
-              <div className="text-center mb-12">
-                <h3 className="text-3xl md:text-4xl font-bold mb-6 text-[#001f3f] animate-flip-3d">
-                  <span className="inline-block animate-float-up-down">🚀</span>{" "}
-                  ギフト探しを始めましょう！
-                </h3>
-                <p
-                  className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto animate-text-reveal"
-                  style={{ animationDelay: "0.2s" }}
-                >
-                  5つの簡単な情報だけで、AIがあなたの大切な人を
-                  <strong>必ず</strong>幸せにするギフトを提案します
-                </p>
-              </div>
+            {/* Gift Finder with Quiz Mode */}
+            <GiftFinder
+              onResults={(suggestions, products, formData, styleAnalysis) => {
+                setSuggestions(suggestions);
+                setResults(products);
+                setFormData({
+                  age: formData.age,
+                  gender: formData.gender,
+                  relationship: formData.relationship,
+                  hobby: formData.hobby,
+                  budget: formData.budget,
+                  occasion: formData.occasion,
+                });
 
-              {/* AI Form - Redesigned for better UX */}
-              <form
-                onSubmit={handleSubmit}
-                className="max-w-2xl mx-auto space-y-6 bg-white p-8 rounded-3xl shadow-2xl border border-[#FFD700]/20 animate-slide-up-fade hover:shadow-[0_20px_50px_rgba(255,215,0,0.3)] transition-all duration-500 relative overflow-hidden"
-              >
-                {/* Shimmer effect overlay */}
-                <div className="absolute inset-0 animate-shimmer pointer-events-none"></div>
-
-                <div
-                  className="text-center mb-6 animate-blur-in relative z-10"
-                  style={{ animationDelay: "0.4s" }}
-                >
-                  <h4 className="text-xl font-semibold text-[#001f3f] mb-2">
-                    <span className="inline-block animate-tilt">💝</span>{" "}
-                    ギフト受取人の情報
-                  </h4>
-                  <p className="text-sm text-gray-500">
-                    詳しく入力するほど、より適切なギフトを提案できます
-                  </p>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4 relative z-10">
-                  <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[#001f3f]">
-                      👤 年齢
-                    </label>
-                    <input
-                      name="age"
-                      placeholder="例: 28"
-                      value={formData.age}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      className={`border-2 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-[#FFD700] transition-all ${
-                        isLoading
-                          ? "bg-gray-100 border-gray-300 cursor-not-allowed"
-                          : "border-[#001f3f]/20"
-                      }`}
-                      type="number"
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[#001f3f]">
-                      ⚧ 性別
-                    </label>
-                    <select
-                      name="gender"
-                      value={formData.gender}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      className={`border-2 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-[#FFD700] transition-all ${
-                        isLoading
-                          ? "bg-gray-100 border-gray-300 cursor-not-allowed"
-                          : "border-[#001f3f]/20"
-                      }`}
-                    >
-                      <option value="女性">👩 女性</option>
-                      <option value="男性">👨 男性</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-[#001f3f]">
-                    💕 関係性
-                  </label>
-                  <input
-                    name="relationship"
-                    placeholder="例: 恋人、妻、母、親友、同僚..."
-                    value={formData.relationship}
-                    onChange={handleChange}
-                    disabled={isLoading}
-                    className={`border-2 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-[#FFD700] transition-all ${
-                      isLoading
-                        ? "bg-gray-100 border-gray-300 cursor-not-allowed"
-                        : "border-[#001f3f]/20"
-                    }`}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-[#001f3f]">
-                    🎨 趣味・性格
-                  </label>
-                  <input
-                    name="hobby"
-                    placeholder="例: 旅行、読書、ヨガ、料理、テクノロジー、ファッション..."
-                    value={formData.hobby}
-                    onChange={handleChange}
-                    disabled={isLoading}
-                    className={`border-2 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-[#FFD700] transition-all ${
-                      isLoading
-                        ? "bg-gray-100 border-gray-300 cursor-not-allowed"
-                        : "border-[#001f3f]/20"
-                    }`}
-                    required
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[#001f3f]">
-                      💰 予算（円）
-                    </label>
-                    <input
-                      name="budget"
-                      placeholder="例: 50000"
-                      value={formData.budget}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      className={`border-2 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-[#FFD700] transition-all ${
-                        isLoading
-                          ? "bg-gray-100 border-gray-300 cursor-not-allowed"
-                          : "border-[#001f3f]/20"
-                      }`}
-                      type="number"
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[#001f3f]">
-                      🎉 特別な機会
-                    </label>
-                    <input
-                      name="occasion"
-                      placeholder="例: 誕生日、バレンタイン、記念日..."
-                      value={formData.occasion}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      className={`border-2 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-[#FFD700] transition-all ${
-                        isLoading
-                          ? "bg-gray-100 border-gray-300 cursor-not-allowed"
-                          : "border-[#001f3f]/20"
-                      }`}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className={`w-full font-bold p-4 rounded-xl text-lg transition-all duration-300 transform shadow-lg relative overflow-hidden group ${
-                    isLoading
-                      ? "bg-gray-400 text-gray-700 cursor-not-allowed"
-                      : "bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] hover:from-[#001f3f] hover:to-[#003366] hover:text-white hover:scale-105 hover:shadow-2xl animate-glow"
-                  }`}
-                >
-                  {/* Shine effect on hover */}
-                  {!isLoading && (
-                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
-                  )}
-
-                  {isLoading ? (
-                    <div className="flex items-center justify-center gap-3">
-                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#001f3f]"></div>
-                      <span>処理中...</span>
-                    </div>
-                  ) : (
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                      <span className="animate-bounce-in">🎯</span>
-                      完璧なギフトを今すぐ見つける！
-                    </span>
-                  )}
-                </button>
-
-                <p
-                  className="text-xs text-center text-gray-400 mt-4 animate-fade-in"
-                  style={{ animationDelay: "0.6s" }}
-                >
-                  <span className="inline-block animate-wiggle">⏱️</span>{" "}
-                  わずか60秒 •{" "}
-                  <span className="inline-block animate-pulse">🔒</span>{" "}
-                  完全セキュア •{" "}
-                  <span className="inline-block animate-heartbeat">💯</span>{" "}
-                  完全無料
-                </p>
-              </form>
-            </section>
+                // Scroll to results
+                setTimeout(() => {
+                  if (aiSuggestionsRef.current) {
+                    aiSuggestionsRef.current.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }
+                }, 500);
+              }}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              setLoadingMessage={setLoadingMessage}
+            />
 
             {/* 美しいアニメーション付きローディング表示 */}
             {isLoading && (

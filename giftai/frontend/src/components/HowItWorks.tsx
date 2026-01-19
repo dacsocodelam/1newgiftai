@@ -1,58 +1,60 @@
+"use client";
+import { useTranslation } from "react-i18next";
+
 export default function HowItWorks() {
+  const { t } = useTranslation();
+
   const steps = [
     {
       step: "01",
-      title: "情報入力",
-      description: "受取人の情報を提供：年齢、性別、趣味、関係性、予算",
+      title: t('howItWorks.steps.step1.title'),
+      description: t('howItWorks.steps.step1.description'),
       icon: "📝",
       details: [
-        "年齢と性別",
-        "趣味・性格",
-        "あなたとの関係性",
-        "予想予算",
-        "特別な機会",
+        t('howItWorks.steps.step1.details.0'),
+        t('howItWorks.steps.step1.details.1'),
+        t('howItWorks.steps.step1.details.2'),
+        t('howItWorks.steps.step1.details.3'),
+        t('howItWorks.steps.step1.details.4'),
       ],
     },
     {
       step: "02",
-      title: "AI分析",
-      description:
-        "賢いAIシステムが数千の商品とトレンドを分析し、最適な提案を見つけます",
+      title: t('howItWorks.steps.step2.title'),
+      description: t('howItWorks.steps.step2.description'),
       icon: "🤖",
       details: [
-        "心理学分析",
-        "トレンド比較",
-        "予算照会",
-        "機会別フィルタリング",
-        "適合度計算",
+        t('howItWorks.steps.step2.details.0'),
+        t('howItWorks.steps.step2.details.1'),
+        t('howItWorks.steps.step2.details.2'),
+        t('howItWorks.steps.step2.details.3'),
+        t('howItWorks.steps.step2.details.4'),
       ],
     },
     {
       step: "03",
-      title: "提案受取",
-      description:
-        "AIが厳選したギフトリストと、なぜそれが受取人に適しているかの理由を受け取ります",
+      title: t('howItWorks.steps.step3.title'),
+      description: t('howItWorks.steps.step3.description'),
       icon: "🎁",
       details: [
-        "パーソナライズ提案",
-        "理由説明",
-        "多様な選択肢",
-        "購入リンク",
-        "適合度評価",
+        t('howItWorks.steps.step3.details.0'),
+        t('howItWorks.steps.step3.details.1'),
+        t('howItWorks.steps.step3.details.2'),
+        t('howItWorks.steps.step3.details.3'),
+        t('howItWorks.steps.step3.details.4'),
       ],
     },
     {
       step: "04",
-      title: "追加サービス",
-      description:
-        "美しいギフト包装、手書きカード、急行配送などの追加サービスを選んで完璧なサプライズを作ります",
+      title: t('howItWorks.steps.step4.title'),
+      description: t('howItWorks.steps.step4.description'),
       icon: "✨",
       details: [
-        "高級ギフト包装",
-        "手書きカード",
-        "急行配送",
-        "配送時間選択",
-        "サプライズサービス",
+        t('howItWorks.steps.step4.details.0'),
+        t('howItWorks.steps.step4.details.1'),
+        t('howItWorks.steps.step4.details.2'),
+        t('howItWorks.steps.step4.details.3'),
+        t('howItWorks.steps.step4.details.4'),
       ],
     },
   ];
@@ -63,10 +65,10 @@ export default function HowItWorks() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#001f3f]">
-            ⚙️ GiftAIはどのように動作しますか？
+            ⚙️ {t('howItWorks.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            簡単な情報から完璧なギフトまで - たった4つの簡単なステップで
+            {t('howItWorks.subtitle')}
           </p>
         </div>
 

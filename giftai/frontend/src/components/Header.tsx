@@ -39,25 +39,25 @@ export default function Header() {
               href="#home"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
             >
-              🏠 {t('header.home')}
+              🏠 {t("header.home")}
             </a>
             <a
               href="#how-it-works"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
             >
-              ⚙️ {t('header.howItWorks')}
+              ⚙️ {t("header.howItWorks")}
             </a>
             <a
               href="#blog"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
             >
-              📝 {t('header.blog')}
+              📝 {t("header.blog")}
             </a>
             <a
               href="#about"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
             >
-              👥 {t('header.about')}
+              👥 {t("header.about")}
             </a>
             <a
               href="#gift-finder"
@@ -105,31 +105,31 @@ export default function Header() {
                 href="#home"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
               >
-                🏠 {t('header.home')}
+                🏠 {t("header.home")}
               </a>
               <a
                 href="#how-it-works"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
               >
-                ⚙️ {t('header.howItWorks')}
+                ⚙️ {t("header.howItWorks")}
               </a>
               <a
                 href="#blog"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
               >
-                📝 {t('header.blog')}
+                📝 {t("header.blog")}
               </a>
               <a
                 href="#about"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
               >
-                👥 {t('header.about')}
+                👥 {t("header.about")}
               </a>
               <a
                 href="#gift-finder"
                 className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] px-6 py-3 rounded-full font-bold hover:from-[#001f3f] hover:to-[#003366] hover:text-white transition-all duration-300 text-left"
               >
-                🎯 {t('header.findGift')}
+                🎯 {t("header.findGift")}
               </a>
             </div>
           </div>

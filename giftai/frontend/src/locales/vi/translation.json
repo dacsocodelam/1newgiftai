@@ -131,6 +131,40 @@
     "blog": "Ý tưởng quà tặng",
     "followUs": "Theo dõi chúng tôi"
   },
+  "howItWorks": {
+    "title": "GiftAI hoạt động như thế nào?",
+    "subtitle": "Từ thông tin đơn giản đến món quà hoàn hảo - chỉ với 4 bước dễ dàng",
+    "steps": {
+      "step1": {
+        "title": "Nhập thông tin",
+        "description": "Cung cấp thông tin người nhận: tuổi, giới tính, sở thích, mối quan hệ, ngân sách",
+        "details": ["Tuổi & Giới tính", "Sở thích & Tính cách", "Mối quan hệ", "Ngân sách dự kiến", "Dịp đặc biệt"]
+      },
+      "step2": {
+        "title": "Phân tích AI",
+        "description": "Hệ thống AI thông minh phân tích hàng nghìn sản phẩm và xu hướng để tìm gợi ý tốt nhất",
+        "details": ["Phân tích tâm lý", "So sánh xu hướng", "Đối chiếu ngân sách", "Lọc theo dịp", "Tính điểm phù hợp"]
+      },
+      "step3": {
+        "title": "Nhận gợi ý",
+        "description": "Nhận danh sách quà được AI chọn lọc kèm lý do tại sao mỗi món quà phù hợp với người nhận",
+        "details": ["Gợi ý cá nhân hóa", "Giải thích lý do", "Nhiều lựa chọn", "Link mua hàng", "Đánh giá độ phù hợp"]
+      },
+      "step4": {
+        "title": "Dịch vụ cao cấp",
+        "description": "Chọn thêm dịch vụ như gói quà đẹp, thiệp viết tay, giao hàng nhanh để tạo bất ngờ hoàn hảo",
+        "details": ["Gói quà cao cấp", "Thiệp viết tay", "Giao hàng nhanh", "Chọn giờ giao", "Dịch vụ bất ngờ"]
+      }
+    }
+  },
+  "blog": {
+    "title": "Bí quyết tặng quà từ chuyên gia",
+    "subtitle": "Khám phá các bài viết hữu ích về nghệ thuật tặng quà, tâm lý học và xu hướng mới nhất"
+  },
+  "about": {
+    "title": "Về chúng tôi",
+    "subtitle": "Gặp gỡ đội ngũ đam mê đằng sau GiftAI"
+  },
   "common": {
     "loading": "Đang tải...",
     "error": "Đã xảy ra lỗi",
