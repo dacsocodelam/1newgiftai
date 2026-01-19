@@ -1,5 +1,12 @@
 "use client";
 import { useTranslation } from "react-i18next";
+import dynamic from "next/dynamic";
+
+// Dynamically import AIMascot to avoid SSR issues with Three.js
+const AIMascot = dynamic(() => import("./AIMascot"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -9,6 +16,11 @@ export default function HeroSection() {
       id="home"
       className="relative min-h-screen bg-gradient-to-br from-[#001f3f] via-[#003366] to-[#001f3f] overflow-hidden"
     >
+      {/* 3D AI Mascot Background */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none">
+        <AIMascot />
+      </div>
+
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(20)].map((_, i) => (
