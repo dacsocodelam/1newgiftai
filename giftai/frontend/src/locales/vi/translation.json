@@ -1,0 +1,122 @@
+{
+  "hero": {
+    "title": "GiftAI",
+    "subtitle": "Chuyên gia tư vấn quà tặng của bạn",
+    "description": "🎁 Đừng để sinh nhật trở thành cơn ác mộng!",
+    "findPerfect": "Tìm món quà hoàn hảo trong",
+    "seconds": "60 giây",
+    "withAI": "với AI",
+    "features": {
+      "busy": "Bận rộn? Không sao!",
+      "aiUnderstands": "AI hiểu bạn",
+      "perfect": "100% Hoàn hảo"
+    }
+  },
+  "quiz": {
+    "title": "Bắt đầu tìm quà!",
+    "subtitle": "Chỉ cần 5 thông tin đơn giản, AI sẽ gợi ý những món quà chắc chắn làm người thân yêu của bạn hạnh phúc",
+    "steps": {
+      "relationship": {
+        "question": "🤝 Mối quan hệ của bạn?",
+        "subtitle": "Cho chúng tôi biết về người nhận",
+        "placeholder": "vd: bạn trai, vợ, mẹ, bạn thân, đồng nghiệp..."
+      },
+      "age": {
+        "question": "🎂 Tuổi của người nhận?",
+        "subtitle": "Chúng tôi sẽ gợi ý quà phù hợp với độ tuổi",
+        "placeholder": "vd: 28"
+      },
+      "gender": {
+        "question": "⚧ Chọn giới tính",
+        "subtitle": "Để có gợi ý quà phù hợp hơn",
+        "female": "👩 Nữ",
+        "male": "👨 Nam"
+      },
+      "hobby": {
+        "question": "🎨 Sở thích và quan tâm?",
+        "subtitle": "Cho chúng tôi biết họ thích gì",
+        "placeholder": "vd: du lịch, đọc sách, yoga, nấu ăn, công nghệ, thời trang..."
+      },
+      "occasion": {
+        "question": "🎉 Dịp gì?",
+        "subtitle": "Cho biết về ngày đặc biệt",
+        "placeholder": "vd: sinh nhật, Valentine, kỷ niệm..."
+      },
+      "budget": {
+        "question": "💰 Ngân sách của bạn?",
+        "subtitle": "Nhập số tiền (yên Nhật)",
+        "placeholder": "vd: 50000"
+      },
+      "styleImage": {
+        "question": "📸 Ảnh phong cách (Tùy chọn)",
+        "subtitle": "Tải lên ảnh về thời trang hoặc sở thích phong cách của họ",
+        "upload": "Tải ảnh lên",
+        "change": "Nhấp để thay đổi ảnh",
+        "formats": "JPG, PNG (Tối đa 5MB)",
+        "aiAnalysis": "⚡ AI sẽ phân tích ảnh để gợi ý quà tốt hơn"
+      }
+    },
+    "progress": {
+      "step": "Bước",
+      "complete": "Hoàn thành"
+    },
+    "buttons": {
+      "back": "← Quay lại",
+      "next": "Tiếp →",
+      "complete": "🎯 Hoàn tất!",
+      "processing": "Đang xử lý..."
+    }
+  },
+  "loading": {
+    "title": "✨ AI đang tạo phép màu cho bạn!",
+    "analyzing": "🔍 Đang phân tích thông tin của bạn...",
+    "searching": "🎯 AI đang tìm kiếm hàng ngàn sản phẩm...",
+    "comparing": "💡 Đang so sánh và đánh giá mức độ phù hợp...",
+    "customizing": "✨ Đang tùy chỉnh theo sở thích cá nhân...",
+    "preparing": "🎁 Hoàn tất! Đang chuẩn bị kết quả tuyệt vời...",
+    "funFact": {
+      "title": "💡 Bạn có biết?",
+      "description": "AI của chúng tôi phân tích hơn 10,000 sản phẩm và 50+ yếu tố tâm lý để tìm món quà hoàn hảo cho bạn!"
+    }
+  },
+  "results": {
+    "title": "Gợi ý từ Chuyên gia AI",
+    "subtitle": "🧠 Phân tích dựa trên tâm lý học và khoa học dữ liệu 💡",
+    "aiAnalyzed": "🎯 AI đã phân tích và tìm được những món quà hoàn hảo cho bạn",
+    "actions": {
+      "like": "Thích gợi ý này",
+      "regenerate": "Tạo gợi ý mới",
+      "copy": "Sao chép gợi ý",
+      "createCard": "🎴 Tạo Thiệp Kỹ Thuật Số"
+    },
+    "confidence": {
+      "aiAccuracy": "Độ chính xác AI",
+      "analysisDepth": "Độ sâu phân tích",
+      "matchScore": "Điểm phù hợp"
+    },
+    "status": {
+      "completed": "✓ Đã xác nhận",
+      "awesome": "👏 Tuyệt vời!",
+      "thanks": "💖 Cảm ơn bạn!"
+    }
+  },
+  "footer": {
+    "about": "Về GiftAI",
+    "aboutText": "Tìm món quà hoàn hảo bằng AI",
+    "quickLinks": "Liên kết nhanh",
+    "howItWorks": "Cách hoạt động",
+    "blog": "Ý tưởng quà tặng",
+    "contact": "Liên hệ",
+    "followUs": "Theo dõi chúng tôi",
+    "copyright": "© 2025 GiftAI. Bảo lưu mọi quyền."
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "tryAgain": "Vui lòng thử lại",
+    "close": "Đóng",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận"
+  }
+}

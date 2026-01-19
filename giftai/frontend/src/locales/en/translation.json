@@ -1,0 +1,122 @@
+{
+  "hero": {
+    "title": "GiftAI",
+    "subtitle": "Your Personal Gift Expert",
+    "description": "🎁 Don't let birthdays become a nightmare!",
+    "findPerfect": "Find the perfect gift in",
+    "seconds": "60 seconds",
+    "withAI": "with AI",
+    "features": {
+      "busy": "Busy? No problem!",
+      "aiUnderstands": "AI understands",
+      "perfect": "100% Perfect"
+    }
+  },
+  "quiz": {
+    "title": "Start Gift Search!",
+    "subtitle": "Just 5 simple pieces of information, and AI will suggest gifts that will definitely make your loved ones happy",
+    "steps": {
+      "relationship": {
+        "question": "🤝 Your relationship?",
+        "subtitle": "Tell us about the recipient",
+        "placeholder": "e.g., partner, wife, mother, best friend, colleague..."
+      },
+      "age": {
+        "question": "🎂 Recipient's age?",
+        "subtitle": "We'll suggest age-appropriate gifts",
+        "placeholder": "e.g., 28"
+      },
+      "gender": {
+        "question": "⚧ Select gender",
+        "subtitle": "For more appropriate gift suggestions",
+        "female": "👩 Female",
+        "male": "👨 Male"
+      },
+      "hobby": {
+        "question": "🎨 Hobbies and interests?",
+        "subtitle": "Tell us what they like",
+        "placeholder": "e.g., travel, reading, yoga, cooking, technology, fashion..."
+      },
+      "occasion": {
+        "question": "🎉 What's the occasion?",
+        "subtitle": "Tell us about the special day",
+        "placeholder": "e.g., birthday, Valentine's, anniversary..."
+      },
+      "budget": {
+        "question": "💰 Your budget?",
+        "subtitle": "Enter amount in yen",
+        "placeholder": "e.g., 50000"
+      },
+      "styleImage": {
+        "question": "📸 Style Image (Optional)",
+        "subtitle": "Upload a photo of their fashion or style preferences",
+        "upload": "Upload Image",
+        "change": "Click to change image",
+        "formats": "JPG, PNG (Max 5MB)",
+        "aiAnalysis": "⚡ AI will analyze the image for better gift suggestions"
+      }
+    },
+    "progress": {
+      "step": "Step",
+      "complete": "Complete"
+    },
+    "buttons": {
+      "back": "← Back",
+      "next": "Next →",
+      "complete": "🎯 Complete!",
+      "processing": "Processing..."
+    }
+  },
+  "loading": {
+    "title": "✨ AI is working its magic for you!",
+    "analyzing": "🔍 Analyzing your information...",
+    "searching": "🎯 AI searching thousands of products...",
+    "comparing": "💡 Comparing and evaluating suitability...",
+    "customizing": "✨ Customizing to personal preferences...",
+    "preparing": "🎁 Done! Preparing amazing results...",
+    "funFact": {
+      "title": "💡 Did you know?",
+      "description": "Our AI analyzes over 10,000 products and 50+ psychological factors to find the perfect gift for you!"
+    }
+  },
+  "results": {
+    "title": "AI Expert Suggestions",
+    "subtitle": "🧠 Analysis based on psychology and data science 💡",
+    "aiAnalyzed": "🎯 AI analyzed and found the perfect gifts for you",
+    "actions": {
+      "like": "Like this suggestion",
+      "regenerate": "Create new suggestion",
+      "copy": "Copy suggestion",
+      "createCard": "🎴 Create Digital Card"
+    },
+    "confidence": {
+      "aiAccuracy": "AI Accuracy",
+      "analysisDepth": "Analysis Depth",
+      "matchScore": "Match Score"
+    },
+    "status": {
+      "completed": "✓ Verified",
+      "awesome": "👏 Awesome!",
+      "thanks": "💖 Thank you!"
+    }
+  },
+  "footer": {
+    "about": "About GiftAI",
+    "aboutText": "AI-powered perfect gift finder",
+    "quickLinks": "Quick Links",
+    "howItWorks": "How It Works",
+    "blog": "Gift Ideas",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "copyright": "© 2025 GiftAI. All rights reserved."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "tryAgain": "Please try again",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  }
+}

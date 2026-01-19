@@ -166,4 +166,118 @@ class AiController < ApplicationController
       render json: { messages: fallback_messages[tone] || fallback_messages['emotional'] }
     end
   end
+
+  def analyze_style
+    require 'net/http'
+    require 'json'
+    require 'uri'
+    require 'base64'
+
+    api_key = ENV['GEMINI_API_KEY']
+
+    if api_key.nil? || api_key.empty?
+      render json: { 
+        analysis: "デモモード: 画像分析機能はAPIキーが必要です。",
+        style_keywords: ["ファッション", "モダン", "カジュアル"]
+      }
+      return
+    end
+
+    # Get base64 image from params
+    image_data = params[:image]
+    
+    if image_data.nil? || image_data.empty?
+      render json: { error: "画像データが必要です" }, status: 400
+      return
+    end
+
+    # Extract base64 data (remove data:image/...;base64, prefix if present)
+    base64_image = image_data.split(',').last
+
+    prompt_text = <<~PROMPT
+      この画像を分析して、以下の情報を抽出してください：
+
+      1. ファッションスタイル（カジュアル、フォーマル、モダン、クラシックなど）
+      2. 色の好み（主要な色）
+      3. 趣味や興味（画像から推測できる）
+      4. 年齢層（推定）
+      5. ギフト推奨カテゴリ（この人に合うギフトのジャンル）
+
+      出力形式（JSONのみ、日本語で）:
+      {
+        "style": "スタイル名",
+        "colors": ["色1", "色2"],
+        "interests": ["興味1", "興味2", "興味3"],
+        "age_range": "年齢層",
+        "gift_categories": ["カテゴリ1", "カテゴリ2", "カテゴリ3"],
+        "summary": "150文字以内の分析サマリー"
+      }
+    PROMPT
+
+    begin
+      uri = URI("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=#{api_key}")
+      
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+      request = Net::HTTP::Post.new(uri)
+      request['Content-Type'] = 'application/json'
+      
+      request.body = {
+        contents: [{
+          parts: [
+            { text: prompt_text },
+            {
+              inline_data: {
+                mime_type: "image/jpeg",
+                data: base64_image
+              }
+            }
+          ]
+        }],
+        generationConfig: {
+          temperature: 0.4,
+          maxOutputTokens: 500
+        }
+      }.to_json
+      
+      response = http.request(request)
+      
+      if response.code == '200'
+        data = JSON.parse(response.body)
+        text = data.dig('candidates', 0, 'content', 'parts', 0, 'text') || ''
+        
+        # JSONを抽出
+        json_match = text.match(/\{[\s\S]*\}/)
+        
+        if json_match
+          parsed = JSON.parse(json_match[0])
+          render json: { 
+            analysis: parsed['summary'] || "分析完了",
+            style_data: parsed
+          }
+        else
+          render json: { 
+            analysis: text,
+            style_data: {}
+          }
+        end
+      else
+        raise "API Error: #{response.code} - #{response.body}"
+      end
+    rescue => e
+      Rails.logger.error "Gemini Vision API Error: #{e.message}"
+      render json: { 
+        analysis: "画像分析中にエラーが発生しました。デフォルト設定で続行します。",
+        style_data: {
+          style: "モダン",
+          colors: ["ブルー", "ホワイト"],
+          interests: ["ファッション", "ライフスタイル"],
+          age_range: "20-30代",
+          gift_categories: ["アクセサリー", "ファッション小物", "ライフスタイルグッズ"]
+        }
+      }, status: 200
+    end
+  end
 end

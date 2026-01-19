@@ -208,7 +208,7 @@ const CardCreator: React.FC<CardCreatorProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -216,9 +216,9 @@ const CardCreator: React.FC<CardCreatorProps> = ({
       />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto z-10">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-[#001f3f] to-[#003366] text-white p-6 rounded-t-3xl">
+        <div className="sticky top-0 bg-gradient-to-r from-[#001f3f] to-[#003366] text-white p-6 rounded-t-3xl z-20">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="text-3xl">🎴</span>
@@ -231,13 +231,16 @@ const CardCreator: React.FC<CardCreatorProps> = ({
             </div>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-white/20 rounded-full transition-colors"
+              className="p-2 hover:bg-white/20 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 z-30"
+              aria-label="閉じる"
+              type="button"
             >
               <svg
                 className="w-6 h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   strokeLinecap="round"
