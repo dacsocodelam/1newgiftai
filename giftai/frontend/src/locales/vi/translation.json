@@ -138,22 +138,46 @@
       "step1": {
         "title": "Nhập thông tin",
         "description": "Cung cấp thông tin người nhận: tuổi, giới tính, sở thích, mối quan hệ, ngân sách",
-        "details": ["Tuổi & Giới tính", "Sở thích & Tính cách", "Mối quan hệ", "Ngân sách dự kiến", "Dịp đặc biệt"]
+        "details": [
+          "Tuổi & Giới tính",
+          "Sở thích & Tính cách",
+          "Mối quan hệ",
+          "Ngân sách dự kiến",
+          "Dịp đặc biệt"
+        ]
       },
       "step2": {
         "title": "Phân tích AI",
         "description": "Hệ thống AI thông minh phân tích hàng nghìn sản phẩm và xu hướng để tìm gợi ý tốt nhất",
-        "details": ["Phân tích tâm lý", "So sánh xu hướng", "Đối chiếu ngân sách", "Lọc theo dịp", "Tính điểm phù hợp"]
+        "details": [
+          "Phân tích tâm lý",
+          "So sánh xu hướng",
+          "Đối chiếu ngân sách",
+          "Lọc theo dịp",
+          "Tính điểm phù hợp"
+        ]
       },
       "step3": {
         "title": "Nhận gợi ý",
         "description": "Nhận danh sách quà được AI chọn lọc kèm lý do tại sao mỗi món quà phù hợp với người nhận",
-        "details": ["Gợi ý cá nhân hóa", "Giải thích lý do", "Nhiều lựa chọn", "Link mua hàng", "Đánh giá độ phù hợp"]
+        "details": [
+          "Gợi ý cá nhân hóa",
+          "Giải thích lý do",
+          "Nhiều lựa chọn",
+          "Link mua hàng",
+          "Đánh giá độ phù hợp"
+        ]
       },
       "step4": {
         "title": "Dịch vụ cao cấp",
         "description": "Chọn thêm dịch vụ như gói quà đẹp, thiệp viết tay, giao hàng nhanh để tạo bất ngờ hoàn hảo",
-        "details": ["Gói quà cao cấp", "Thiệp viết tay", "Giao hàng nhanh", "Chọn giờ giao", "Dịch vụ bất ngờ"]
+        "details": [
+          "Gói quà cao cấp",
+          "Thiệp viết tay",
+          "Giao hàng nhanh",
+          "Chọn giờ giao",
+          "Dịch vụ bất ngờ"
+        ]
       }
     }
   },
@@ -164,6 +188,27 @@
   "about": {
     "title": "Về chúng tôi",
     "subtitle": "Gặp gỡ đội ngũ đam mê đằng sau GiftAI"
+  },
+  "giftFinder": {
+    "quizMode": "Chế độ Quiz",
+    "formMode": "Chế độ Biểu mẫu",
+    "formModeComingSoon": "Chế độ biểu mẫu truyền thống sắp ra mắt. Hãy thử chế độ quiz ngay!",
+    "styleAnalysis": "Kết quả phân tích phong cách"
+  },
+  "whyChooseUs": {
+    "title": "Tại sao chọn GiftAI?",
+    "smartAI": {
+      "title": "AI Thông minh",
+      "description": "Phân tích hàng nghìn sản phẩm để tìm món quà hoàn hảo"
+    },
+    "fast": {
+      "title": "Siêu nhanh",
+      "description": "Nhận gợi ý quà tốt nhất chỉ trong 60 giây"
+    },
+    "guarantee": {
+      "title": "Bảo đảm hài lòng",
+      "description": "Quà tặng được chọn dựa trên khoa học và cảm xúc"
+    }
   },
   "common": {
     "loading": "Đang tải...",

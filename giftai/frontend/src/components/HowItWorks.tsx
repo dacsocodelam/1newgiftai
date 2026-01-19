@@ -7,54 +7,54 @@ export default function HowItWorks() {
   const steps = [
     {
       step: "01",
-      title: t('howItWorks.steps.step1.title'),
-      description: t('howItWorks.steps.step1.description'),
+      title: t("howItWorks.steps.step1.title"),
+      description: t("howItWorks.steps.step1.description"),
       icon: "📝",
       details: [
-        t('howItWorks.steps.step1.details.0'),
-        t('howItWorks.steps.step1.details.1'),
-        t('howItWorks.steps.step1.details.2'),
-        t('howItWorks.steps.step1.details.3'),
-        t('howItWorks.steps.step1.details.4'),
+        t("howItWorks.steps.step1.details.0"),
+        t("howItWorks.steps.step1.details.1"),
+        t("howItWorks.steps.step1.details.2"),
+        t("howItWorks.steps.step1.details.3"),
+        t("howItWorks.steps.step1.details.4"),
       ],
     },
     {
       step: "02",
-      title: t('howItWorks.steps.step2.title'),
-      description: t('howItWorks.steps.step2.description'),
+      title: t("howItWorks.steps.step2.title"),
+      description: t("howItWorks.steps.step2.description"),
       icon: "🤖",
       details: [
-        t('howItWorks.steps.step2.details.0'),
-        t('howItWorks.steps.step2.details.1'),
-        t('howItWorks.steps.step2.details.2'),
-        t('howItWorks.steps.step2.details.3'),
-        t('howItWorks.steps.step2.details.4'),
+        t("howItWorks.steps.step2.details.0"),
+        t("howItWorks.steps.step2.details.1"),
+        t("howItWorks.steps.step2.details.2"),
+        t("howItWorks.steps.step2.details.3"),
+        t("howItWorks.steps.step2.details.4"),
       ],
     },
     {
       step: "03",
-      title: t('howItWorks.steps.step3.title'),
-      description: t('howItWorks.steps.step3.description'),
+      title: t("howItWorks.steps.step3.title"),
+      description: t("howItWorks.steps.step3.description"),
       icon: "🎁",
       details: [
-        t('howItWorks.steps.step3.details.0'),
-        t('howItWorks.steps.step3.details.1'),
-        t('howItWorks.steps.step3.details.2'),
-        t('howItWorks.steps.step3.details.3'),
-        t('howItWorks.steps.step3.details.4'),
+        t("howItWorks.steps.step3.details.0"),
+        t("howItWorks.steps.step3.details.1"),
+        t("howItWorks.steps.step3.details.2"),
+        t("howItWorks.steps.step3.details.3"),
+        t("howItWorks.steps.step3.details.4"),
       ],
     },
     {
       step: "04",
-      title: t('howItWorks.steps.step4.title'),
-      description: t('howItWorks.steps.step4.description'),
+      title: t("howItWorks.steps.step4.title"),
+      description: t("howItWorks.steps.step4.description"),
       icon: "✨",
       details: [
-        t('howItWorks.steps.step4.details.0'),
-        t('howItWorks.steps.step4.details.1'),
-        t('howItWorks.steps.step4.details.2'),
-        t('howItWorks.steps.step4.details.3'),
-        t('howItWorks.steps.step4.details.4'),
+        t("howItWorks.steps.step4.details.0"),
+        t("howItWorks.steps.step4.details.1"),
+        t("howItWorks.steps.step4.details.2"),
+        t("howItWorks.steps.step4.details.3"),
+        t("howItWorks.steps.step4.details.4"),
       ],
     },
   ];
@@ -65,10 +65,10 @@ export default function HowItWorks() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#001f3f]">
-            ⚙️ {t('howItWorks.title')}
+            ⚙️ {t("howItWorks.title")}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            {t('howItWorks.subtitle')}
+            {t("howItWorks.subtitle")}
           </p>
         </div>
 

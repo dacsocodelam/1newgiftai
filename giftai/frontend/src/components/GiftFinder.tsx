@@ -139,7 +139,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
                 : "text-gray-600 hover:text-[#001f3f]"
             }`}
           >
-            🎯 クイズモード
+            🎯 {t('giftFinder.quizMode')}
           </button>
           <button
             onClick={() => setUseQuizMode(false)}
@@ -149,7 +149,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
                 : "text-gray-600 hover:text-[#001f3f]"
             }`}
           >
-            📝 フォームモード
+            📝 {t('giftFinder.formMode')}
           </button>
         </div>
       </div>
@@ -160,7 +160,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
             <p className="text-gray-600">
-              従来のフォームモードは準備中です。クイズモードをお試しください！
+              {t('giftFinder.formModeComingSoon')}
             </p>
           </div>
         </div>
@@ -170,7 +170,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
         <div className="max-w-2xl mx-auto mt-8 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl border-2 border-purple-200 animate-slide-up-fade">
           <h3 className="text-lg font-bold text-[#001f3f] mb-3 flex items-center gap-2">
             <span className="text-2xl">🎨</span>
-            スタイル分析結果
+            {t('giftFinder.styleAnalysis')}
           </h3>
           <div className="space-y-2 text-sm">
             <p className="text-gray-700">{styleAnalysis.analysis}</p>

@@ -138,22 +138,46 @@
       "step1": {
         "title": "Enter Information",
         "description": "Provide recipient details: age, gender, hobbies, relationship, budget",
-        "details": ["Age & Gender", "Hobbies & Personality", "Your Relationship", "Budget Range", "Special Occasion"]
+        "details": [
+          "Age & Gender",
+          "Hobbies & Personality",
+          "Your Relationship",
+          "Budget Range",
+          "Special Occasion"
+        ]
       },
       "step2": {
         "title": "AI Analysis",
         "description": "Smart AI system analyzes thousands of products and trends to find the best suggestions",
-        "details": ["Psychology Analysis", "Trend Comparison", "Budget Matching", "Occasion Filtering", "Compatibility Score"]
+        "details": [
+          "Psychology Analysis",
+          "Trend Comparison",
+          "Budget Matching",
+          "Occasion Filtering",
+          "Compatibility Score"
+        ]
       },
       "step3": {
         "title": "Receive Suggestions",
         "description": "Get AI-curated gift list with explanations of why each gift is perfect for your recipient",
-        "details": ["Personalized Suggestions", "Reason Explanations", "Multiple Options", "Purchase Links", "Match Rating"]
+        "details": [
+          "Personalized Suggestions",
+          "Reason Explanations",
+          "Multiple Options",
+          "Purchase Links",
+          "Match Rating"
+        ]
       },
       "step4": {
         "title": "Premium Services",
         "description": "Choose additional services like gift wrapping, handwritten cards, express delivery for the perfect surprise",
-        "details": ["Premium Gift Wrap", "Handwritten Card", "Express Delivery", "Scheduled Delivery", "Surprise Service"]
+        "details": [
+          "Premium Gift Wrap",
+          "Handwritten Card",
+          "Express Delivery",
+          "Scheduled Delivery",
+          "Surprise Service"
+        ]
       }
     }
   },
@@ -164,6 +188,27 @@
   "about": {
     "title": "About Us",
     "subtitle": "Meet the passionate team behind GiftAI"
+  },
+  "giftFinder": {
+    "quizMode": "Quiz Mode",
+    "formMode": "Form Mode",
+    "formModeComingSoon": "Traditional form mode is coming soon. Try quiz mode for now!",
+    "styleAnalysis": "Style Analysis Results"
+  },
+  "whyChooseUs": {
+    "title": "Why Choose GiftAI?",
+    "smartAI": {
+      "title": "Smart AI",
+      "description": "Analyzes thousands of products to find the perfect gift"
+    },
+    "fast": {
+      "title": "Super Fast",
+      "description": "Get the best gift suggestions in just 60 seconds"
+    },
+    "guarantee": {
+      "title": "Satisfaction Guarantee",
+      "description": "Gifts chosen based on science and emotion"
+    }
   },
   "common": {
     "loading": "Loading...",

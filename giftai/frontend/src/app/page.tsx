@@ -4,6 +4,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import HeroSection from "../components/HeroSection";
 import HowItWorks from "../components/HowItWorks";
 import BlogSection from "../components/BlogSection";
 import AboutUs from "../components/AboutUs";
@@ -50,11 +51,11 @@ export default function Home() {
 
   // AI分析プロセス用のローディングメッセージ
   const loadingMessages = [
-    t('loading.analyzing'),
-    t('loading.searching'),
-    t('loading.comparing'),
-    t('loading.customizing'),
-    t('loading.preparing'),
+    t("loading.analyzing"),
+    t("loading.searching"),
+    t("loading.comparing"),
+    t("loading.customizing"),
+    t("loading.preparing"),
   ];
 
   // Geminiからのテキストをフォーマットする関数
@@ -278,108 +279,10 @@ export default function Home() {
         <LanguageSwitcher />
       </div>
       <main id="home">
+        {/* Hero Section */}
+        <HeroSection />
+
         <div className="min-h-screen bg-gradient-to-br from-[#FFFDD0] to-[#F0F8FF] text-[#001f3f]">
-          {/* Hero Section */}
-          <div className="relative overflow-hidden bg-gradient-to-r from-[#001f3f] to-[#003366] text-white animate-gradient-bg">
-            <div className="absolute inset-0 bg-black opacity-20"></div>
-
-            {/* Floating particles background */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute top-20 left-10 w-20 h-20 bg-[#FFD700]/10 rounded-full blur-xl animate-float-slow"></div>
-              <div
-                className="absolute top-40 right-20 w-32 h-32 bg-[#FFA500]/10 rounded-full blur-xl animate-float-fast"
-                style={{ animationDelay: "1s" }}
-              ></div>
-              <div
-                className="absolute bottom-40 left-1/4 w-24 h-24 bg-[#FFD700]/10 rounded-full blur-xl animate-float-slow"
-                style={{ animationDelay: "2s" }}
-              ></div>
-              <div
-                className="absolute top-60 right-1/3 w-16 h-16 bg-[#FFA500]/10 rounded-full blur-xl animate-float-fast"
-                style={{ animationDelay: "0.5s" }}
-              ></div>
-            </div>
-
-            <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24">
-              <div className="text-center">
-                <div className="flex justify-center items-center gap-3 mb-6 animate-bounce-in">
-                  <div className="relative animate-wiggle">
-                    <svg
-                      width="48"
-                      height="48"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="text-[#FFD700] animate-spin-slow"
-                    >
-                      <path
-                        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#FFD700] rounded-full animate-heartbeat"></div>
-                  </div>
-                  <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent animate-neon-glow">
-                    GiftAI
-                  </h1>
-                </div>
-                <h2
-                  className="text-2xl md:text-3xl font-semibold mb-4 text-[#FFD700] animate-blur-in"
-                  style={{ animationDelay: "0.2s" }}
-                >
-                  あなた専用のギフトエキスパート
-                </h2>
-                <p
-                  className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed animate-text-reveal"
-                  style={{ animationDelay: "0.4s" }}
-                >
-                  <span className="inline-block animate-wave">🎁</span>{" "}
-                  <strong>大切な人の誕生日を悪夢にしないで！</strong>
-                  <br />
-                  AIで
-                  <span className="text-[#FFD700] font-bold animate-pulsate">
-                    60秒
-                  </span>
-                  で 完璧なギフトを見つけましょう
-                </p>
-                <div
-                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto mb-8 animate-slide-in-left"
-                  style={{ animationDelay: "0.6s" }}
-                >
-                  <div className="flex items-center justify-center gap-4 text-sm md:text-base flex-wrap">
-                    <div
-                      className="flex items-center gap-2 animate-fade-in"
-                      style={{ animationDelay: "0.8s" }}
-                    >
-                      <div className="w-3 h-3 bg-green-400 rounded-full animate-heartbeat"></div>
-                      <span>忙しい？大丈夫！</span>
-                    </div>
-                    <div
-                      className="flex items-center gap-2 animate-fade-in"
-                      style={{ animationDelay: "1s" }}
-                    >
-                      <div
-                        className="w-3 h-3 bg-blue-400 rounded-full animate-heartbeat"
-                        style={{ animationDelay: "0.2s" }}
-                      ></div>
-                      <span>AIが理解</span>
-                    </div>
-                    <div
-                      className="flex items-center gap-2 animate-fade-in"
-                      style={{ animationDelay: "1.2s" }}
-                    >
-                      <div
-                        className="w-3 h-3 bg-[#FFD700] rounded-full animate-heartbeat"
-                        style={{ animationDelay: "0.4s" }}
-                      ></div>
-                      <span>100%完璧</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#FFFDD0] to-transparent"></div>
-          </div>
 
           {/* Main Content */}
           <div className="max-w-6xl mx-auto px-4 py-12">
@@ -1333,28 +1236,28 @@ export default function Home() {
             {/* Trust Indicators */}
             <div className="max-w-4xl mx-auto mt-16 text-center">
               <h4 className="text-xl font-semibold mb-6 text-[#001f3f]">
-                ⭐ なぜGiftAIを選ぶのか？
+                ⭐ {t('whyChooseUs.title')}
               </h4>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-2xl shadow-lg">
                   <div className="text-4xl mb-4">🤖</div>
-                  <h5 className="font-bold mb-2 text-[#001f3f]">スマートAI</h5>
+                  <h5 className="font-bold mb-2 text-[#001f3f]">{t('whyChooseUs.smartAI.title')}</h5>
                   <p className="text-sm text-gray-600">
-                    何千もの商品を分析して完璧なギフトを見つけます
+                    {t('whyChooseUs.smartAI.description')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-2xl shadow-lg">
                   <div className="text-4xl mb-4">⚡</div>
-                  <h5 className="font-bold mb-2 text-[#001f3f]">超高速</h5>
+                  <h5 className="font-bold mb-2 text-[#001f3f]">{t('whyChooseUs.fast.title')}</h5>
                   <p className="text-sm text-gray-600">
-                    わずか60秒で最高のギフト提案を取得
+                    {t('whyChooseUs.fast.description')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-2xl shadow-lg">
                   <div className="text-4xl mb-4">💝</div>
-                  <h5 className="font-bold mb-2 text-[#001f3f]">満足保証</h5>
+                  <h5 className="font-bold mb-2 text-[#001f3f]">{t('whyChooseUs.guarantee.title')}</h5>
                   <p className="text-sm text-gray-600">
-                    科学と感情に基づいて選ばれたギフト
+                    {t('whyChooseUs.guarantee.description')}
                   </p>
                 </div>
               </div>
