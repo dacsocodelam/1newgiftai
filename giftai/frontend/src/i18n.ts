@@ -17,9 +17,15 @@ const resources = {
 };
 
 // Get language from localStorage or browser, fallback to Japanese
-const savedLanguage = typeof window !== 'undefined' ? localStorage.getItem('language') : null;
-const browserLanguage = typeof window !== 'undefined' ? navigator.language.split('-')[0] : 'ja';
-const defaultLanguage = savedLanguage || (resources[browserLanguage as keyof typeof resources] ? browserLanguage : 'ja');
+const savedLanguage =
+  typeof window !== "undefined" ? localStorage.getItem("language") : null;
+const browserLanguage =
+  typeof window !== "undefined" ? navigator.language.split("-")[0] : "ja";
+const defaultLanguage =
+  savedLanguage ||
+  (resources[browserLanguage as keyof typeof resources]
+    ? browserLanguage
+    : "ja");
 
 i18n.use(initReactI18next).init({
   resources,
@@ -29,9 +35,9 @@ i18n.use(initReactI18next).init({
 });
 
 // Save language preference when changed
-i18n.on('languageChanged', (lng) => {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem('language', lng);
+i18n.on("languageChanged", (lng) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("language", lng);
   }
 });
 

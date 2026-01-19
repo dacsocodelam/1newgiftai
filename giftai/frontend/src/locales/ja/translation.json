@@ -1,4 +1,109 @@
 {
+  "hero": {
+    "title": "GiftAI",
+    "subtitle": "あなた専属のギフトアドバイザー",
+    "description": "🎁 誕生日が悪夢にならないように！",
+    "findPerfect": "完璧なギフトを",
+    "seconds": "60秒",
+    "withAI": "AIで見つける",
+    "features": {
+      "busy": "忙しくても大丈夫！",
+      "aiUnderstands": "AIが理解",
+      "perfect": "100% 完璧"
+    }
+  },
+  "quiz": {
+    "title": "ギフト検索スタート！",
+    "subtitle": "たった5つの簡単な情報で、AIが必ず喜ばれるギフトを提案します",
+    "steps": {
+      "relationship": {
+        "question": "🤝 この方との関係は？",
+        "subtitle": "贈る相手について教えてください",
+        "placeholder": "例: 恋人、妻、母、親友、同僚..."
+      },
+      "age": {
+        "question": "🎂 お相手の年齢は？",
+        "subtitle": "年代に合わせた提案をします",
+        "placeholder": "例: 28"
+      },
+      "gender": {
+        "question": "⚧ 性別を選択してください",
+        "subtitle": "より適切なギフトを提案します",
+        "options": {
+          "female": "👩 女性",
+          "male": "👨 男性"
+        }
+      },
+      "hobby": {
+        "question": "🎨 趣味や興味は？",
+        "subtitle": "好きなことを教えてください",
+        "placeholder": "例: 旅行、読書、ヨガ、料理、テクノロジー、ファッション..."
+      },
+      "occasion": {
+        "question": "🎉 どんな機会ですか？",
+        "subtitle": "特別な日を教えてください",
+        "placeholder": "例: 誕生日、バレンタイン、記念日..."
+      },
+      "budget": {
+        "question": "💰 ご予算は？",
+        "subtitle": "円単位で入力してください",
+        "placeholder": "例: 50000"
+      },
+      "styleImage": {
+        "question": "📸 スタイル画像 (オプション)",
+        "subtitle": "お相手のファッションや好みの画像をアップロードしてください",
+        "upload": "画像をアップロード",
+        "uploadImage": "画像をアップロード",
+        "changeImage": "クリックして画像を変更",
+        "dragDrop": "または、ここに画像をドラッグ＆ドロップ",
+        "change": "クリックして画像を変更",
+        "formats": "JPG, PNG (最大5MB)",
+        "aiAnalysis": "⚡ AIが画像を分析してより良いギフトを提案します"
+      }
+    },
+    "progress": {
+      "step": "ステップ",
+      "complete": "完了"
+    },
+    "buttons": {
+      "back": "← 戻る",
+      "next": "次へ →",
+      "complete": "🎯 完了！",
+      "processing": "処理中..."
+    }
+  },
+  "loading": {
+    "title": "✨ AIがあなたのために魔法をかけています！",
+    "analyzing": "🔍 情報を分析中...",
+    "searching": "🎯 AIが数千の商品を検索中...",
+    "comparing": "💡 適合性を比較・評価中...",
+    "customizing": "✨ 個人の好みに合わせてカスタマイズ中...",
+    "preparing": "🎁 完了！素晴らしい結果を準備中...",
+    "funFact": {
+      "title": "💡 ご存知ですか？",
+      "description": "私たちのAIは10,000以上の商品と50以上の心理的要因を分析して、あなたにぴったりのギフトを見つけます！"
+    }
+  },
+  "results": {
+    "title": "AI専門家の提案",
+    "subtitle": "🧠 心理学とデータサイエンスに基づく分析 💡",
+    "aiAnalyzed": "🎯 AIが分析し、あなたにぴったりのギフトを見つけました",
+    "actions": {
+      "like": "この提案が好き",
+      "regenerate": "新しい提案を作成",
+      "copy": "提案をコピー",
+      "createCard": "🎴 デジタルカードを作成"
+    }
+  },
+  "footer": {
+    "madeWith": "❤️ で作られました",
+    "by": "by GiftAI Team"
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました",
+    "tryAgain": "もう一度試す"
+  },
   "appTitle": "プレゼントAI",
   "startSearch": "ギフトを探す",
   "age": "年齢",
@@ -7,6 +112,5 @@
   "hobby": "趣味",
   "budget": "予算 (¥)",
   "occasion": "機会",
-  "results": "おすすめギフト",
   "buy": "購入する"
 }

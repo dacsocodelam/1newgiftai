@@ -51,6 +51,9 @@
         "question": "📸 Ảnh phong cách (Tùy chọn)",
         "subtitle": "Tải lên ảnh về thời trang hoặc sở thích phong cách của họ",
         "upload": "Tải ảnh lên",
+        "uploadImage": "Tải ảnh lên",
+        "changeImage": "Nhấp để thay đổi ảnh",
+        "dragDrop": "Hoặc kéo thả ảnh vào đây",
         "change": "Nhấp để thay đổi ảnh",
         "formats": "JPG, PNG (Tối đa 5MB)",
         "aiAnalysis": "⚡ AI sẽ phân tích ảnh để gợi ý quà tốt hơn"

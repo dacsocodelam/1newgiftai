@@ -51,6 +51,9 @@
         "question": "📸 Style Image (Optional)",
         "subtitle": "Upload a photo of their fashion or style preferences",
         "upload": "Upload Image",
+        "uploadImage": "Upload Image",
+        "changeImage": "Click to change image",
+        "dragDrop": "Or drag & drop image here",
         "change": "Click to change image",
         "formats": "JPG, PNG (Max 5MB)",
         "aiAnalysis": "⚡ AI will analyze the image for better gift suggestions"

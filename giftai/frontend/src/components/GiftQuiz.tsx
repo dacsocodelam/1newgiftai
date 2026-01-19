@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface GiftQuizProps {
   onComplete: (data: QuizData) => void;
@@ -16,7 +17,11 @@ export interface QuizData {
   styleImage?: File;
 }
 
-const GiftQuiz: React.FC<GiftQuizProps> = ({ onComplete, isLoading = false }) => {
+const GiftQuiz: React.FC<GiftQuizProps> = ({
+  onComplete,
+  isLoading = false,
+}) => {
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(0);
   const [quizData, setQuizData] = useState<QuizData>({
     age: "",
@@ -31,65 +36,73 @@ const GiftQuiz: React.FC<GiftQuizProps> = ({ onComplete, isLoading = false }) =>
   const steps = [
     {
       id: "relationship",
-      question: "🤝 この方との関係は？",
-      subtitle: "贈る相手について教えてください",
+      question: t("quiz.steps.relationship.question"),
+      subtitle: t("quiz.steps.relationship.subtitle"),
       type: "text",
-      placeholder: "例: 恋人、妻、母、親友、同僚...",
+      placeholder: t("quiz.steps.relationship.placeholder"),
       icon: "💕",
       bgGradient: "from-pink-50 to-rose-50",
     },
     {
       id: "age",
-      question: "🎂 お相手の年齢は？",
-      subtitle: "年代に合わせた提案をします",
+      question: t("quiz.steps.age.question"),
+      subtitle: t("quiz.steps.age.subtitle"),
       type: "number",
-      placeholder: "例: 28",
+      placeholder: t("quiz.steps.age.placeholder"),
       icon: "👤",
       bgGradient: "from-blue-50 to-cyan-50",
     },
     {
       id: "gender",
-      question: "⚧ 性別を選択してください",
-      subtitle: "より適切なギフトを提案します",
+      question: t("quiz.steps.gender.question"),
+      subtitle: t("quiz.steps.gender.subtitle"),
       type: "select",
       options: [
-        { value: "女性", label: "👩 女性", icon: "🌸" },
-        { value: "男性", label: "👨 男性", icon: "⚡" },
+        {
+          value: "女性",
+          label: t("quiz.steps.gender.options.female"),
+          icon: "🌸",
+        },
+        {
+          value: "男性",
+          label: t("quiz.steps.gender.options.male"),
+          icon: "⚡",
+        },
       ],
       icon: "⚧",
       bgGradient: "from-purple-50 to-indigo-50",
     },
     {
       id: "hobby",
-      question: "🎨 趣味や興味は？",
-      subtitle: "好きなことを教えてください",
+      question: t("quiz.steps.hobby.question"),
+      subtitle: t("quiz.steps.hobby.subtitle"),
       type: "text",
-      placeholder: "例: 旅行、読書、ヨガ、料理、テクノロジー、ファッション...",
+      placeholder: t("quiz.steps.hobby.placeholder"),
       icon: "✨",
       bgGradient: "from-yellow-50 to-amber-50",
     },
     {
       id: "occasion",
-      question: "🎉 どんな機会ですか？",
-      subtitle: "特別な日を教えてください",
+      question: t("quiz.steps.occasion.question"),
+      subtitle: t("quiz.steps.occasion.subtitle"),
       type: "text",
-      placeholder: "例: 誕生日、バレンタイン、記念日...",
+      placeholder: t("quiz.steps.occasion.placeholder"),
       icon: "🎊",
       bgGradient: "from-green-50 to-emerald-50",
     },
     {
       id: "budget",
-      question: "💰 ご予算は？",
-      subtitle: "円単位で入力してください",
+      question: t("quiz.steps.budget.question"),
+      subtitle: t("quiz.steps.budget.subtitle"),
       type: "number",
-      placeholder: "例: 50000",
+      placeholder: t("quiz.steps.budget.placeholder"),
       icon: "💎",
       bgGradient: "from-orange-50 to-red-50",
     },
     {
       id: "styleImage",
-      question: "📸 スタイル画像 (オプション)",
-      subtitle: "お相手のファッションや好みの画像をアップロードしてください",
+      question: t("quiz.steps.styleImage.question"),
+      subtitle: t("quiz.steps.styleImage.subtitle"),
       type: "image",
       icon: "🖼️",
       bgGradient: "from-teal-50 to-cyan-50",
@@ -142,10 +155,10 @@ const GiftQuiz: React.FC<GiftQuizProps> = ({ onComplete, isLoading = false }) =>
       <div className="mb-8">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-[#001f3f]">
-            ステップ {currentStep + 1} / {steps.length}
+            {t("quiz.progress.step")} {currentStep + 1} / {steps.length}
           </span>
           <span className="text-sm font-medium text-[#FFD700]">
-            {Math.round(progress)}% 完了
+            {Math.round(progress)}% {t("quiz.progress.complete")}
           </span>
         </div>
         <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
@@ -157,7 +170,9 @@ const GiftQuiz: React.FC<GiftQuizProps> = ({ onComplete, isLoading = false }) =>
       </div>
 
       {/* Quiz Card */}
-      <div className={`bg-gradient-to-br ${currentStepData.bgGradient} rounded-3xl shadow-2xl p-8 min-h-[400px] flex flex-col justify-between animate-flip-3d border-2 border-[#FFD700]/20`}>
+      <div
+        className={`bg-gradient-to-br ${currentStepData.bgGradient} rounded-3xl shadow-2xl p-8 min-h-[400px] flex flex-col justify-between animate-flip-3d border-2 border-[#FFD700]/20`}
+      >
         {/* Question Section */}
         <div>
           <div className="flex items-center justify-center mb-6">
@@ -207,7 +222,8 @@ const GiftQuiz: React.FC<GiftQuizProps> = ({ onComplete, isLoading = false }) =>
                     onClick={() => handleInputChange(option.value)}
                     disabled={isLoading}
                     className={`p-6 rounded-2xl border-2 transition-all duration-300 ${
-                      quizData[currentStepData.id as keyof QuizData] === option.value
+                      quizData[currentStepData.id as keyof QuizData] ===
+                      option.value
                         ? "border-[#FFD700] bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-white shadow-lg scale-105"
                         : "border-gray-300 bg-white/80 hover:border-[#FFD700] hover:scale-105"
                     }`}
@@ -231,17 +247,17 @@ const GiftQuiz: React.FC<GiftQuizProps> = ({ onComplete, isLoading = false }) =>
                           className="max-h-48 mx-auto rounded-xl shadow-lg"
                         />
                         <p className="text-sm text-gray-600">
-                          クリックして画像を変更
+                          {t("quiz.steps.styleImage.changeImage")}
                         </p>
                       </div>
                     ) : (
                       <div>
                         <div className="text-5xl mb-4">📷</div>
                         <p className="text-lg font-medium text-[#001f3f] mb-2">
-                          画像をアップロード
+                          {t("quiz.steps.styleImage.uploadImage")}
                         </p>
-                        <p className="text-sm text-gray-600">
-                          JPG, PNG (最大5MB)
+                        <p className="text-sm text-gray-500">
+                          {t("quiz.steps.styleImage.dragDrop")}
                         </p>
                       </div>
                     )}
@@ -273,7 +289,7 @@ const GiftQuiz: React.FC<GiftQuizProps> = ({ onComplete, isLoading = false }) =>
                 : "bg-white border-2 border-[#FFD700] text-[#001f3f] hover:bg-[#FFD700]/10 hover:scale-105"
             }`}
           >
-            ← 戻る
+            {t("quiz.buttons.back")}
           </button>
 
           <button
@@ -292,12 +308,12 @@ const GiftQuiz: React.FC<GiftQuizProps> = ({ onComplete, isLoading = false }) =>
               {isLoading ? (
                 <div className="flex items-center justify-center gap-2">
                   <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#001f3f]"></div>
-                  処理中...
+                  {t("quiz.buttons.processing")}
                 </div>
               ) : currentStep === steps.length - 1 ? (
-                "🎯 完了！"
+                t("quiz.buttons.complete")
               ) : (
-                "次へ →"
+                t("quiz.buttons.next")
               )}
             </span>
           </button>
@@ -313,8 +329,8 @@ const GiftQuiz: React.FC<GiftQuizProps> = ({ onComplete, isLoading = false }) =>
               index === currentStep
                 ? "w-8 bg-gradient-to-r from-[#FFD700] to-[#FFA500]"
                 : index < currentStep
-                ? "w-2 bg-[#FFD700]"
-                : "w-2 bg-gray-300"
+                  ? "w-2 bg-[#FFD700]"
+                  : "w-2 bg-gray-300"
             }`}
           />
         ))}

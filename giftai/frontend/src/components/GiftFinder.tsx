@@ -4,7 +4,12 @@ import GiftQuiz, { QuizData } from "./GiftQuiz";
 import axios from "axios";
 
 interface GiftFinderProps {
-  onResults: (suggestions: string, products: any[], formData: QuizData, styleAnalysis?: any) => void;
+  onResults: (
+    suggestions: string,
+    products: any[],
+    formData: QuizData,
+    styleAnalysis?: any,
+  ) => void;
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
   setLoadingMessage: (message: string) => void;
@@ -46,7 +51,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
       // Step 1: Analyze style image if provided
       if (quizData.styleImage) {
         setLoadingMessage("📸 画像を分析中...");
-        
+
         const reader = new FileReader();
         const imageBase64 = await new Promise<string>((resolve) => {
           reader.onloadend = () => resolve(reader.result as string);
@@ -56,13 +61,30 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
         try {
           const analysisResponse = await axios.post(
             "http://localhost:3001/api/analyze_style",
-            { image: imageBase64 }
+            { image: imageBase64 },
+            { timeout: 30000 }, // 30 second timeout
           );
           analysisResult = analysisResponse.data;
           setStyleAnalysis(analysisResult);
-        } catch (error) {
+        } catch (error: any) {
           console.error("Image analysis error:", error);
-          // Continue without analysis
+          // Set fallback analysis result
+          analysisResult = {
+            analysis:
+              "画像分析中にエラーが発生しました。デフォルト設定で続行します。",
+            style_data: {
+              style: "モダン",
+              colors: ["ブルー", "ホワイト"],
+              interests: ["ファッション", "ライフスタイル"],
+              age_range: "20-30代",
+              gift_categories: [
+                "アクセサリー",
+                "ファッション小物",
+                "ライフスタイルグッズ",
+              ],
+            },
+          };
+          setStyleAnalysis(analysisResult);
         }
       }
 
@@ -90,7 +112,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
         response.data.suggestions,
         response.data.products,
         quizData,
-        analysisResult
+        analysisResult,
       );
     } catch (error) {
       clearInterval(messageInterval);
@@ -99,7 +121,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
       onResults(
         "提案の検索中にエラーが発生しました。もう一度お試しください！",
         [],
-        quizData
+        quizData,
       );
     }
   };
