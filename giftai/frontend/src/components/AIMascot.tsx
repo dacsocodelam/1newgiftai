@@ -73,9 +73,9 @@ function Particles() {
 }
 
 function CrystalSphere({
-  mousePosition,
+  mousePositionRef,
 }: {
-  mousePosition: { x: number; y: number };
+  mousePositionRef: React.MutableRefObject<{ x: number; y: number }>;
 }) {
   const sphereRef = useRef<THREE.Mesh>(null);
   const innerLightRef = useRef<THREE.PointLight>(null);
@@ -87,8 +87,8 @@ function CrystalSphere({
       sphereRef.current.rotation.x += 0.001;
 
       // Mouse tracking - smooth follow
-      const targetRotationY = mousePosition.x * 0.3;
-      const targetRotationX = -mousePosition.y * 0.3;
+      const targetRotationY = mousePositionRef.current.x * 0.3;
+      const targetRotationX = -mousePositionRef.current.y * 0.3;
 
       sphereRef.current.rotation.y +=
         (targetRotationY - sphereRef.current.rotation.y) * 0.05;
@@ -172,7 +172,7 @@ export default function AIMascot() {
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <Environment preset="sunset" />
 
-        <CrystalSphere mousePosition={mousePosition.current} />
+        <CrystalSphere mousePositionRef={mousePosition} />
         <Particles />
       </Canvas>
     </div>
