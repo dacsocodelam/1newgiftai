@@ -82,18 +82,24 @@ function CrystalSphere({
 
   useFrame((state) => {
     if (sphereRef.current) {
-      // Auto rotation
-      sphereRef.current.rotation.y += 0.002;
-      sphereRef.current.rotation.x += 0.001;
-
       // Mouse tracking - smooth follow
-      const targetRotationY = mousePositionRef.current.x * 0.3;
-      const targetRotationX = -mousePositionRef.current.y * 0.3;
+      const targetRotationY = mousePositionRef.current.x * 0.5;
+      const targetRotationX = -mousePositionRef.current.y * 0.5;
 
-      sphereRef.current.rotation.y +=
-        (targetRotationY - sphereRef.current.rotation.y) * 0.05;
-      sphereRef.current.rotation.x +=
-        (targetRotationX - sphereRef.current.rotation.x) * 0.05;
+      // Lerp rotation based on mouse position
+      sphereRef.current.rotation.y = THREE.MathUtils.lerp(
+        sphereRef.current.rotation.y,
+        targetRotationY,
+        0.1
+      );
+      sphereRef.current.rotation.x = THREE.MathUtils.lerp(
+        sphereRef.current.rotation.x,
+        targetRotationX,
+        0.1
+      );
+
+      // Add gentle auto rotation on top
+      sphereRef.current.rotation.y += 0.001;
     }
 
     // Inner light pulse effect
@@ -141,10 +147,15 @@ export default function AIMascot() {
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      mousePosition.current = {
-        x: (event.clientX / window.innerWidth) * 2 - 1,
-        y: -(event.clientY / window.innerHeight) * 2 + 1,
-      };
+      const x = (event.clientX / window.innerWidth) * 2 - 1;
+      const y = -(event.clientY / window.innerHeight) * 2 + 1;
+      
+      mousePosition.current = { x, y };
+      
+      // Debug log (remove later)
+      if (Math.random() < 0.01) {
+        console.log('Mouse position:', { x, y });
+      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
