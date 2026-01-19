@@ -24,10 +24,10 @@ const LanguageSwitcher = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl transition-all duration-300 text-white border border-white/20 hover:border-white/40"
+        className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#FFD700] to-[#FFA500] hover:from-[#FFA500] hover:to-[#FFD700] rounded-xl transition-all duration-300 text-[#001f3f] font-bold shadow-lg hover:shadow-xl hover:scale-105 border-2 border-[#FFD700]"
       >
         <span className="text-xl">{currentLanguage.flag}</span>
-        <span className="hidden md:inline font-medium">
+        <span className="hidden md:inline font-bold">
           {currentLanguage.name}
         </span>
         <svg

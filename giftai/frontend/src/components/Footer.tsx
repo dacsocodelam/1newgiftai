@@ -1,4 +1,9 @@
+"use client";
+import { useTranslation } from "react-i18next";
+
 export default function Footer() {
+  const { t } = useTranslation();
+  
   return (
     <footer className="bg-[#001f3f] text-white">
       <div className="max-w-6xl mx-auto px-4 py-12">
@@ -22,7 +27,7 @@ export default function Footer() {
               <span className="text-xl font-bold text-[#FFD700]">GiftAI</span>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed mb-4">
-              あなた専用のギフトエキスパート。ギフト選びをプレッシャーから楽しさに変えます。
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               <a
@@ -74,14 +79,14 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h3 className="font-bold text-[#FFD700] mb-4">ナビゲーション</h3>
+            <h3 className="font-bold text-[#FFD700] mb-4">{t('footer.navigation')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href="#"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  ホーム
+                  {t('header.home')}
                 </a>
               </li>
               <li>
@@ -89,7 +94,7 @@ export default function Footer() {
                   href="#"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  使い方
+                  {t('header.howItWorks')}
                 </a>
               </li>
               <li>
@@ -97,7 +102,7 @@ export default function Footer() {
                   href="#"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  ギフトカテゴリ
+                  {t('footer.giftCategories')}
                 </a>
               </li>
               <li>
@@ -105,7 +110,7 @@ export default function Footer() {
                   href="#"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  ブログ
+                  {t('header.blog')}
                 </a>
               </li>
               <li>
@@ -113,7 +118,7 @@ export default function Footer() {
                   href="#"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  私たちについて
+                  {t('header.about')}
                 </a>
               </li>
             </ul>
@@ -121,14 +126,14 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <h3 className="font-bold text-[#FFD700] mb-4">サポート</h3>
+            <h3 className="font-bold text-[#FFD700] mb-4">{t('footer.support')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href="#"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  FAQ
+                  {t('footer.faq')}
                 </a>
               </li>
               <li>
@@ -136,7 +141,7 @@ export default function Footer() {
                   href="#"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  お問い合わせ
+                  {t('footer.contact')}
                 </a>
               </li>
               <li>
@@ -144,7 +149,7 @@ export default function Footer() {
                   href="#"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  プライバシーポリシー
+                  {t('footer.privacy')}
                 </a>
               </li>
               <li>
@@ -152,7 +157,7 @@ export default function Footer() {
                   href="#"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  利用規約
+                  {t('footer.terms')}
                 </a>
               </li>
               <li>
@@ -160,7 +165,7 @@ export default function Footer() {
                   href="#"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  アフィリエイト
+                  {t('footer.affiliate')}
                 </a>
               </li>
             </ul>
@@ -168,7 +173,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-bold text-[#FFD700] mb-4">お問い合わせ</h3>
+            <h3 className="font-bold text-[#FFD700] mb-4">{t('footer.contactTitle')}</h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-center gap-2">
                 <svg
@@ -193,7 +198,7 @@ export default function Footer() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-gray-300">東京、日本</span>
+                <span className="text-gray-300">{t('footer.location')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg
@@ -212,11 +217,11 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2025 GiftAI. すべての権利が留保されています。
+            {t('footer.copyright')}
           </p>
           <div className="flex items-center gap-4 mt-4 md:mt-0">
             <span className="text-gray-400 text-sm">
-              ❤️で日本で開発されました
+              {t('footer.madeWith')}
             </span>
           </div>
         </div>

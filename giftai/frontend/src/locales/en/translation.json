@@ -111,14 +111,25 @@
     }
   },
   "footer": {
+    "description": "Your personal gift expert. Transform gift-giving from pressure to pleasure.",
+    "navigation": "Navigation",
+    "giftCategories": "Gift Categories",
+    "support": "Support",
+    "faq": "FAQ",
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "affiliate": "Affiliate",
+    "contactTitle": "Contact",
+    "location": "Tokyo, Japan",
+    "copyright": "© 2025 GiftAI. All rights reserved.",
+    "madeWith": "Made with ❤️ in Japan",
     "about": "About GiftAI",
     "aboutText": "AI-powered perfect gift finder",
     "quickLinks": "Quick Links",
     "howItWorks": "How It Works",
     "blog": "Gift Ideas",
-    "contact": "Contact",
-    "followUs": "Follow Us",
-    "copyright": "© 2025 GiftAI. All rights reserved."
+    "followUs": "Follow Us"
   },
   "common": {
     "loading": "Loading...",

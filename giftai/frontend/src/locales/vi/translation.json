@@ -111,14 +111,25 @@
     }
   },
   "footer": {
+    "description": "Chuyên gia tặng quà cá nhân của bạn. Biến việc tặng quà từ áp lực thành niềm vui.",
+    "navigation": "Điều hướng",
+    "giftCategories": "Danh mục quà tặng",
+    "support": "Hỗ trợ",
+    "faq": "Câu hỏi thường gặp",
+    "contact": "Liên hệ",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản dịch vụ",
+    "affiliate": "Đối tác",
+    "contactTitle": "Liên hệ",
+    "location": "Tokyo, Nhật Bản",
+    "copyright": "© 2025 GiftAI. Bảo lưu mọi quyền.",
+    "madeWith": "Được tạo với ❤️ tại Nhật Bản",
     "about": "Về GiftAI",
     "aboutText": "Tìm món quà hoàn hảo bằng AI",
     "quickLinks": "Liên kết nhanh",
     "howItWorks": "Cách hoạt động",
     "blog": "Ý tưởng quà tặng",
-    "contact": "Liên hệ",
-    "followUs": "Theo dõi chúng tôi",
-    "copyright": "© 2025 GiftAI. Bảo lưu mọi quyền."
+    "followUs": "Theo dõi chúng tôi"
   },
   "common": {
     "loading": "Đang tải...",

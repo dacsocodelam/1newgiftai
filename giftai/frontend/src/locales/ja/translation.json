@@ -103,7 +103,19 @@
     }
   },
   "footer": {
-    "madeWith": "❤️ で作られました",
+    "description": "あなた専用のギフトエキスパート。ギフト選びをプレッシャーから楽しさに変えます。",
+    "navigation": "ナビゲーション",
+    "giftCategories": "ギフトカテゴリ",
+    "support": "サポート",
+    "faq": "FAQ",
+    "contact": "お問い合わせ",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "affiliate": "アフィリエイト",
+    "contactTitle": "お問い合わせ",
+    "location": "東京、日本",
+    "copyright": "© 2025 GiftAI. すべての権利が留保されています。",
+    "madeWith": "❤️で日本で開発されました",
     "by": "by GiftAI Team"
   },
   "common": {
