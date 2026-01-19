@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { MeshDistortMaterial, Float, Environment } from "@react-three/drei";
 import * as THREE from "three";
@@ -139,26 +139,34 @@ function CrystalSphere({
 export default function AIMascot() {
   const mousePosition = useRef({ x: 0, y: 0 });
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const { clientX, clientY, currentTarget } = event;
-    const { width, height } = currentTarget.getBoundingClientRect();
-
-    mousePosition.current = {
-      x: (clientX / width) * 2 - 1,
-      y: (clientY / height) * 2 - 1,
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      mousePosition.current = {
+        x: (event.clientX / window.innerWidth) * 2 - 1,
+        y: -(event.clientY / window.innerHeight) * 2 + 1,
+      };
     };
-  };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   return (
     <div
       className="absolute inset-0 w-full h-full"
-      onMouseMove={handleMouseMove}
       style={{ pointerEvents: "none", zIndex: 0 }}
     >
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
         gl={{ alpha: true, antialias: true, preserveDrawingBuffer: true }}
-        style={{ width: "100%", height: "100%", background: "transparent", position: "absolute", top: 0, left: 0 }}
+        style={{
+          width: "100%",
+          height: "100%",
+          background: "transparent",
+          position: "absolute",
+          top: 0,
+          left: 0,
+        }}
       >
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
