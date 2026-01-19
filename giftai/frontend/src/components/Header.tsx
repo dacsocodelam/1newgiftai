@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -37,25 +39,25 @@ export default function Header() {
               href="#home"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
             >
-              🏠 ホーム
+              🏠 {t('header.home')}
             </a>
             <a
               href="#how-it-works"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
             >
-              ⚙️ 使い方
+              ⚙️ {t('header.howItWorks')}
             </a>
             <a
               href="#blog"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
             >
-              📝 ブログ
+              📝 {t('header.blog')}
             </a>
             <a
               href="#about"
               className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium"
             >
-              👥 私たちについて
+              👥 {t('header.about')}
             </a>
             <a
               href="#gift-finder"
@@ -103,31 +105,31 @@ export default function Header() {
                 href="#home"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
               >
-                🏠 ホーム
+                🏠 {t('header.home')}
               </a>
               <a
                 href="#how-it-works"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
               >
-                ⚙️ 使い方
+                ⚙️ {t('header.howItWorks')}
               </a>
               <a
                 href="#blog"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
               >
-                📝 ブログ
+                📝 {t('header.blog')}
               </a>
               <a
                 href="#about"
                 className="text-[#001f3f] hover:text-[#FFD700] transition-colors font-medium py-2"
               >
-                👥 私たちについて
+                👥 {t('header.about')}
               </a>
               <a
                 href="#gift-finder"
                 className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] px-6 py-3 rounded-full font-bold hover:from-[#001f3f] hover:to-[#003366] hover:text-white transition-all duration-300 text-left"
               >
-                🎯 今すぐギフト検索
+                🎯 {t('header.findGift')}
               </a>
             </div>
           </div>

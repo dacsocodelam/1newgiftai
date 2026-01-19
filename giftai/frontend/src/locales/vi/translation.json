@@ -1,4 +1,11 @@
 {
+  "header": {
+    "home": "Trang chủ",
+    "howItWorks": "Cách hoạt động",
+    "blog": "Blog",
+    "about": "Về chúng tôi",
+    "findGift": "Tìm quà ngay"
+  },
   "hero": {
     "title": "GiftAI",
     "subtitle": "Chuyên gia tư vấn quà tặng của bạn",

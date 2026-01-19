@@ -1,4 +1,11 @@
 {
+  "header": {
+    "home": "Home",
+    "howItWorks": "How It Works",
+    "blog": "Blog",
+    "about": "About Us",
+    "findGift": "Find Gift Now"
+  },
   "hero": {
     "title": "GiftAI",
     "subtitle": "Your Personal Gift Expert",

@@ -1,4 +1,11 @@
 {
+  "header": {
+    "home": "ホーム",
+    "howItWorks": "使い方",
+    "blog": "ブログ",
+    "about": "私たちについて",
+    "findGift": "今すぐギフト検索"
+  },
   "hero": {
     "title": "GiftAI",
     "subtitle": "あなた専属のギフトアドバイザー",
