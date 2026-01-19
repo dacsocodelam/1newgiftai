@@ -14,7 +14,7 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 import "../i18n";
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
   const [formData, setFormData] = useState({
     age: "",
     gender: "女性",
@@ -48,15 +48,6 @@ export default function Home() {
 
   // オートスクロール用のRef
   const aiSuggestionsRef = useRef<HTMLDivElement>(null);
-
-  // AI分析プロセス用のローディングメッセージ
-  const loadingMessages = [
-    t("loading.analyzing"),
-    t("loading.searching"),
-    t("loading.comparing"),
-    t("loading.customizing"),
-    t("loading.preparing"),
-  ];
 
   // Geminiからのテキストをフォーマットする関数
   const formatGeminiText = (text: string) => {
@@ -216,6 +207,14 @@ export default function Home() {
     setShowThanks(true);
     setTimeout(() => setShowThanks(false), 2000);
   };
+
+  if (!ready) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#001f3f] to-[#003366]">
+        <div className="text-white text-2xl">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <>
