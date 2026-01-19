@@ -2,7 +2,9 @@
 import { useTranslation } from "react-i18next";
 
 export default function HowItWorks() {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
+
+  if (!ready) return null;
 
   const steps = [
     {
@@ -142,11 +144,9 @@ export default function HowItWorks() {
         <div className="mt-20 bg-gradient-to-r from-[#001f3f] to-[#003366] rounded-3xl p-8 text-white">
           <div className="text-center mb-12">
             <h3 className="text-2xl font-bold mb-4">
-              🏆 {t('howItWorks.benefits.title')}
+              🏆 {t("howItWorks.benefits.title")}
             </h3>
-            <p className="text-gray-200">
-              {t('howItWorks.benefits.subtitle')}
-            </p>
+            <p className="text-gray-200">{t("howItWorks.benefits.subtitle")}</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -154,9 +154,11 @@ export default function HowItWorks() {
               <div className="w-16 h-16 bg-[#FFD700] rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
                 ⚡
               </div>
-              <h4 className="font-bold mb-2">{t('howItWorks.benefits.speed.title')}</h4>
+              <h4 className="font-bold mb-2">
+                {t("howItWorks.benefits.speed.title")}
+              </h4>
               <p className="text-gray-200 text-sm">
-                {t('howItWorks.benefits.speed.description')}
+                {t("howItWorks.benefits.speed.description")}
               </p>
             </div>
 
@@ -164,9 +166,11 @@ export default function HowItWorks() {
               <div className="w-16 h-16 bg-[#FFD700] rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
                 🧠
               </div>
-              <h4 className="font-bold mb-2">{t('howItWorks.benefits.intelligent.title')}</h4>
+              <h4 className="font-bold mb-2">
+                {t("howItWorks.benefits.intelligent.title")}
+              </h4>
               <p className="text-gray-200 text-sm">
-                {t('howItWorks.benefits.intelligent.description')}
+                {t("howItWorks.benefits.intelligent.description")}
               </p>
             </div>
 
@@ -174,9 +178,11 @@ export default function HowItWorks() {
               <div className="w-16 h-16 bg-[#FFD700] rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
                 💝
               </div>
-              <h4 className="font-bold mb-2">{t('howItWorks.benefits.personalized.title')}</h4>
+              <h4 className="font-bold mb-2">
+                {t("howItWorks.benefits.personalized.title")}
+              </h4>
               <p className="text-gray-200 text-sm">
-                {t('howItWorks.benefits.personalized.description')}
+                {t("howItWorks.benefits.personalized.description")}
               </p>
             </div>
           </div>
@@ -185,13 +191,13 @@ export default function HowItWorks() {
         {/* CTA */}
         <div className="text-center mt-12">
           <h3 className="text-2xl font-bold mb-4 text-[#001f3f]">
-            {t('howItWorks.cta.title')}
+            {t("howItWorks.cta.title")}
           </h3>
           <a
             href="#gift-finder"
             className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] px-8 py-4 rounded-full font-bold text-lg hover:from-[#001f3f] hover:to-[#003366] hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg inline-block"
           >
-            {t('howItWorks.cta.button')}
+            {t("howItWorks.cta.button")}
           </a>
         </div>
       </div>

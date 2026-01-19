@@ -2,22 +2,24 @@
 import { useTranslation } from "react-i18next";
 
 export default function AboutUs() {
-  const { t } = useTranslation();
-  
+  const { t, ready } = useTranslation();
+
+  if (!ready) return null;
+
   const teamMembers = [
     {
-      name: t('about.team.0.name'),
-      role: t('about.team.0.role'),
+      name: t("about.team.0.name"),
+      role: t("about.team.0.role"),
       imageUrl: "/img/bom.jpg",
-      bio: t('about.team.0.bio'),
-      emoji: "💻"
+      bio: t("about.team.0.bio"),
+      emoji: "💻",
     },
     {
-      name: t('about.team.1.name'),
-      role: t('about.team.1.role'),
+      name: t("about.team.1.name"),
+      role: t("about.team.1.role"),
       imageUrl: "/img/dat.jpg",
-      bio: t('about.team.1.bio'),
-      emoji: "🎨"
+      bio: t("about.team.1.bio"),
+      emoji: "🎨",
     },
   ];
 

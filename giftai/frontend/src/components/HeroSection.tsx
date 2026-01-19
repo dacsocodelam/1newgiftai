@@ -9,7 +9,21 @@ const AIMascot = dynamic(() => import("./AIMascot"), {
 });
 
 export default function HeroSection() {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
+
+  // Wait for i18n to be ready
+  if (!ready) {
+    return (
+      <section
+        id="home"
+        className="relative min-h-screen bg-gradient-to-br from-[#001f3f] via-[#003366] to-[#001f3f] overflow-hidden"
+      >
+        <div className="absolute inset-0 w-full h-full z-0">
+          <AIMascot />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

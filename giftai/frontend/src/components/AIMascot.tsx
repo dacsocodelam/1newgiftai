@@ -90,12 +90,12 @@ function CrystalSphere({
       sphereRef.current.rotation.y = THREE.MathUtils.lerp(
         sphereRef.current.rotation.y,
         targetRotationY,
-        0.1
+        0.1,
       );
       sphereRef.current.rotation.x = THREE.MathUtils.lerp(
         sphereRef.current.rotation.x,
         targetRotationX,
-        0.1
+        0.1,
       );
 
       // Add gentle auto rotation on top
@@ -149,13 +149,8 @@ export default function AIMascot() {
     const handleMouseMove = (event: MouseEvent) => {
       const x = (event.clientX / window.innerWidth) * 2 - 1;
       const y = -(event.clientY / window.innerHeight) * 2 + 1;
-      
+
       mousePosition.current = { x, y };
-      
-      // Debug log (remove later)
-      if (Math.random() < 0.01) {
-        console.log('Mouse position:', { x, y });
-      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);

@@ -3,8 +3,11 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function Header() {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Wait for i18n to be ready to avoid hydration mismatch
+  if (!ready) return null;
 
   return (
     <nav className="bg-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-[#FFD700]/20">
@@ -63,7 +66,7 @@ export default function Header() {
               href="#gift-finder"
               className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] px-6 py-2 rounded-full font-bold hover:from-[#001f3f] hover:to-[#003366] hover:text-white transition-all duration-300"
             >
-              🎯 {t('header.findGift')}
+              🎯 {t("header.findGift")}
             </a>
           </div>
 

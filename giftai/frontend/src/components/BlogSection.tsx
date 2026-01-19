@@ -2,7 +2,9 @@
 import { useTranslation } from "react-i18next";
 
 export default function BlogSection() {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
+
+  if (!ready) return null;
   const blogPosts = [
     {
       title: t("blog.posts.0.title"),
@@ -90,7 +92,7 @@ export default function BlogSection() {
               <div className="md:w-1/2 p-8">
                 <div className="flex items-center gap-4 mb-4">
                   <span className="bg-[#FFD700] text-[#001f3f] px-3 py-1 rounded-full text-sm font-bold">
-                    ⭐ {t('blog.featured')}
+                    ⭐ {t("blog.featured")}
                   </span>
                   <span className="text-gray-500 text-sm">
                     {blogPosts[0].category}
@@ -111,7 +113,7 @@ export default function BlogSection() {
                     {blogPosts[0].date}
                   </span>
                   <button className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] px-6 py-2 rounded-full font-bold hover:from-[#001f3f] hover:to-[#003366] hover:text-white transition-all duration-300">
-                    {t('blog.readMore')}
+                    {t("blog.readMore")}
                   </button>
                 </div>
               </div>
@@ -153,7 +155,7 @@ export default function BlogSection() {
                 </p>
 
                 <button className="text-[#FFD700] hover:text-[#001f3f] font-medium text-sm transition-colors">
-                  {t('blog.readMore')}
+                  {t("blog.readMore")}
                 </button>
               </div>
             </article>
@@ -163,26 +165,26 @@ export default function BlogSection() {
         {/* CTA */}
         <div className="text-center mt-12">
           <button className="bg-gradient-to-r from-[#001f3f] to-[#003366] text-white px-8 py-3 rounded-full font-bold hover:from-[#FFD700] hover:to-[#FFA500] hover:text-[#001f3f] transition-all duration-300 transform hover:scale-105">
-            {t('blog.viewAll')}
+            {t("blog.viewAll")}
           </button>
         </div>
 
         {/* Newsletter Signup */}
         <div className="mt-16 bg-gradient-to-r from-[#001f3f] to-[#003366] rounded-3xl p-8 text-center text-white">
           <h3 className="text-2xl font-bold mb-4">
-            {t('blog.newsletter.title')}
+            {t("blog.newsletter.title")}
           </h3>
           <p className="text-gray-200 mb-6 max-w-2xl mx-auto">
-            {t('blog.newsletter.description')}
+            {t("blog.newsletter.description")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
-              placeholder={t('blog.newsletter.placeholder')}
+              placeholder={t("blog.newsletter.placeholder")}
               className="flex-1 px-4 py-3 bg-[#ffffff] rounded-full text-[#001f3f] focus:outline-none focus:ring-2 focus:ring-[#FFD700]"
             />
             <button className="bg-[#FFD700] text-[#001f3f] px-6 py-3 rounded-full font-bold hover:bg-white transition-colors">
-              {t('blog.newsletter.subscribe')}
+              {t("blog.newsletter.subscribe")}
             </button>
           </div>
         </div>
