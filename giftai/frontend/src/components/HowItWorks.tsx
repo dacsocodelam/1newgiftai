@@ -62,14 +62,14 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="py-16 bg-white">
+    <section id="how-it-works" className="py-16 relative z-10">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#001f3f]">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             ⚙️ {t("howItWorks.title")}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             {t("howItWorks.subtitle")}
           </p>
         </div>
@@ -90,23 +90,23 @@ export default function HowItWorks() {
                     {step.step}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-[#001f3f] mb-2">
+                    <h3 className="text-2xl font-bold text-white mb-2">
                       {step.icon} {step.title}
                     </h3>
-                    <p className="text-gray-600 text-lg">{step.description}</p>
+                    <p className="text-slate-300 text-lg">{step.description}</p>
                   </div>
                 </div>
 
                 {/* Details */}
-                <div className="bg-gradient-to-br from-[#FFD700]/10 to-[#FFA500]/10 rounded-2xl p-6">
-                  <h4 className="font-semibold text-[#001f3f] mb-4">
+                <div className="bg-white/[0.03] backdrop-blur-xl rounded-2xl p-6 border border-white/10">
+                  <h4 className="font-semibold text-[#FFD700] mb-4">
                     ステップ{step.step}の詳細：
                   </h4>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {step.details.map((detail, detailIndex) => (
                       <li
                         key={detailIndex}
-                        className="flex items-center gap-2 text-sm text-gray-700"
+                        className="flex items-center gap-2 text-sm text-slate-300"
                       >
                         <div className="w-2 h-2 bg-[#FFD700] rounded-full"></div>
                         {detail}
@@ -141,12 +141,12 @@ export default function HowItWorks() {
         </div>
 
         {/* Benefits */}
-        <div className="mt-20 bg-gradient-to-r from-[#001f3f] to-[#003366] rounded-3xl p-8 text-white">
+        <div className="mt-20 bg-white/[0.03] backdrop-blur-xl rounded-3xl p-8 text-white border border-white/10 shadow-lg shadow-[#FFD700]/10">
           <div className="text-center mb-12">
             <h3 className="text-2xl font-bold mb-4">
               🏆 {t("howItWorks.benefits.title")}
             </h3>
-            <p className="text-gray-200">{t("howItWorks.benefits.subtitle")}</p>
+            <p className="text-slate-300">{t("howItWorks.benefits.subtitle")}</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -190,12 +190,12 @@ export default function HowItWorks() {
 
         {/* CTA */}
         <div className="text-center mt-12">
-          <h3 className="text-2xl font-bold mb-4 text-[#001f3f]">
+          <h3 className="text-2xl font-bold mb-4 text-white">
             {t("howItWorks.cta.title")}
           </h3>
           <a
             href="#gift-finder"
-            className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] px-8 py-4 rounded-full font-bold text-lg hover:from-[#001f3f] hover:to-[#003366] hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg inline-block"
+            className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#020617] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:shadow-[#FFD700]/30 transition-all duration-300 transform hover:scale-105 shadow-lg inline-block"
           >
             {t("howItWorks.cta.button")}
           </a>

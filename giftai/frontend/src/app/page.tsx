@@ -11,7 +11,13 @@ import AboutUs from "../components/AboutUs";
 import CardCreator from "../components/CardCreator";
 import GiftFinder from "../components/GiftFinder";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import dynamic from "next/dynamic";
 import "../i18n";
+
+// Dynamically import AIMascot to avoid SSR issues
+const AIMascot = dynamic(() => import("../components/AIMascot"), {
+  ssr: false,
+});
 
 export default function Home() {
   const { t, ready } = useTranslation();
@@ -58,18 +64,18 @@ export default function Home() {
         // 余分な**を削除し、太字テキストをフォーマット
         .replace(
           /\*\*([^*]+)\*\*/g,
-          '<strong class="font-bold text-[#001f3f]">$1</strong>',
+          '<strong class="font-bold text-[#FFD700]">$1</strong>',
         )
-        .replace(/\*([^*]+)\*/g, '<em class="italic">$1</em>')
+        .replace(/\*([^*]+)\*/g, '<em class="italic text-slate-200">$1</em>')
 
         // Format headings
         .replace(
           /### (.+)/g,
-          '<h3 class="text-xl font-bold text-[#001f3f] mt-6 mb-3 flex items-center"><span class="text-[#FFD700] mr-2">🎯</span>$1</h3>',
+          '<h3 class="text-xl font-bold text-white mt-6 mb-3 flex items-center"><span class="text-[#FFD700] mr-2">🎯</span>$1</h3>',
         )
         .replace(
           /## (.+)/g,
-          '<h2 class="text-2xl font-bold text-[#001f3f] mt-8 mb-4 flex items-center"><span class="text-[#FFD700] mr-2">✨</span>$1</h2>',
+          '<h2 class="text-2xl font-bold text-white mt-8 mb-4 flex items-center"><span class="text-[#FFD700] mr-2">✨</span>$1</h2>',
         )
 
         // Convert URLs to clickable links (trước khi format list items)
@@ -81,17 +87,17 @@ export default function Home() {
         // 美しいスタイリングでブレットポイントをフォーマット
         .replace(
           /^- (.+)/gm,
-          '<li class="flex items-start mb-3"><span class="text-[#FFD700] mr-3 text-lg">•</span><span class="flex-1">$1</span></li>',
+          '<li class="flex items-start mb-3"><span class="text-[#FFD700] mr-3 text-lg">•</span><span class="flex-1 text-slate-200">$1</span></li>',
         )
         .replace(
           /^• (.+)/gm,
-          '<li class="flex items-start mb-3"><span class="text-[#FFD700] mr-3 text-lg">•</span><span class="flex-1">$1</span></li>',
+          '<li class="flex items-start mb-3"><span class="text-[#FFD700] mr-3 text-lg">•</span><span class="flex-1 text-slate-200">$1</span></li>',
         )
 
         // 番号付きリストをフォーマット
         .replace(
           /^(\d+)\.\s*(.+)/gm,
-          '<li class="flex items-start mb-3"><span class="bg-[#FFD700] text-[#001f3f] rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mr-3 flex-shrink-0">$1</span><span class="flex-1 pt-1">$2</span></li>',
+          '<li class="flex items-start mb-3"><span class="bg-[#FFD700] text-[#020617] rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mr-3 flex-shrink-0 shadow-lg shadow-[#FFD700]/30">$1</span><span class="flex-1 pt-1 text-slate-200">$2</span></li>',
         )
 
         // Wrap lists
@@ -210,7 +216,7 @@ export default function Home() {
 
   if (!ready) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#001f3f] to-[#003366]">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-white text-2xl">Loading...</div>
       </div>
     );
@@ -218,6 +224,9 @@ export default function Home() {
 
   return (
     <>
+      {/* Fixed 3D AI Mascot - Floats throughout entire page */}
+      <AIMascot />
+      
       <Header />
       {/* Language Switcher - Fixed position */}
       <div className="fixed top-4 right-4 z-50">
@@ -227,10 +236,24 @@ export default function Home() {
         {/* Hero Section */}
         <HeroSection />
 
-        <div className="min-h-screen bg-gradient-to-br from-[#FFFDD0] to-[#F0F8FF] text-[#001f3f]">
-
+        <div className="relative -mt-20">
+          {/* Connecting Particles - Bridge between Hero and Quiz */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ height: '200vh' }}>
+            {[...Array(50)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 bg-[#FFD700]/20 rounded-full animate-float-particles"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 10}s`,
+                  animationDuration: `${8 + Math.random() * 12}s`,
+                }}
+              />
+            ))}
+          </div>
           {/* Main Content */}
-          <div className="max-w-6xl mx-auto px-4 py-12">
+          <div className="max-w-6xl mx-auto px-4 py-8 relative z-20">
             {/* Gift Finder with Quiz Mode */}
             <GiftFinder
               onResults={(suggestions, products, formData) => {
@@ -264,9 +287,9 @@ export default function Home() {
             {isLoading && (
               <div
                 ref={aiSuggestionsRef}
-                className="max-w-2xl mx-auto mt-12 animate-flip-3d"
+                className="max-w-2xl mx-auto mt-12 animate-flip-3d relative z-20"
               >
-                <div className="bg-gradient-to-br from-white to-[#FFD700]/10 p-8 rounded-3xl shadow-2xl border border-[#FFD700]/30 text-center animate-pulsate relative overflow-hidden">
+                <div className="bg-white/[0.03] backdrop-blur-xl p-8 rounded-3xl shadow-2xl shadow-[#FFD700]/10 border border-white/10 text-center animate-pulsate relative overflow-hidden">
                   {/* Shimmer overlay */}
                   <div className="absolute inset-0 animate-shimmer pointer-events-none opacity-50"></div>
 
@@ -332,10 +355,10 @@ export default function Home() {
                   </div>
 
                   {/* 動的ローディングメッセージ */}
-                  <h3 className="text-2xl font-bold text-[#001f3f] mb-4 animate-neon-glow relative z-10">
+                  <h3 className="text-2xl font-bold text-white mb-4 animate-neon-glow relative z-10">
                     ✨ AIがあなたのために魔法をかけています！
                   </h3>
-                  <p className="text-lg text-gray-700 mb-6 min-h-[28px] transition-all duration-500 animate-text-reveal relative z-10">
+                  <p className="text-lg text-slate-200 mb-6 min-h-[28px] transition-all duration-500 animate-text-reveal relative z-10">
                     {loadingMessage}
                   </p>
 
@@ -364,7 +387,7 @@ export default function Home() {
                   </div>
 
                   {/* 豆知識 */}
-                  <div className="bg-white/80 rounded-2xl p-6 text-sm text-gray-600">
+                  <div className="bg-white/[0.05] backdrop-blur-md rounded-2xl p-6 text-sm text-slate-300 border border-white/10">
                     <p className="font-medium mb-2">
                       💡 <strong>ご存知ですか？</strong>
                     </p>
@@ -391,14 +414,14 @@ export default function Home() {
             {suggestions && (
               <div
                 ref={!isLoading ? aiSuggestionsRef : undefined}
-                className="max-w-5xl mx-auto mt-12 relative animate-zoom-in"
+                className="max-w-5xl mx-auto mt-12 relative animate-zoom-in z-20"
               >
                 {/* 背景グロー効果 */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700]/20 via-[#FFA500]/10 to-[#FFD700]/20 rounded-3xl blur-xl animate-glow"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700]/20 via-[#FFA500]/20 to-[#FFD700]/20 rounded-3xl blur-2xl animate-glow"></div>
 
-                <div className="relative bg-gradient-to-br from-white via-[#FFFEF7] to-[#FFD700]/5 p-1 rounded-3xl shadow-2xl">
+                <div className="relative bg-white/[0.03] backdrop-blur-xl p-1 rounded-3xl shadow-2xl shadow-[#FFD700]/20 border border-white/10">
                   {/* アニメーション付きヘッダー */}
-                  <div className="bg-gradient-to-r from-[#001f3f] to-[#003366] p-6 rounded-t-3xl text-white relative overflow-hidden">
+                  <div className="bg-gradient-to-r from-[#FFD700]/20 to-[#FFA500]/20 backdrop-blur-md p-6 rounded-t-3xl text-white relative overflow-hidden border-b border-[#FFD700]/30">
                     {/* アニメーションパーティクル背景 */}
                     <div className="absolute inset-0">
                       <div className="floating-particle absolute top-4 left-8 w-2 h-2 bg-[#FFD700] rounded-full animate-ping opacity-70"></div>
@@ -442,14 +465,14 @@ export default function Home() {
                   </div>
 
                   {/* グラデーションボーダー付きコンテンツエリア */}
-                  <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-8 rounded-b-3xl">
+                  <div className="bg-white/[0.02] backdrop-blur-md p-8 rounded-b-3xl">
                     {/* Status indicator */}
-                    <div className="flex items-center gap-3 mb-6 p-4 bg-gradient-to-r from-green-50 to-[#FFD700]/10 rounded-2xl border border-green-200 animate-slide-in-left">
+                    <div className="flex items-center gap-3 mb-6 p-4 bg-white/[0.05] backdrop-blur-md rounded-2xl border border-[#FFD700]/30 animate-slide-in-left">
                       <div className="relative">
                         <div className="w-4 h-4 bg-green-500 rounded-full animate-heartbeat"></div>
                         <div className="absolute inset-0 w-4 h-4 bg-green-500 rounded-full animate-ping opacity-30"></div>
                       </div>
-                      <span className="text-green-700 font-medium text-sm">
+                      <span className="text-[#FFD700] font-medium text-sm">
                         🎯 AIが分析し、あなたにぴったりのギフトを見つけました
                       </span>
                     </div>
@@ -466,13 +489,13 @@ export default function Home() {
 
                         <div className="flex-1">
                           {/* Chat bubble */}
-                          <div className="chat-bubble bg-gradient-to-br from-[#F8F9FA] to-white p-6 rounded-2xl rounded-tl-sm shadow-lg border border-gray-100 relative">
+                          <div className="chat-bubble bg-white/[0.05] backdrop-blur-xl p-6 rounded-2xl rounded-tl-sm shadow-lg shadow-[#FFD700]/10 border border-white/10 relative">
                             {/* Speech bubble tail */}
-                            <div className="absolute left-0 top-4 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-[#F8F9FA] -ml-2"></div>
+                            <div className="absolute left-0 top-4 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-white/10 -ml-2"></div>
 
                             <div className="relative">
                               <div
-                                className="text-justify leading-relaxed text-[#001f3f] text-lg"
+                                className="text-justify leading-relaxed text-slate-100 text-lg"
                                 dangerouslySetInnerHTML={{
                                   __html:
                                     formatGeminiText(typewriterText) +
@@ -487,16 +510,16 @@ export default function Home() {
                           {/* Thank you message */}
                           {showThanks && (
                             <div className="mt-4 animate-fade-in">
-                              <div className="bg-gradient-to-r from-green-50 to-[#FFD700]/10 p-4 rounded-2xl border border-green-200">
+                              <div className="bg-white/[0.05] backdrop-blur-md p-4 rounded-2xl border border-[#FFD700]/30">
                                 <div className="flex items-center gap-3">
                                   <div className="text-2xl animate-bounce">
                                     🤖
                                   </div>
                                   <div>
-                                    <p className="text-green-700 font-medium">
+                                    <p className="text-[#FFD700] font-medium">
                                       🙏 ありがとうございます！
                                     </p>
-                                    <p className="text-green-600 text-sm">
+                                    <p className="text-slate-300 text-sm">
                                       あなたのフィードバックでAIがさらに賢くなります
                                       ✨
                                     </p>
@@ -509,16 +532,16 @@ export default function Home() {
                           {/* 再生成用ローディングメッセージ */}
                           {isRegenerating && (
                             <div className="mt-4 animate-fade-in">
-                              <div className="bg-gradient-to-r from-blue-50 to-[#FFD700]/10 p-4 rounded-2xl border border-blue-200">
+                              <div className="bg-white/[0.05] backdrop-blur-md p-4 rounded-2xl border border-[#FFD700]/30">
                                 <div className="flex items-center gap-3">
                                   <div className="text-2xl animate-spin">
                                     🔄
                                   </div>
                                   <div>
-                                    <p className="text-blue-700 font-medium">
+                                    <p className="text-[#FFD700] font-medium">
                                       新しい提案を作成中...
                                     </p>
-                                    <p className="text-blue-600 text-sm">
+                                    <p className="text-slate-300 text-sm">
                                       {loadingMessage}
                                     </p>
                                   </div>
@@ -529,7 +552,7 @@ export default function Home() {
 
                           {/* タイムスタンプとアクション */}
                           <div className="flex items-center justify-between mt-3 px-2">
-                            <div className="flex items-center gap-2 text-xs text-gray-500 animate-fade-in">
+                            <div className="flex items-center gap-2 text-xs text-slate-400 animate-fade-in">
                               <span className="animate-pulse">🕐</span>
                               <span>完了</span>
                               <span>•</span>
@@ -713,17 +736,17 @@ export default function Home() {
 
             {/* Products Display */}
             {results.length > 0 && (
-              <div className="max-w-6xl mx-auto mt-12">
+              <div className="max-w-6xl mx-auto mt-12 relative z-20">
                 {/* Create Card CTA Banner */}
-                <div className="mb-8 bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-pink-500/10 rounded-2xl p-6 border border-pink-200">
+                <div className="mb-8 bg-white/[0.03] backdrop-blur-xl rounded-2xl p-6 border border-[#FFD700]/20 shadow-lg shadow-pink-500/10">
                   <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
                       <span className="text-4xl">🎴</span>
                       <div>
-                        <h4 className="font-bold text-[#001f3f] text-lg">
+                        <h4 className="font-bold text-white text-lg">
                           デジタルカードを作成
                         </h4>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-slate-300">
                           AIが素敵なメッセージを提案！QRコードで送れます
                         </p>
                       </div>
@@ -738,7 +761,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-bold text-center mb-8 text-[#001f3f]">
+                <h3 className="text-2xl font-bold text-center mb-8 text-white">
                   🛍️ AIおすすめ商品
                 </h3>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -755,7 +778,7 @@ export default function Home() {
                     ) => (
                       <div
                         key={index}
-                        className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-[#FFD700]/20"
+                        className="bg-white/[0.03] backdrop-blur-xl p-6 rounded-2xl shadow-lg shadow-[#FFD700]/10 hover:shadow-2xl hover:shadow-[#FFD700]/20 hover:scale-105 transition-all duration-300 border border-white/10 hover:border-[#FFD700]/50"
                       >
                         <div className="relative mb-4">
                           <img
@@ -767,17 +790,17 @@ export default function Home() {
                             AI推奨 ⭐
                           </div>
                         </div>
-                        <h3 className="text-xl font-semibold mb-3 text-[#001f3f]">
+                        <h3 className="text-xl font-semibold mb-3 text-white">
                           {prod.name}
                         </h3>
-                        <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                        <p className="text-sm text-slate-300 mb-4 line-clamp-3">
                           {prod.description}
                         </p>
                         <div className="flex justify-between items-center mb-4">
-                          <p className="font-bold text-lg text-[#001f3f]">
+                          <p className="font-bold text-lg text-[#FFD700]">
                             💰 {prod.price?.toLocaleString()}円
                           </p>
-                          <div className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
+                          <div className="bg-[#FFD700]/20 text-[#FFD700] px-2 py-1 rounded-full text-xs border border-[#FFD700]/30">
                             ✓ 適合
                           </div>
                         </div>
@@ -785,7 +808,7 @@ export default function Home() {
                           href={prod.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block w-full bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] font-bold py-3 rounded-xl text-center hover:from-[#001f3f] hover:to-[#003366] hover:text-white transition-all duration-300 transform hover:scale-105"
+                          className="block w-full bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#020617] font-bold py-3 rounded-xl text-center hover:shadow-xl hover:shadow-[#FFD700]/30 transition-all duration-300 transform hover:scale-105"
                         >
                           🛒 今すぐ購入
                         </a>
@@ -1181,28 +1204,34 @@ export default function Home() {
             {/* Trust Indicators */}
             <div className="max-w-4xl mx-auto mt-16 text-center">
               <h4 className="text-xl font-semibold mb-6 text-[#001f3f]">
-                ⭐ {t('whyChooseUs.title')}
+                ⭐ {t("whyChooseUs.title")}
               </h4>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-2xl shadow-lg">
                   <div className="text-4xl mb-4">🤖</div>
-                  <h5 className="font-bold mb-2 text-[#001f3f]">{t('whyChooseUs.smartAI.title')}</h5>
+                  <h5 className="font-bold mb-2 text-[#001f3f]">
+                    {t("whyChooseUs.smartAI.title")}
+                  </h5>
                   <p className="text-sm text-gray-600">
-                    {t('whyChooseUs.smartAI.description')}
+                    {t("whyChooseUs.smartAI.description")}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-2xl shadow-lg">
                   <div className="text-4xl mb-4">⚡</div>
-                  <h5 className="font-bold mb-2 text-[#001f3f]">{t('whyChooseUs.fast.title')}</h5>
+                  <h5 className="font-bold mb-2 text-[#001f3f]">
+                    {t("whyChooseUs.fast.title")}
+                  </h5>
                   <p className="text-sm text-gray-600">
-                    {t('whyChooseUs.fast.description')}
+                    {t("whyChooseUs.fast.description")}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-2xl shadow-lg">
                   <div className="text-4xl mb-4">💝</div>
-                  <h5 className="font-bold mb-2 text-[#001f3f]">{t('whyChooseUs.guarantee.title')}</h5>
+                  <h5 className="font-bold mb-2 text-[#001f3f]">
+                    {t("whyChooseUs.guarantee.title")}
+                  </h5>
                   <p className="text-sm text-gray-600">
-                    {t('whyChooseUs.guarantee.description')}
+                    {t("whyChooseUs.guarantee.description")}
                   </p>
                 </div>
               </div>

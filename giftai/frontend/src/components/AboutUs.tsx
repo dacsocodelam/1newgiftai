@@ -24,7 +24,7 @@ export default function AboutUs() {
   ];
 
   return (
-    <section id="about" className="py-16 bg-[#001f3f] text-white">
+    <section id="about" className="py-16 text-white relative z-10">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">
@@ -39,7 +39,7 @@ export default function AboutUs() {
           {teamMembers.map((member) => (
             <div
               key={member.name}
-              className="bg-[#003366]/50 p-8 rounded-2xl shadow-2xl text-center transform hover:scale-105 transition-transform duration-300"
+              className="bg-white/[0.03] backdrop-blur-xl p-8 rounded-2xl shadow-2xl shadow-[#FFD700]/10 text-center transform hover:scale-105 transition-transform duration-300 border border-white/10"
             >
               <div className="relative w-40 h-40 mx-auto mb-6">
                 <img

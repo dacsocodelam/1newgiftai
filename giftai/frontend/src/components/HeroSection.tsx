@@ -1,12 +1,5 @@
 "use client";
 import { useTranslation } from "react-i18next";
-import dynamic from "next/dynamic";
-
-// Dynamically import AIMascot to avoid SSR issues with Three.js
-const AIMascot = dynamic(() => import("./AIMascot"), {
-  ssr: false,
-  loading: () => null,
-});
 
 export default function HeroSection() {
   const { t, ready } = useTranslation();
@@ -16,11 +9,8 @@ export default function HeroSection() {
     return (
       <section
         id="home"
-        className="relative min-h-screen bg-gradient-to-br from-[#001f3f] via-[#003366] to-[#001f3f] overflow-hidden"
+        className="relative overflow-hidden pt-20 pb-32"
       >
-        <div className="absolute inset-0 w-full h-full z-0">
-          <AIMascot />
-        </div>
       </section>
     );
   }
@@ -28,15 +18,10 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen bg-gradient-to-br from-[#001f3f] via-[#003366] to-[#001f3f] overflow-hidden"
+      className="relative overflow-hidden pt-20 pb-32"
     >
-      {/* 3D AI Mascot Background */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        <AIMascot />
-      </div>
-
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Floating Particles - Extended to connect with content below */}
+      <div className="absolute inset-0 overflow-visible pointer-events-none" style={{ height: '150vh' }}>
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
@@ -51,7 +36,7 @@ export default function HeroSection() {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 py-20 text-center relative z-10">
+      <div className="container mx-auto px-4 py-8 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Logo Animation */}
           <div className="flex justify-center items-center gap-4 mb-6 animate-float-up-down">

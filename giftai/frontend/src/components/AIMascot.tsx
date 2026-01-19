@@ -79,65 +79,89 @@ function CrystalSphere({
 }) {
   const sphereRef = useRef<THREE.Mesh>(null);
   const innerLightRef = useRef<THREE.PointLight>(null);
+  const groupRef = useRef<THREE.Group>(null);
 
   useFrame((state) => {
-    if (sphereRef.current) {
-      // Mouse tracking - smooth follow
-      const targetRotationY = mousePositionRef.current.x * 0.5;
-      const targetRotationX = -mousePositionRef.current.y * 0.5;
+    if (sphereRef.current && groupRef.current) {
+      // Mouse tracking - VERY responsive and exaggerated
+      const targetRotationY = mousePositionRef.current.x * 1.2; // Increased from 0.5 to 1.2
+      const targetRotationX = -mousePositionRef.current.y * 1.2;
 
-      // Lerp rotation based on mouse position
+      // Fast lerp for immediate response
       sphereRef.current.rotation.y = THREE.MathUtils.lerp(
         sphereRef.current.rotation.y,
         targetRotationY,
-        0.1,
+        0.15, // Increased from 0.1
       );
       sphereRef.current.rotation.x = THREE.MathUtils.lerp(
         sphereRef.current.rotation.x,
         targetRotationX,
-        0.1,
+        0.15,
       );
 
-      // Add gentle auto rotation on top
-      sphereRef.current.rotation.y += 0.001;
+      // Scale based on mouse distance from center - subtle effect
+      const distance = Math.sqrt(
+        mousePositionRef.current.x ** 2 + mousePositionRef.current.y ** 2,
+      );
+      const targetScale = 1.0 + distance * 0.1; // Reduced base and growth
+      const currentScale = groupRef.current.scale.x;
+      groupRef.current.scale.setScalar(
+        THREE.MathUtils.lerp(currentScale, targetScale, 0.1),
+      );
+
+      // Gentle auto rotation
+      sphereRef.current.rotation.z += 0.002;
     }
 
-    // Inner light pulse effect
+    // Inner light pulse effect - more dramatic
     if (innerLightRef.current) {
       innerLightRef.current.intensity =
-        2 + Math.sin(state.clock.getElapsedTime() * 2) * 0.5;
+        3 + Math.sin(state.clock.getElapsedTime() * 2) * 1.5; // Increased intensity
     }
   });
 
   return (
     <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
-      <mesh ref={sphereRef} scale={1.5}>
-        <icosahedronGeometry args={[1, 1]} />
-        <MeshDistortMaterial
-          color="#4fc3f7"
-          transparent
-          opacity={0.6}
-          metalness={0.7}
-          roughness={0.2}
-          distort={0.4}
-          speed={2}
-          envMapIntensity={1}
-        />
+      <group ref={groupRef}>
+        <mesh ref={sphereRef} scale={1.0}>
+          <icosahedronGeometry args={[1, 1]} />
+          <MeshDistortMaterial
+            color="#4fc3f7"
+            transparent
+            opacity={0.7}
+            metalness={0.8}
+            roughness={0.15}
+            distort={0.5}
+            speed={3}
+            envMapIntensity={1.5}
+          />
 
-        {/* Inner glowing core */}
-        <mesh scale={0.5}>
-          <sphereGeometry args={[1, 32, 32]} />
-          <meshBasicMaterial color="#ffd700" transparent opacity={0.8} />
+          {/* Inner glowing core - brighter */}
+          <mesh scale={0.5}>
+            <sphereGeometry args={[1, 32, 32]} />
+            <meshBasicMaterial color="#ffd700" transparent opacity={0.9} />
+          </mesh>
+
+          {/* Inner point light */}
+          <pointLight
+            ref={innerLightRef}
+            color="#ffd700"
+            intensity={3}
+            distance={5}
+          />
         </mesh>
 
-        {/* Inner point light */}
-        <pointLight
-          ref={innerLightRef}
-          color="#ffd700"
-          intensity={2}
-          distance={3}
-        />
-      </mesh>
+        {/* Outer glow ring */}
+        <mesh scale={1.8}>
+          <sphereGeometry args={[1, 32, 32]} />
+          <meshBasicMaterial
+            color="#4fc3f7"
+            transparent
+            opacity={0.1}
+            side={THREE.BackSide}
+          />
+        </mesh>
+      </group>
     </Float>
   );
 }
@@ -159,7 +183,7 @@ export default function AIMascot() {
 
   return (
     <div
-      className="absolute inset-0 w-full h-full"
+      className="fixed inset-0 w-full h-full"
       style={{ pointerEvents: "none", zIndex: 0 }}
     >
       <Canvas
