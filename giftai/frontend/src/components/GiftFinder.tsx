@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import GiftQuiz, { QuizData } from "./GiftQuiz";
 import axios from "axios";
 
@@ -21,6 +22,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
   setIsLoading,
   setLoadingMessage,
 }) => {
+  const { t } = useTranslation();
   const [useQuizMode, setUseQuizMode] = useState(true);
   const [styleAnalysis, setStyleAnalysis] = useState<any>(null);
 
