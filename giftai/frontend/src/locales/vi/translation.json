@@ -260,7 +260,19 @@
   },
   "about": {
     "title": "Về chúng tôi",
-    "subtitle": "Gặp gỡ đội ngũ đam mê đằng sau GiftAI"
+    "subtitle": "Gặp gỡ đội ngũ đam mê đằng sau GiftAI",
+    "team": [
+      {
+        "name": "Bom",
+        "role": "Frontend, Backend, Ý tưởng",
+        "bio": "Nhà phát triển đam mê và bộ não đằng sau GiftAI. Luôn khám phá công nghệ mới để mang đến trải nghiệm tốt nhất cho người dùng."
+      },
+      {
+        "name": "Dat",
+        "role": "Thiết kế, Ý tưởng",
+        "bio": "Nhà thiết kế sáng tạo phụ trách thẩm mỹ của GiftAI. Đam mê tạo ra giao diện đẹp và có chức năng."
+      }
+    ]
   },
   "giftFinder": {
     "quizMode": "Chế độ Quiz",

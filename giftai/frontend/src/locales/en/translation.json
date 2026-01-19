@@ -260,7 +260,19 @@
   },
   "about": {
     "title": "About Us",
-    "subtitle": "Meet the passionate team behind GiftAI"
+    "subtitle": "Meet the passionate team behind GiftAI",
+    "team": [
+      {
+        "name": "Bom",
+        "role": "Frontend, Backend, Ideas",
+        "bio": "Passionate developer and the brain behind GiftAI. Always exploring new technologies to provide users with the best experience."
+      },
+      {
+        "name": "Dat",
+        "role": "Design, Ideas",
+        "bio": "Creative designer in charge of GiftAI's aesthetics. Passionate about creating functional and beautiful interfaces."
+      }
+    ]
   },
   "giftFinder": {
     "quizMode": "Quiz Mode",

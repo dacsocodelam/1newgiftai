@@ -1,23 +1,25 @@
 "use client";
 import { useTranslation } from "react-i18next";
 
-const teamMembers = [
-  {
-    name: "ボーム",
-    role: "フロントエンド、バックエンド、アイデア",
-    imageUrl: "/img/bom.jpg",
-    bio: "情熱的な開発者であり、GiftAI の背後にある頭脳。ユーザーに最高の体験を提供するために、常に新しい技術を探求しています。",
-  },
-  {
-    name: "ダット",
-    role: "デザイン、アイデア",
-    imageUrl: "/img/dat.jpg",
-    bio: "GiftAI の美学を担当するクリエイティブなデザイナー。機能的で美しいインターフェースを作成することに情熱を注いでいます。",
-  },
-];
-
 export default function AboutUs() {
   const { t } = useTranslation();
+  
+  const teamMembers = [
+    {
+      name: t('about.team.0.name'),
+      role: t('about.team.0.role'),
+      imageUrl: "/img/bom.jpg",
+      bio: t('about.team.0.bio'),
+      emoji: "💻"
+    },
+    {
+      name: t('about.team.1.name'),
+      role: t('about.team.1.role'),
+      imageUrl: "/img/dat.jpg",
+      bio: t('about.team.1.bio'),
+      emoji: "🎨"
+    },
+  ];
 
   return (
     <section id="about" className="py-16 bg-[#001f3f] text-white">
@@ -46,7 +48,7 @@ export default function AboutUs() {
                   className="w-full h-full rounded-full object-cover border-4 border-[#FFD700]"
                 />
                 <div className="absolute -top-1 -right-1 w-8 h-8 bg-[#FFD700] rounded-full animate-pulse flex items-center justify-center text-lg">
-                  {member.name === "ギア" ? "💻" : "🎨"}
+                  {member.emoji}
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-[#FFD700] mb-2">

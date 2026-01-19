@@ -63,7 +63,7 @@ export default function Header() {
               href="#gift-finder"
               className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#001f3f] px-6 py-2 rounded-full font-bold hover:from-[#001f3f] hover:to-[#003366] hover:text-white transition-all duration-300"
             >
-              🎯 今すぐギフト検索
+              🎯 {t('header.findGift')}
             </a>
           </div>
 
