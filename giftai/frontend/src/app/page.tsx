@@ -9,6 +9,7 @@ import HowItWorks from "../components/HowItWorks";
 import AboutUs from "../components/AboutUs";
 import CardCreator from "../components/CardCreator";
 import GiftFinder from "../components/GiftFinder";
+import SchoolPride from "../components/SchoolPride";
 import dynamic from "next/dynamic";
 
 // Dynamically import 3D Blog Carousel to avoid SSR issues
@@ -1245,42 +1246,6 @@ export default function Home() {
                     </div>
                   </div>
                 )}
-
-                {/* Trust Indicators */}
-                <div className="max-w-4xl mx-auto mt-16 text-center">
-                  <h4 className="text-xl font-semibold mb-6 text-[#001f3f]">
-                    ⭐ {t("whyChooseUs.title")}
-                  </h4>
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-2xl shadow-lg">
-                      <div className="text-4xl mb-4">🤖</div>
-                      <h5 className="font-bold mb-2 text-[#001f3f]">
-                        {t("whyChooseUs.smartAI.title")}
-                      </h5>
-                      <p className="text-sm text-gray-600">
-                        {t("whyChooseUs.smartAI.description")}
-                      </p>
-                    </div>
-                    <div className="bg-white p-6 rounded-2xl shadow-lg">
-                      <div className="text-4xl mb-4">⚡</div>
-                      <h5 className="font-bold mb-2 text-[#001f3f]">
-                        {t("whyChooseUs.fast.title")}
-                      </h5>
-                      <p className="text-sm text-gray-600">
-                        {t("whyChooseUs.fast.description")}
-                      </p>
-                    </div>
-                    <div className="bg-white p-6 rounded-2xl shadow-lg">
-                      <div className="text-4xl mb-4">💝</div>
-                      <h5 className="font-bold mb-2 text-[#001f3f]">
-                        {t("whyChooseUs.guarantee.title")}
-                      </h5>
-                      <p className="text-sm text-gray-600">
-                        {t("whyChooseUs.guarantee.description")}
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </main>
@@ -1289,6 +1254,9 @@ export default function Home() {
           <BlogCarousel3D />
           <AboutUs />
           <Footer />
+
+          {/* School Pride Badge */}
+          <SchoolPride />
 
           {/* Card Creator Modal */}
           <CardCreator

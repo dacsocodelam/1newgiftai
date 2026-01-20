@@ -12,7 +12,7 @@ const NeuralLink = ({ href, children, emoji }: any) => {
       href={href}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative px-4 py-2 text-slate-200 hover:text-[#FFD700] transition-all duration-300 font-light text-sm"
+      className="group relative px-4 py-2 text-slate-200 hover:text-[#FFD700] transition-all duration-300 font-light text-sm whitespace-nowrap flex items-center gap-1.5"
       suppressHydrationWarning
     >
       {/* Floating Dot on Hover */}
@@ -120,7 +120,7 @@ export default function Header() {
       `}</style>
 
       <motion.div
-        className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-6xl px-6 pointer-events-none"
+        className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-fit max-w-[95vw] px-6 pointer-events-none"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -140,63 +140,123 @@ export default function Header() {
           </div>
 
           {/* Main Unified Hub Container */}
-          <div className="relative bg-black/40 backdrop-blur-3xl rounded-full border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.5)] px-8 py-4">
-            <div className="flex justify-between items-center gap-4">
-              {/* Logo with Breathing Glow */}
-              <motion.div
-                className="flex items-center gap-3 flex-shrink-0"
-                animate={{
-                  filter: [
-                    "drop-shadow(0 0 16px rgba(255,215,0,0.6))",
-                    "drop-shadow(0 0 28px rgba(255,215,0,1))",
-                    "drop-shadow(0 0 16px rgba(255,215,0,0.6))",
-                  ],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <div className="relative">
-                  <svg
-                    width={isScrolled ? "24" : "28"}
-                    height={isScrolled ? "24" : "28"}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-[#FFD700] transition-all duration-300"
-                  >
-                    <path
-                      d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <motion.div
-                    className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#FFD700] rounded-full"
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [1, 0.5, 1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  />
-                </div>
-                <span
-                  className={`font-light tracking-wider bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] bg-clip-text text-transparent transition-all duration-300 ${
-                    isScrolled ? "text-base" : "text-lg"
-                  }`}
-                  suppressHydrationWarning
+          <div className="relative bg-black/40 backdrop-blur-3xl rounded-full border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.5)] px-6 py-4">
+            <div className="flex justify-between items-center gap-6 flex-nowrap">
+              {/* Logo Capsule - Premium Brand Identity */}
+              <div className="relative bg-white/5 backdrop-blur-md rounded-full px-4 py-1.5 border border-white/10 shadow-[0_4px_20px_rgba(255,215,0,0.15)]">
+                <motion.div
+                  className="flex items-center gap-3 flex-shrink-0"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                 >
-                  GiftAI
-                </span>
-              </motion.div>
+                  {/* Star Icon with Neon Glow & Rotating Ring */}
+                  <div className="relative">
+                    {/* Rotating Dashed Ring */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full"
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      style={{
+                        width: isScrolled ? "32px" : "36px",
+                        height: isScrolled ? "32px" : "36px",
+                        marginLeft: "-4px",
+                        marginTop: "-4px",
+                      }}
+                    >
+                      <div className="w-full h-full rounded-full border-2 border-dashed border-white/10" />
+                    </motion.div>
+
+                    {/* Star Icon with Enhanced Neon Glow */}
+                    <motion.svg
+                      width={isScrolled ? "24" : "28"}
+                      height={isScrolled ? "24" : "28"}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="relative z-10 text-[#FFD700] transition-all duration-300"
+                      style={{
+                        filter: "drop-shadow(0 0 12px rgba(255, 215, 0, 0.7))",
+                      }}
+                      animate={{
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <path
+                        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                        fill="currentColor"
+                      />
+                    </motion.svg>
+
+                    {/* Pulsing Dot */}
+                    <motion.div
+                      className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#FFD700] rounded-full shadow-[0_0_8px_rgba(255,215,0,0.8)]"
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [1, 0.5, 1],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </div>
+
+                  {/* GiftAI Text with Shimmer Effect */}
+                  <div className="relative overflow-hidden">
+                    <motion.span
+                      className={`font-light tracking-wider bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] bg-clip-text text-transparent transition-all duration-300 ${
+                        isScrolled ? "text-base" : "text-lg"
+                      }`}
+                      style={{
+                        textShadow: "0 0 10px rgba(255, 165, 0, 0.3)",
+                        backgroundSize: "200% 100%",
+                      }}
+                      animate={{
+                        backgroundPosition: ["0% 50%", "200% 50%", "0% 50%"],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      suppressHydrationWarning
+                    >
+                      GiftAI
+                    </motion.span>
+
+                    {/* Shimmer Overlay Effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                      style={{
+                        transform: "skewX(-20deg)",
+                      }}
+                      animate={{
+                        x: ["-200%", "200%"],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        repeatDelay: 0,
+                        ease: "linear",
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              </div>
 
               {/* Desktop Navigation - ALL IN ONE */}
-              <div className="hidden lg:flex items-center gap-1 flex-1 justify-center">
+              <nav className="hidden lg:flex items-center gap-x-8 flex-nowrap flex-1 justify-center">
                 <NeuralLink href="#home" emoji="🏠">
                   {t("header.home")}
                 </NeuralLink>
@@ -216,15 +276,15 @@ export default function Header() {
                 <NeuralLink href="#about" emoji="ℹ️">
                   {t("header.about")}
                 </NeuralLink>
-              </div>
+              </nav>
 
-              {/* Language Switcher + CTA Button */}
-              <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+              {/* Language Switcher */}
+              <div className="hidden lg:flex items-center flex-shrink-0 flex-nowrap">
                 {/* Language Dropdown */}
                 <div className="relative">
                   <motion.button
                     onClick={() => setIsLangOpen(!isLangOpen)}
-                    className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-slate-200 text-sm font-light transition-all duration-300"
+                    className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-slate-200 text-sm font-light transition-all duration-300 whitespace-nowrap"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     suppressHydrationWarning
@@ -282,21 +342,6 @@ export default function Header() {
                     </motion.div>
                   )}
                 </div>
-
-                {/* CTA Button with Triple Glow */}
-                <motion.a
-                  href="#get-started"
-                  className="relative px-6 py-2.5 bg-gradient-to-r from-[#FFD700] to-[#FFA500] rounded-full text-black font-medium text-sm overflow-hidden group"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {/* Triple Glow Layers */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] opacity-0 group-hover:opacity-70 blur-2xl transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] opacity-0 group-hover:opacity-50 blur-3xl transition-opacity duration-300"></div>
-
-                  <span className="relative z-10">{t("header.findGift")}</span>
-                </motion.a>
               </div>
 
               {/* Mobile Menu Button */}
@@ -401,17 +446,6 @@ export default function Header() {
                   {lang.flag} {lang.name}
                 </button>
               ))}
-
-              <div className="h-px bg-white/10 my-2"></div>
-
-              {/* Mobile CTA */}
-              <a
-                href="#get-started"
-                className="px-6 py-3 bg-gradient-to-r from-[#FFD700] to-[#FFA500] rounded-xl text-black font-medium text-center hover:shadow-[0_0_20px_rgba(255,215,0,0.5)] transition-all duration-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t("header.findGift")}
-              </a>
             </div>
           </div>
         </motion.div>

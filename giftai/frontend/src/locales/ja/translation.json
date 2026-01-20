@@ -285,7 +285,8 @@
   "common": {
     "loading": "読み込み中...",
     "error": "エラーが発生しました",
-    "tryAgain": "もう一度試す"
+    "tryAgain": "もう一度試す",
+    "graduationProject": "卒業制作 • 島根ITデザイン専門学校 •"
   },
   "appTitle": "プレゼントAI",
   "startSearch": "ギフトを探す",

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "canvas-confetti": "^1.9.4",
+    "framer-motion": "^12.27.1",
     "qrcode.react": "^4.2.0"
   },
   "devDependencies": {
