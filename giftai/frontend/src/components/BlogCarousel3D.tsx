@@ -39,10 +39,10 @@ interface CarouselProps {
 // ============================================
 // CONSTANTS
 // ============================================
-const CAROUSEL_RADIUS = 6; // Increased from 4 for wider carousel
-const CARD_WIDTH = 3.2; // Balanced size for visibility
-const CARD_HEIGHT = 4.0; // Balanced size for visibility
-const CARD_DEPTH = 0.2; // Slightly thicker
+const CAROUSEL_RADIUS = 7; // Wider carousel for better spacing
+const CARD_WIDTH = 2.4; // Reduced size for better fit
+const CARD_HEIGHT = 3.2; // Reduced size for better fit
+const CARD_DEPTH = 0.15; // Thinner cards
 const ROTATION_SPEED = 0.0015; // Slightly slower for smoother rotation
 const SNAP_DURATION = 800;
 const STAR_COUNT = 500; // Reduced for performance
@@ -77,24 +77,32 @@ const BlogCard3D = memo(function BlogCard3D({
   const groupRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
 
-  // Calculate position on the cylinder - memoized
-  const { x, z, angle, opacity } = useMemo(() => {
+  // Calculate position on the cylinder with dynamic scaling - memoized
+  const { x, z, angle, opacity, dynamicScale } = useMemo(() => {
     const ang = (index / totalCards) * Math.PI * 2 + rotation;
     const xPos = Math.sin(ang) * CAROUSEL_RADIUS;
     const zPos = Math.cos(ang) * CAROUSEL_RADIUS;
     const normalizedZ = (zPos + CAROUSEL_RADIUS) / (2 * CAROUSEL_RADIUS);
+
+    // Dynamic Scaling: Counter perspective distortion
+    // When card is closer to camera (higher z), reduce scale to 0.45
+    // When card is farther (lower z), keep scale at 1.0
+    // This compensates for perspective making near objects appear too large
+    const distanceFromBack = (zPos + CAROUSEL_RADIUS) / (2 * CAROUSEL_RADIUS); // 0 at back, 1 at front
+    const perspectiveCompensation = 1.0 - distanceFromBack * 0.55; // 1.0 at back, 0.45 at front
+
     return {
       x: xPos,
       z: zPos,
       angle: ang,
       opacity: 0.5 + normalizedZ * 0.5,
+      dynamicScale: perspectiveCompensation,
     };
   }, [index, totalCards, rotation]);
 
-  // Spring animation for hover/select effects - limited scale with distance-based max
-  const maxScale = 1.1; // Maximum scale limit
+  // Spring animation with dynamic scaling to counter perspective distortion
   const { scale, emissiveIntensity } = useSpring({
-    scale: hovered || isSelected ? Math.min(maxScale, 1.08) : 1,
+    scale: (hovered && !isSelected ? 1.03 : 1) * dynamicScale,
     emissiveIntensity: hovered || isSelected ? 0.3 : 0.1,
     config: { mass: 1, tension: 280, friction: 24 },
   });
@@ -167,7 +175,7 @@ const BlogCard3D = memo(function BlogCard3D({
         position={[0, 0, CARD_DEPTH / 2 + 0.01]}
         center
         occlude={false}
-        distanceFactor={8}
+        distanceFactor={8.5}
         style={{
           pointerEvents: "none",
           userSelect: "none",
@@ -663,7 +671,7 @@ export default function BlogCarousel3D() {
           "How to add a personal touch to any gift...",
         ),
         image:
-          "https://images.unsplash.com/photo-1607469256872-48074e807b0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          "https://images.unsplash.com/photo-1761839256545-4268b03606c0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=80",
         category: t("blog.posts.4.category", "Ideas"),
         readTime: t("blog.posts.4.readTime", "4 min"),
         date: t("blog.posts.4.date", "2024"),
@@ -756,7 +764,7 @@ export default function BlogCarousel3D() {
         <div className="h-[600px] md:h-[700px] w-full cursor-grab active:cursor-grabbing">
           <Canvas
             key={canvasKey.current}
-            camera={{ position: [0, 1, 10], fov: 55 }}
+            camera={{ position: [0, 1.5, 14], fov: 42 }}
             frameloop={needsRender ? "always" : "demand"}
             gl={{
               antialias: true,
