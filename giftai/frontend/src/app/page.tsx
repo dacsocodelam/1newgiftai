@@ -9,7 +9,6 @@ import HowItWorks from "../components/HowItWorks";
 import AboutUs from "../components/AboutUs";
 import CardCreator from "../components/CardCreator";
 import GiftFinder from "../components/GiftFinder";
-import LanguageSwitcher from "../components/LanguageSwitcher";
 import dynamic from "next/dynamic";
 
 // Dynamically import 3D Blog Carousel to avoid SSR issues
@@ -259,10 +258,6 @@ export default function Home() {
       ) : (
         <>
           <Header />
-          {/* Language Switcher - Fixed position */}
-          <div className="fixed top-4 right-4 z-50">
-            <LanguageSwitcher />
-          </div>
           <main id="home" className="flex flex-col">
             {/* Hero Section */}
             <HeroSection />
