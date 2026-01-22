@@ -6,9 +6,12 @@ if [ -z "${LD_PRELOAD+x}" ]; then
     export LD_PRELOAD
 fi
 
-# If running the rails server then create or migrate existing database
+# Nếu đang chạy rails server thì chuẩn bị database
 if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
-  ./bin/rails db:prepare
+  echo "🚀 Đang kiểm tra và cập nhật Database..."
+  ./bin/rails db:migrate
+  # Tạm thời ép chạy seed để chắc chắn có dữ liệu mẫu cho demo
+  ./bin/rails db:seed 
 fi
 
 exec "${@}"
