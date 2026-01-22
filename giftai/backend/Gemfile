@@ -44,4 +44,4 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
-gem "sqlite3", ">= 2.1"
+gem "pg"

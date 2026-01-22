@@ -87,7 +87,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
 
         try {
           const analysisResponse = await axios.post(
-            "http://localhost:3001/api/analyze_style",
+            `${process.env.NEXT_PUBLIC_API_URL}/api/analyze_style`,
             { image: imageBase64 },
             { timeout: 30000 }, // 30 second timeout
           );
@@ -128,9 +128,12 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
         }),
       };
 
-      const response = await axios.get("http://localhost:3001/api/suggest", {
-        params: suggestParams,
-      });
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/suggest`,
+        {
+          params: suggestParams,
+        },
+      );
 
       clearInterval(messageInterval);
       setIsLoading(false);
