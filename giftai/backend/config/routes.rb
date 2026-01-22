@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     get  'suggest',       to: 'ai#suggest'
     get  'message',       to: 'ai#generate_message'
     post 'analyze_style', to: 'ai#analyze_style'
+    
+    # Thêm route cho POST /api/ai/suggestions (dùng cho CardCreator)
+    post 'ai/suggestions', to: 'ai#suggest'
 
     # Nếu sau này bạn muốn quản lý sản phẩm (Products)
     # Dòng dưới đây sẽ tự động tạo các đường dẫn: GET /api/products, GET /api/products/:id, v.v.
