@@ -131,13 +131,16 @@ const CardCreator: React.FC<CardCreatorProps> = ({
     setIsLoading(true);
 
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/message`, {
-        params: {
-          tone,
-          relationship,
-          occasion,
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/message`,
+        {
+          params: {
+            tone,
+            relationship,
+            occasion,
+          },
         },
-      });
+      );
 
       if (response.data.messages && Array.isArray(response.data.messages)) {
         setMessages(response.data.messages);
