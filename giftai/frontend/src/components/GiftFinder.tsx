@@ -40,15 +40,14 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
   // Generate cosmic particles only on client-side
   useEffect(() => {
     setIsMounted(true);
-    setCosmicParticles(
-      Array.from({ length: 30 }, (_, i) => ({
-        id: i,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        delay: Math.random() * 8,
-        duration: 8 + Math.random() * 8,
-      })),
-    );
+    const particles = Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: Math.random() * 8,
+      duration: 8 + Math.random() * 8,
+    }));
+    setCosmicParticles(particles);
   }, []);
 
   const loadingMessages = [
@@ -162,7 +161,7 @@ const GiftFinder: React.FC<GiftFinderProps> = ({
       <div className="absolute inset-0 cosmic-glow pointer-events-none z-0" />
 
       {/* Floating Cosmic Particles */}
-      {isMounted && (
+      {isMounted && cosmicParticles.length > 0 && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           {cosmicParticles.map((particle) => (
             <div
