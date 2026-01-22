@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # 2. Không gian tên API (API Namespace)
   # Gom nhóm các dịch vụ backend giúp URL sạch sẽ hơn (ví dụ: /api/suggest)
-  namespace :api do
+  scope :api do
     # Các tính năng AI hiện tại
     get  'suggest',       to: 'ai#suggest'
     get  'message',       to: 'ai#generate_message'

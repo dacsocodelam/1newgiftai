@@ -131,7 +131,7 @@ const CardCreator: React.FC<CardCreatorProps> = ({
     setIsLoading(true);
 
     try {
-      const response = await axios.get("http://localhost:3001/api/message", {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/message`, {
         params: {
           tone,
           relationship,
@@ -249,7 +249,7 @@ const CardCreator: React.FC<CardCreatorProps> = ({
         // Use real backend API
         console.log("🌐 Using Real Backend API");
         const backendUrl =
-          process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
+          process.env.NEXT_PUBLIC_API_URL || "https://1newgiftai.onrender.com";
 
         const apiResponse = await axios.post(
           `${backendUrl}/api/ai/suggestions`,

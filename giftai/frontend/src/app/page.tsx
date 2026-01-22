@@ -225,7 +225,7 @@ export default function Home() {
     setLoadingMessage("🔄 新しい提案を作成中...");
 
     try {
-      const res = await axios.get("http://localhost:3001/api/suggest", {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/suggest`, {
         params: formData,
       });
 
