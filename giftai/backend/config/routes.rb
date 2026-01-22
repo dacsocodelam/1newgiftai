@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   # Gom nhóm các dịch vụ backend giúp URL sạch sẽ hơn (ví dụ: /api/suggest)
   namespace :api do
     # Các tính năng AI hiện tại
-    get  '/suggest',       to: 'ai#suggest'
-    get  '/message',       to: 'ai#generate_message'
-    post '/analyze_style', to: 'ai#analyze_style'
+    get  'suggest',       to: 'ai#suggest'
+    get  'message',       to: 'ai#generate_message'
+    post 'analyze_style', to: 'ai#analyze_style'
 
     # Nếu sau này bạn muốn quản lý sản phẩm (Products)
     # Dòng dưới đây sẽ tự động tạo các đường dẫn: GET /api/products, GET /api/products/:id, v.v.
